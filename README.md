@@ -1,10 +1,10 @@
 =
-                           IDENTITYFORGE STUDIO
+                           IDCRAFT PRO
                Enterprise-Grade Bulk ID Card Generation Suite
 
 OVERVIEW
 --------------------------------------------------------------------------------
-IdentityForge Studio is a high-performance desktop application engineered to 
+IDCraft Pro is a high-performance desktop application engineered to 
 streamline high-volume ID card production. Featuring a sleek, modern interface, 
 it bridges the gap between complex database management and print-ready visual 
 design. 
@@ -41,7 +41,7 @@ CORE FEATURES
 GETTING STARTED & WORKFLOW
 --------------------------------------------------------------------------------
 1. Starting a New Project
-   - Launch IdentityForge Studio and click on "Launch ID Card Software".
+   - Launch IDCraft Pro and click on "Launch ID Card Software".
    - Select "New project".
    - Map your assets: 
      * Select your Excel Data file.
@@ -70,9 +70,9 @@ GETTING STARTED & WORKFLOW
 
 DOWNLOAD & INSTALLATION
 --------------------------------------------------------------------------------
-IdentityForge Studio is available as a standalone Windows installer.
+IDCraft Pro is available as a standalone Windows installer.
 1. Navigate to the GitHub Releases Page 
-   (https://github.com/Piyush-2103/IdentityForge-Studio/releases/latest).
+   (https://github.com/Piyush-2103/IDCraft-Pro/releases/latest).
 2. Download the latest "IdentityForge-Setup-v1.0.0.exe" file.
 3. Run the installer and follow the on-screen prompts.
 4. Launch the software and enter your License Key to activate the FULL version, 
@@ -81,7 +81,7 @@ IdentityForge Studio is available as a standalone Windows installer.
 
 LICENSING & VERSIONS
 --------------------------------------------------------------------------------
-IdentityForge Studio operates on a robust licensing model to provide a seamless 
+IDCraft Pro operates on a robust licensing model to provide a seamless 
 trial experience while protecting premium features.
 
 [ Trial Version ]
