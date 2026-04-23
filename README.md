@@ -1,7 +1,4 @@
-=
-                           IDCRAFT PRO
-               Enterprise-Grade Bulk ID Card Generation Suite
-
+IDCRAFT PRO
 OVERVIEW
 --------------------------------------------------------------------------------
 IDCraft Pro is a high-performance desktop application engineered to 
