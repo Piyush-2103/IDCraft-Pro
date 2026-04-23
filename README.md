@@ -1,4 +1,4 @@
-
+=
                            IDENTITYFORGE STUDIO
                Enterprise-Grade Bulk ID Card Generation Suite
 
@@ -115,3 +115,4 @@ GitHub: https://github.com/Piyush-2103
 Passionate about building elegant user interfaces, highly-optimized Python engines, 
 photography, and cinematic visual design.
 ================================================================================
+
