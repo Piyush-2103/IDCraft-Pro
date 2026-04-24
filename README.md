@@ -7,7 +7,7 @@ it bridges the gap between complex database management and print-ready visual
 design. 
 
 Whether you are printing single-sided visitor badges or dual-sided corporate IDs, 
-IdentityForge handles the heavy lifting of data binding, image masking, and print 
+IDCraft Pro handles the heavy lifting of data binding, image masking, and print 
 grid compilation, allowing institutions, event organizers, and businesses to 
 generate thousands of custom ID cards in minutes.
 
