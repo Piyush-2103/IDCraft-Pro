@@ -14,24 +14,16 @@
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     
     <style>
-        /* Base Theme & STRICT Mobile Overflow Prevention */
+        /* Base Theme */
         html, body {
             background-color: #04101E; 
             color: #F8F9FA;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            overflow-x: hidden !important;
-            max-width: 100%;
+            overflow-x: hidden !important; /* Prevents horizontal scroll */
             width: 100%;
             position: relative; 
             margin: 0;
             padding: 0;
-        }
-
-        /* Wrap entire page content to guarantee no mobile bleed */
-        .page-wrapper {
-            overflow: hidden;
-            width: 100%;
-            position: relative;
         }
 
         /* Deep Ambient Mesh - Stays absolute so the colors scroll with the page */
@@ -46,7 +38,7 @@
                 radial-gradient(circle at 80% 90%, rgba(6, 214, 160, 0.1) 0%, transparent 35%);  
         }
 
-        /* THE FIX: Live Particle Container - MUST be fixed to viewport to prevent mobile canvas crash */
+        /* Live Particle Container - Fixed to Viewport for mobile performance */
         #tsparticles {
             position: fixed; 
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -148,122 +140,357 @@
             <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="btn-primary block text-center text-[#04101E] font-bold py-3 rounded-xl mobile-link">Download Trial</a>
         </div>
     </nav>
-
-    <div class="page-wrapper">
         
-        <section class="w-full min-h-[90vh] md:min-h-[85vh] flex flex-col justify-center items-center px-4 md:px-6 pt-32 pb-16 text-center relative z-10 pointer-events-none">
-            <div data-aos="fade-down" class="glass px-4 py-1.5 md:px-5 md:py-2 rounded-full text-[10px] md:text-xs font-bold text-[#06D6A0] mb-6 md:mb-8 border border-[#06D6A0]/30 tracking-widest uppercase inline-flex items-center gap-2 mx-auto pointer-events-auto hover:bg-[#06D6A0]/10 transition-colors">
-                <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#06D6A0] animate-pulse"></span>
-                Enterprise-Grade Suite
+    <section class="w-full min-h-[90vh] md:min-h-[85vh] flex flex-col justify-center items-center px-4 md:px-6 pt-32 pb-16 text-center relative z-10 pointer-events-none">
+        <div data-aos="fade-down" class="glass px-4 py-1.5 md:px-5 md:py-2 rounded-full text-[10px] md:text-xs font-bold text-[#06D6A0] mb-6 md:mb-8 border border-[#06D6A0]/30 tracking-widest uppercase inline-flex items-center gap-2 mx-auto pointer-events-auto hover:bg-[#06D6A0]/10 transition-colors">
+            <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#06D6A0] animate-pulse"></span>
+            Enterprise-Grade Suite
+        </div>
+        
+        <h1 data-aos="fade-up" data-aos-delay="100" class="w-full max-w-4xl mx-auto text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 md:mb-6 tracking-tight leading-tight text-[#F8F9FA] pointer-events-auto">
+            Streamline high-volume ID card production <span class="text-gradient block md:inline">in minutes.</span>
+        </h1>
+        
+        <p data-aos="fade-up" data-aos-delay="200" class="w-full max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-[#F8F9FA]/80 mb-8 md:mb-10 leading-relaxed pointer-events-auto px-2">
+            Bridge the gap between complex database management and print-ready visual design. Generate thousands of single or dual-sided custom ID cards with zero manual data entry.
+        </p>
+
+        <div data-aos="zoom-in" data-aos-delay="300" class="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto mx-auto pointer-events-auto px-4 sm:px-0">
+            <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="btn-primary w-full sm:w-auto text-[#04101E] font-bold py-3.5 md:py-4 px-8 md:px-10 rounded-xl text-base md:text-lg flex items-center justify-center gap-2">
+                Download for Windows
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            </a>
+        </div>
+    </section>
+    
+    <section class="w-full py-16 md:py-24 px-4 md:px-6 relative z-10 pointer-events-none">
+        <div class="w-full max-w-6xl mx-auto pointer-events-auto">
+            
+            <div class="text-center mb-16 md:mb-24" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-[#F8F9FA]">The <span class="text-gradient">Workspace</span></h2>
+                <p class="text-[#F8F9FA]/80 max-w-2xl mx-auto text-base md:text-lg px-2">Designed with a premium liquid-glass aesthetic so your staff can master it in minutes.</p>
+            </div>
+
+            <div class="space-y-24 md:space-y-32">
+                <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12" data-aos="fade-up">
+                    <div class="w-full lg:w-5/12 order-2 lg:order-1 text-center lg:text-left">
+                        <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#118AB2]/20 text-[#118AB2] mb-4 md:mb-6">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-[#118AB2] mb-3 md:mb-4">Project Hub</h3>
+                        <p class="text-[#F8F9FA]/80 text-base md:text-lg leading-relaxed">Launch recent .bip projects, manage your templates, and configure card dimensions and DPI resolution before diving into the visual design phase.</p>
+                    </div>
+                    <div class="w-full lg:w-7/12 order-1 lg:order-2">
+                        <div class="glass-card p-2 md:p-3 rounded-2xl shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
+                            <img src="home.png" alt="Home Screen Workspace" class="w-full h-auto rounded-xl border border-[#118AB2]/30 shadow-inner">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12" data-aos="fade-up">
+                    <div class="w-full lg:w-7/12 order-1 lg:order-1">
+                        <div class="glass-card p-2 md:p-3 rounded-2xl shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
+                            <img src="workspace.png" alt="Visual Editor Interface" class="w-full h-auto rounded-xl border border-[#06D6A0]/30 shadow-inner">
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-5/12 order-2 lg:order-2 text-center lg:text-left">
+                        <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#06D6A0]/20 text-[#06D6A0] mb-4 md:mb-6">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-[#06D6A0] mb-3 md:mb-4">Visual Editor</h3>
+                        <p class="text-[#F8F9FA]/80 text-base md:text-lg leading-relaxed">Map your data flawlessly. Use the drag-and-drop workspace to position dynamic text nodes, image masks, and auto-generating QR codes directly onto your ID layouts.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12" data-aos="fade-up">
+                    <div class="w-full lg:w-5/12 order-2 lg:order-1 text-center lg:text-left">
+                        <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#F8F9FA]/20 text-[#F8F9FA] mb-4 md:mb-6">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-[#F8F9FA] mb-3 md:mb-4">Smart Grid Compiler</h3>
+                        <p class="text-[#F8F9FA]/80 text-base md:text-lg leading-relaxed">Let the engine do the heavy lifting. Automatically arrange your processed cards into print-ready A4 or 8x12 grids, complete with configurable cut-lines and bleed.</p>
+                    </div>
+                    <div class="w-full lg:w-7/12 order-1 lg:order-2">
+                        <div class="glass-card p-2 md:p-3 rounded-2xl shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
+                            <img src="output.png" alt="Compiler Output Screen" class="w-full h-auto rounded-xl border border-[#F8F9FA]/30 shadow-inner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="w-full py-16 md:py-24 px-4 md:px-6 relative z-10 pointer-events-none">
+        <div class="w-full max-w-7xl mx-auto pointer-events-auto">
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-[#F8F9FA]">Core <span class="text-gradient">Capabilities</span></h2>
+                <p class="text-[#F8F9FA]/80 max-w-2xl mx-auto text-sm md:text-base px-2">Every tool required to process institutional print runs natively on your desktop.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#06D6A0]">Dynamic Data Binding</h3>
+                    <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Instantly map Excel (.xlsx/.xls) columns to visual text and QR codes using simple {ColumnName} syntax. Includes Live Data Preview mode.</p>
+                </div>
+                <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#118AB2]">Advanced Media Handling</h3>
+                    <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Auto-serial image assignments for directories, dynamic cell-based images, and custom shape masks (Circles, Ovals, Custom PNG).</p>
+                </div>
+                <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#F8F9FA]">Smart Grid Compiler</h3>
+                    <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Automatically compile cards into grids. Features custom row gaps, automatic cut-lines, mirroring, and 90-degree print rotation.</p>
+                </div>
+                <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#118AB2]">Dual-Sided Support</h3>
+                    <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Design and generate the front and back of your ID cards simultaneously in a distraction-free Focus Mode environment.</p>
+                </div>
+                <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="500">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#06D6A0]">High-Quality Exports</h3>
+                    <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Generate outputs perfectly suited for print shops: Lossless PNG, JPEG, standard document PDFs, and fully scalable Vector SVGs.</p>
+                </div>
+                <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="600">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#F8F9FA]">Project Management</h3>
+                    <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Save your entire configured workspace, mappings, and typography settings as a standalone .bip (Bulk Identity Project) file to reload instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="w-full py-16 md:py-24 px-4 md:px-6 relative z-10 border-y border-[#F8F9FA]/10 bg-[#118AB2]/10 backdrop-blur-sm pointer-events-none">
+        <div class="w-full max-w-5xl mx-auto pointer-events-auto">
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-[#F8F9FA]">A Streamlined <span class="text-gradient">Workflow</span></h2>
             </div>
             
-            <h1 data-aos="fade-up" data-aos-delay="100" class="w-full max-w-4xl mx-auto text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 md:mb-6 tracking-tight leading-tight text-[#F8F9FA] pointer-events-auto">
-                Streamline high-volume ID card production <span class="text-gradient block md:inline">in minutes.</span>
-            </h1>
-            
-            <p data-aos="fade-up" data-aos-delay="200" class="w-full max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-[#F8F9FA]/80 mb-8 md:mb-10 leading-relaxed pointer-events-auto px-2">
-                Bridge the gap between complex database management and print-ready visual design. Generate thousands of single or dual-sided custom ID cards with zero manual data entry.
-            </p>
+            <div class="space-y-8 md:space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-[#06D6A0]/50 before:to-transparent">
+                
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group" data-aos="fade-up">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-[#04101E] bg-[#06D6A0] text-[#04101E] font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_15px_rgba(6,214,160,0.5)] z-10">1</div>
+                    <div class="w-[calc(100%-3.5rem)] md:w-[calc(50%-2.5rem)] glass-card p-5 md:p-6 rounded-2xl text-left">
+                        <h3 class="text-lg md:text-xl font-bold text-[#F8F9FA] mb-2">Map Your Assets</h3>
+                        <p class="text-[#F8F9FA]/80 text-sm">Select your Excel data file, choose the folder containing all your portrait photos, and upload your background templates.</p>
+                    </div>
+                </div>
 
-            <div data-aos="zoom-in" data-aos-delay="300" class="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto mx-auto pointer-events-auto px-4 sm:px-0">
-                <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="btn-primary w-full sm:w-auto text-[#04101E] font-bold py-3.5 md:py-4 px-8 md:px-10 rounded-xl text-base md:text-lg flex items-center justify-center gap-2">
-                    Download for Windows
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group" data-aos="fade-up">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-[#04101E] bg-[#118AB2] text-[#F8F9FA] font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg z-10">2</div>
+                    <div class="w-[calc(100%-3.5rem)] md:w-[calc(50%-2.5rem)] glass-card p-5 md:p-6 rounded-2xl text-left">
+                        <h3 class="text-lg md:text-xl font-bold text-[#F8F9FA] mb-2">Design the Workspace</h3>
+                        <p class="text-[#F8F9FA]/80 text-sm">Drag Text, Image, and Data Nodes onto the canvas. Apply typography, auto-wrapping, masks, and colors visually.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group" data-aos="fade-up">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-[#04101E] bg-[#F8F9FA] text-[#04101E] font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg z-10">3</div>
+                    <div class="w-[calc(100%-3.5rem)] md:w-[calc(50%-2.5rem)] glass-card p-5 md:p-6 rounded-2xl text-left">
+                        <h3 class="text-lg md:text-xl font-bold text-[#F8F9FA] mb-2">Compile & Export</h3>
+                        <p class="text-[#F8F9FA]/80 text-sm">Configure your grid gaps and format preferences. Click "Process Batch Generation" to render thousands of cards.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="w-full py-16 md:py-24 px-4 md:px-6 relative z-10 pointer-events-none">
+        <div class="w-full max-w-5xl mx-auto pointer-events-auto">
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-[#F8F9FA]">Simple <span class="text-gradient">Licensing</span></h2>
+                <p class="text-[#F8F9FA]/80 max-w-2xl mx-auto text-sm md:text-base px-2">Evaluate IDCraft Pro risk-free, then unlock its ultimate potential.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center text-left">
+                <div class="glass-card p-6 md:p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-[#118AB2] font-bold tracking-widest uppercase text-xs md:text-sm mb-2">7-Day Trial</div>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-[#F8F9FA]">Free</h3>
+                    <ul class="space-y-3 md:space-y-4 mb-6 md:mb-8 text-[#F8F9FA]/90 text-sm">
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#118AB2] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Visual Canvas Editor</li>
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#118AB2] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Basic JPEG Exports</li>
+                        <li class="flex items-center gap-3 opacity-60"><svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Limited to 20 cards per day</li>
+                        <li class="flex items-center gap-3 opacity-60"><svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> No QR/Data Codes</li>
+                        <li class="flex items-center gap-3 opacity-60"><svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Single-Sided Only</li>
+                    </ul>
+                    <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="block w-full py-3 px-6 text-center rounded-xl glass text-[#F8F9FA] font-bold hover:bg-[#F8F9FA]/10 transition-colors">Start Trial Now</a>
+                </div>
+
+                <div class="glass-card p-6 md:p-10 rounded-3xl border border-[#06D6A0]/50 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 bg-[#06D6A0] text-[#04101E] text-[10px] md:text-xs font-extrabold px-3 md:px-4 py-1 rounded-bl-xl uppercase tracking-wider shadow-lg">Premium</div>
+                    <div class="text-[#06D6A0] font-bold tracking-widest uppercase text-xs md:text-sm mb-2">Full License</div>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-[#F8F9FA]">Lifetime Key</h3>
+                    <ul class="space-y-3 md:space-y-4 mb-6 md:mb-8 text-[#F8F9FA] text-sm">
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#06D6A0] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <strong>Unlimited daily generations</strong></li>
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#06D6A0] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Dual-Sided Printing Modes</li>
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#06D6A0] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Dynamic QR & Data Codes</li>
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#06D6A0] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> High-Res PDF, PNG & Vector SVG</li>
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#06D6A0] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Grid Rotation & Mirroring</li>
+                    </ul>
+                    <p class="text-[11px] md:text-xs text-[#F8F9FA]/60 mb-3 md:mb-4 text-center">Seamless UPI Payments inside the App</p>
+                    <button class="block w-full py-3 px-6 text-center rounded-xl btn-primary text-[#04101E] font-bold shadow-lg">Purchase in Software</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="w-full py-16 md:py-24 px-4 md:px-6 relative z-10 pointer-events-none border-t border-[#F8F9FA]/5">
+        <div class="w-full max-w-3xl mx-auto pointer-events-auto">
+            <div class="text-center mb-8 md:mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-[#F8F9FA]">Get in <span class="text-gradient">Touch</span></h2>
+                <p class="text-[#F8F9FA]/80 max-w-xl mx-auto text-sm md:text-base px-2">Have a question or need assistance with your license? Send a message directly to the developer.</p>
+            </div>
+
+            <div class="glass-card p-6 md:p-8 lg:p-12 rounded-3xl shadow-2xl border border-[#118AB2]/40" data-aos="zoom-in">
+                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4 md:space-y-6">
+                    <input type="hidden" name="access_key" value="ca2e75d8-5edd-472f-9f5e-9e942d2ea4e6">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <div>
+                            <label class="block text-[10px] md:text-xs font-bold text-[#06D6A0] mb-1.5 md:mb-2 uppercase tracking-widest">Name</label>
+                            <input type="text" name="Name" placeholder="Your Name" required 
+                                   class="w-full bg-[#04101E]/80 border border-[#118AB2]/40 rounded-xl px-4 py-2.5 md:py-3 text-sm text-[#F8F9FA] placeholder-[#F8F9FA]/30 focus:outline-none focus:border-[#06D6A0] focus:ring-1 focus:ring-[#06D6A0] transition-all shadow-inner">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] md:text-xs font-bold text-[#06D6A0] mb-1.5 md:mb-2 uppercase tracking-widest">Email</label>
+                            <input type="email" name="Email" placeholder="your@email.com" required 
+                                   class="w-full bg-[#04101E]/80 border border-[#118AB2]/40 rounded-xl px-4 py-2.5 md:py-3 text-sm text-[#F8F9FA] placeholder-[#F8F9FA]/30 focus:outline-none focus:border-[#06D6A0] focus:ring-1 focus:ring-[#06D6A0] transition-all shadow-inner">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-[10px] md:text-xs font-bold text-[#06D6A0] mb-1.5 md:mb-2 uppercase tracking-widest">Message</label>
+                        <textarea name="Message" placeholder="How can we help you?" rows="4" required 
+                                  class="w-full bg-[#04101E]/80 border border-[#118AB2]/40 rounded-xl px-4 py-2.5 md:py-3 text-sm text-[#F8F9FA] placeholder-[#F8F9FA]/30 focus:outline-none focus:border-[#06D6A0] focus:ring-1 focus:ring-[#06D6A0] transition-all resize-none shadow-inner"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary w-full text-[#04101E] font-bold py-3.5 md:py-4 rounded-xl text-base md:text-lg shadow-xl mt-2 md:mt-4">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="w-full py-16 md:py-20 px-4 md:px-6 relative z-10 flex justify-center pointer-events-none">
+        <div class="w-full max-w-4xl mx-auto pointer-events-auto">
+            <div data-aos="zoom-in" class="glass w-full rounded-3xl p-8 md:p-12 text-center border-t border-[#06D6A0]/30 hover:border-[#06D6A0]/60 transition-colors duration-500">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-[#F8F9FA]">Install the Suite</h2>
+                <p class="text-[#F8F9FA]/80 mb-8 md:mb-10 max-w-xl mx-auto text-sm md:text-base px-2">Standalone Windows installer. Download the latest `.exe` release directly from GitHub to begin your trial.</p>
+                
+                <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="btn-primary flex md:inline-flex items-center justify-center gap-2 text-[#04101E] font-bold py-3.5 md:py-4 px-8 md:px-12 rounded-xl text-base md:text-lg shadow-2xl w-full md:w-auto">
+                    Download Latest Release
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 </a>
+                <p class="mt-4 md:mt-6 text-xs md:text-sm text-[#F8F9FA]/60">Requires Windows 10/11 (64-bit)</p>
             </div>
-        </section>
-        
-        <section class="w-full py-16 md:py-24 px-4 md:px-6 relative z-10 pointer-events-none">
-            <div class="w-full max-w-6xl mx-auto pointer-events-auto">
-                
-                <div class="text-center mb-16 md:mb-24" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-[#F8F9FA]">The <span class="text-gradient">Workspace</span></h2>
-                    <p class="text-[#F8F9FA]/80 max-w-2xl mx-auto text-base md:text-lg px-2">Designed with a premium liquid-glass aesthetic so your staff can master it in minutes.</p>
-                </div>
+        </div>
+    </section>
 
-                <div class="space-y-24 md:space-y-32">
-                    <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12" data-aos="fade-up">
-                        <div class="w-full lg:w-5/12 order-2 lg:order-1 text-center lg:text-left">
-                            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#118AB2]/20 text-[#118AB2] mb-4 md:mb-6">
-                                <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                            </div>
-                            <h3 class="text-2xl md:text-3xl font-bold text-[#118AB2] mb-3 md:mb-4">Project Hub</h3>
-                            <p class="text-[#F8F9FA]/80 text-base md:text-lg leading-relaxed">Launch recent .bip projects, manage your templates, and configure card dimensions and DPI resolution before diving into the visual design phase.</p>
-                        </div>
-                        <div class="w-full lg:w-7/12 order-1 lg:order-2">
-                            <div class="glass-card p-2 md:p-3 rounded-2xl shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
-                                <img src="home.png" alt="Home Screen Workspace" class="w-full h-auto rounded-xl border border-[#118AB2]/30 shadow-inner">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12" data-aos="fade-up">
-                        <div class="w-full lg:w-7/12 order-1 lg:order-1">
-                            <div class="glass-card p-2 md:p-3 rounded-2xl shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
-                                <img src="workspace.png" alt="Visual Editor Interface" class="w-full h-auto rounded-xl border border-[#06D6A0]/30 shadow-inner">
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-5/12 order-2 lg:order-2 text-center lg:text-left">
-                            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#06D6A0]/20 text-[#06D6A0] mb-4 md:mb-6">
-                                <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
-                            </div>
-                            <h3 class="text-2xl md:text-3xl font-bold text-[#06D6A0] mb-3 md:mb-4">Visual Editor</h3>
-                            <p class="text-[#F8F9FA]/80 text-base md:text-lg leading-relaxed">Map your data flawlessly. Use the drag-and-drop workspace to position dynamic text nodes, image masks, and auto-generating QR codes directly onto your ID layouts.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12" data-aos="fade-up">
-                        <div class="w-full lg:w-5/12 order-2 lg:order-1 text-center lg:text-left">
-                            <div class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#F8F9FA]/20 text-[#F8F9FA] mb-4 md:mb-6">
-                                <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                            </div>
-                            <h3 class="text-2xl md:text-3xl font-bold text-[#F8F9FA] mb-3 md:mb-4">Smart Grid Compiler</h3>
-                            <p class="text-[#F8F9FA]/80 text-base md:text-lg leading-relaxed">Let the engine do the heavy lifting. Automatically arrange your processed cards into print-ready A4 or 8x12 grids, complete with configurable cut-lines and bleed.</p>
-                        </div>
-                        <div class="w-full lg:w-7/12 order-1 lg:order-2">
-                            <div class="glass-card p-2 md:p-3 rounded-2xl shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
-                                <img src="output.png" alt="Compiler Output Screen" class="w-full h-auto rounded-xl border border-[#F8F9FA]/30 shadow-inner">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <footer class="w-full border-t border-[#F8F9FA]/10 py-8 md:py-12 px-4 md:px-6 relative z-10 bg-[#04101E] pointer-events-none">
+        <div class="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 pointer-events-auto">
+            <div class="flex items-center gap-3">
+                <img src="my-logo.png" alt="Logo" class="h-5 md:h-6 w-auto opacity-90">
+                <span class="text-[#F8F9FA]/80 font-medium text-xs md:text-sm">IDCraft Pro</span>
             </div>
-        </section>
-
-        <section id="features" class="w-full py-16 md:py-24 px-4 md:px-6 relative z-10 pointer-events-none">
-            <div class="w-full max-w-7xl mx-auto pointer-events-auto">
-                <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-[#F8F9FA]">Core <span class="text-gradient">Capabilities</span></h2>
-                    <p class="text-[#F8F9FA]/80 max-w-2xl mx-auto text-sm md:text-base px-2">Every tool required to process institutional print runs natively on your desktop.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                    <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#06D6A0]">Dynamic Data Binding</h3>
-                        <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Instantly map Excel (.xlsx/.xls) columns to visual text and QR codes using simple {ColumnName} syntax. Includes Live Data Preview mode.</p>
-                    </div>
-                    <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#118AB2]">Advanced Media Handling</h3>
-                        <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Auto-serial image assignments for directories, dynamic cell-based images, and custom shape masks (Circles, Ovals, Custom PNG).</p>
-                    </div>
-                    <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="300">
-                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#F8F9FA]">Smart Grid Compiler</h3>
-                        <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Automatically compile cards into grids. Features custom row gaps, automatic cut-lines, mirroring, and 90-degree print rotation.</p>
-                    </div>
-                    <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="400">
-                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#118AB2]">Dual-Sided Support</h3>
-                        <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Design and generate the front and back of your ID cards simultaneously in a distraction-free Focus Mode environment.</p>
-                    </div>
-                    <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="500">
-                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#06D6A0]">High-Quality Exports</h3>
-                        <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Generate outputs perfectly suited for print shops: Lossless PNG, JPEG, standard document PDFs, and fully scalable Vector SVGs.</p>
-                    </div>
-                    <div class="glass-card p-6 md:p-8 rounded-2xl text-left" data-aos="fade-up" data-aos-delay="600">
-                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[#F8F9FA]">Project Management</h3>
-                        <p class="text-[#F8F9FA]/80 text-sm leading-relaxed">Save your entire configured workspace, mappings, and typography settings as a standalone .bip (Bulk Identity Project) file to reload instantly.</p>
-                    </div>
-                </div>
+            
+            <div class="text-center md:text-right">
+                <p class="text-[#F8F9FA] font-bold text-xs md:text-sm mb-1">Designed & Developed by Piyush Kumar Dugar</p>
+                <p class="text-[#F8F9FA]/60 text-[10px] md:text-xs max-w-sm md:max-w-md mx-auto md:ml-auto px-2 md:px-0">
+                    Passionate about building elegant user interfaces, highly-optimized Python engines, and cinematic visual design.
+                </p>
             </div>
-        </section>
+        </div>
+    </footer>
 
-        <section id="workflow" class="w-full py-16 md:py-24 px-4 md:px-6 relative z-10 border-y border-[#F8F9
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            });
+        });
+
+        // Initialize Scroll Animations
+        AOS.init({
+            duration: 800,
+            offset: 50,
+            once: true, 
+            easing: 'ease-out-cubic',
+        });
+
+        // Initialize Live Interactive Particle Background
+        tsParticles.load("tsparticles", {
+            fpsLimit: 60,
+            particles: {
+                number: {
+                    value: window.innerWidth < 768 ? 40 : 80,
+                    density: { enable: true, value_area: 800 } 
+                },
+                color: {
+                    value: ["#06D6A0", "#118AB2", "#F8F9FA"]
+                },
+                shape: {
+                    type: "circle"
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: { enable: true, speed: 2, size_min: 0.1, sync: false }
+                },
+                links: {
+                    enable: true,
+                    distance: window.innerWidth < 768 ? 120 : 160,
+                    color: "#118AB2",
+                    opacity: 0.4,
+                    width: 1.5
+                },
+                move: {
+                    enable: true,
+                    speed: window.innerWidth < 768 ? 0.8 : 1.2,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    outModes: { default: "bounce" }
+                }
+            },
+            interactivity: {
+                detectsOn: "window", 
+                events: {
+                    onHover: {
+                        enable: true,
+                        mode: "grab" 
+                    },
+                    onClick: {
+                        enable: true,
+                        mode: "push" 
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: window.innerWidth < 768 ? 150 : 250, 
+                        links: { opacity: 0.9 }
+                    },
+                    push: {
+                        quantity: 3 
+                    }
+                }
+            },
+            detectRetina: true
+        });
+    </script>
+</body>
+</html>
