@@ -486,7 +486,31 @@
             once: true, 
             easing: 'ease-out-cubic',
         });
-
+        // --- Force Mobile Video Autoplay ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const videos = document.querySelectorAll('video');
+            
+            videos.forEach(video => {
+                // Hard-mute the video via JS just to be safe
+                video.muted = true; 
+                
+                // Attempt to play immediately
+                let playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        // If it fails (usually due to Low Power Mode), try playing it on the first scroll/touch
+                        window.addEventListener('touchstart', () => {
+                            video.play();
+                        }, { once: true });
+                        
+                        window.addEventListener('scroll', () => {
+                            video.play();
+                        }, { once: true });
+                    });
+                }
+            });
+        });
         // Initialize Calmed, Elegant Particle Background
         tsParticles.load("tsparticles", {
             fpsLimit: 60,
