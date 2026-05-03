@@ -4,21 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>IDCraft Pro | Enterprise Bulk ID Card Generator</title>
-    <script data-goatcounter="https://idcraftpro.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+    
     <link rel="icon" type="image/png" href="my-logo.png">
     
+    <!-- Preconnect to Google Fonts for faster fetching -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-    
     <style>
+        /* Lenis Smooth Scroll Base Styles */
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-scrolling iframe { pointer-events: none; }
+
         /* Base Theme - Professional Enterprise Typography */
         html, body {
             color: #F8F9FA;
@@ -39,7 +45,7 @@
             z-index: -5;
         }
 
-        /* Layer 2: Ambient Mesh & Orbs (Subtle and Calmed Down) */
+        /* Layer 2: Ambient Mesh & Orbs */
         .bg-mesh {
             position: absolute; 
             top: 0; left: 0; right: 0; bottom: 0;
@@ -53,8 +59,8 @@
 
         .orb {
             position: absolute; border-radius: 50%; filter: blur(90px);
-            z-index: -4; opacity: 0.25; /* Reduced from 0.6 for elegance */
-            animation: float 25s infinite ease-in-out alternate; /* Slowed down */
+            z-index: -4; opacity: 0.25; 
+            animation: float 25s infinite ease-in-out alternate; 
         }
         .orb-1 { top: 5%; left: -10%; width: 45vw; height: 45vw; background: radial-gradient(circle, rgba(17, 138, 178, 0.4) 0%, rgba(0,0,0,0) 70%); animation-delay: 0s; }
         .orb-2 { top: 40%; right: -10%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(6, 214, 160, 0.25) 0%, rgba(0,0,0,0) 70%); animation-delay: -5s; }
@@ -74,20 +80,21 @@
             z-index: -3; pointer-events: auto; 
         }
 
-        /* Professional Glassmorphism */
+        /* Professional Glassmorphism with GPU Acceleration */
         .glass {
             background: linear-gradient(135deg, rgba(248, 249, 250, 0.08) 0%, rgba(248, 249, 250, 0.02) 100%);
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(248, 249, 250, 0.12); box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.5); 
+            transform: translateZ(0); backface-visibility: hidden; will-change: transform;
         }
         
         .glass-card {
             background: rgba(248, 249, 250, 0.03); backdrop-filter: blur(12px);
             border: 1px solid rgba(248, 249, 250, 0.08); border-top: 1px solid rgba(248, 249, 250, 0.12); border-left: 1px solid rgba(248, 249, 250, 0.12);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateZ(0); backface-visibility: hidden; will-change: transform;
         }
         
-        /* Elegant deep shadow on hover instead of neon glow */
         .glass-card:hover {
             transform: translateY(-5px); 
             background: rgba(248, 249, 250, 0.06); 
@@ -109,17 +116,19 @@
             filter: brightness(1.1);
         }
 
-        /* Solid Gradient Text (Removed the distraction animation) */
+        /* Solid Gradient Text */
         .text-gradient {
             background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-image: linear-gradient(to right, #06D6A0, #F8F9FA, #118AB2);
         }
+
+        /* 60FPS Scroll Hack (Turns off hovers while moving) */
+        .is-scrolling, .is-scrolling * { pointer-events: none !important; }
     </style>
 </head>
 <body class="relative antialiased">
 
     <div class="bg-base"></div>
-
     <div class="bg-mesh"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
@@ -142,7 +151,7 @@
                 <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="btn-primary text-sm font-bold text-[#04101E] px-5 py-2 rounded-lg ml-4">Download Trial</a>
             </div>
 
-            <button id="mobile-menu-btn" class="lg:hidden text-[#F8F9FA] focus:outline-none p-2">
+            <button id="mobile-menu-btn" class="lg:hidden text-[#F8F9FA] focus:outline-none p-2" aria-label="Toggle Menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
@@ -196,8 +205,8 @@
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#27C93F]"></div>
                             </div>
-                            <video class="w-full h-auto rounded-b-lg opacity-95 bg-[#04101E]" autoplay="autoplay" loop="loop" muted="muted" playsinline="true" webkit-playsinline="true" preload="auto">
-                                <source src="setup.mp4" type="video/mp4">
+                            <video class="w-full h-auto rounded-b-lg opacity-95 lazy-video" loop muted playsinline preload="none" style="background-color: #04101e;">
+                                <source data-src="setup.mp4" type="video/mp4">
                             </video> 
                         </div>
                     </div>
@@ -226,8 +235,8 @@
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#27C93F]"></div>
                             </div>
-                            <video class="w-full h-auto rounded-b-lg opacity-95" autoplay loop muted playsinline>
-                                <source src="home.mp4" type="video/mp4">
+                            <video class="w-full h-auto rounded-b-lg opacity-95 lazy-video" loop muted playsinline preload="none" style="background-color: #04101e;">
+                                <source data-src="home.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
@@ -241,8 +250,8 @@
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#27C93F]"></div>
                             </div>
-                            <video class="w-full h-auto rounded-b-lg opacity-95" autoplay loop muted playsinline>
-                                <source src="workspace.mp4" type="video/mp4">
+                            <video class="w-full h-auto rounded-b-lg opacity-95 lazy-video" loop muted playsinline preload="none" style="background-color: #04101e;">
+                                <source data-src="workspace.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
@@ -270,8 +279,8 @@
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#27C93F]"></div>
                             </div>
-                            <video class="w-full h-auto rounded-b-lg opacity-95" autoplay loop muted playsinline>
-                                <source src="output.mp4" type="video/mp4">
+                            <video class="w-full h-auto rounded-b-lg opacity-95 lazy-video" loop muted playsinline preload="none" style="background-color: #04101e;">
+                                <source data-src="output.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
@@ -376,7 +385,15 @@
                 <div class="glass-card p-6 md:p-10 rounded-3xl border border-[#06D6A0]/50 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
                     <div class="absolute top-0 right-0 bg-[#06D6A0] text-[#04101E] text-[10px] md:text-xs font-extrabold px-3 md:px-4 py-1 rounded-bl-xl uppercase tracking-wider shadow-lg">Premium</div>
                     <div class="text-[#06D6A0] font-bold tracking-widest uppercase text-xs md:text-sm mb-2">Full License</div>
-                    <h3 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-[#F8F9FA]">Lifetime Key</h3>
+                    <h3 class="text-3xl md:text-4xl font-bold text-[#F8F9FA]">Lifetime Key</h3>
+                    
+                    <!-- NEW PRICING BLOCK -->
+                    <div class="flex items-baseline gap-3 mt-2 mb-4 md:mb-6">
+                        <span class="text-4xl md:text-5xl font-extrabold text-[#F8F9FA]">₹999</span>
+                        <span class="text-lg md:text-xl font-medium text-[#F8F9FA]/50 line-through">₹4999</span>
+                        <span class="text-[10px] font-extrabold text-[#04101E] bg-[#06D6A0] px-2 py-1 rounded border border-[#06D6A0]/30 uppercase tracking-wide ml-1 shadow-sm">Save 80%</span>
+                    </div>
+                    
                     <ul class="space-y-3 md:space-y-4 mb-6 md:mb-8 text-[#F8F9FA] text-sm">
                         <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#06D6A0] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <strong>Unlimited daily generations</strong></li>
                         <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#06D6A0] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Dual-Sided Printing Modes</li>
@@ -447,7 +464,7 @@
     <footer class="w-full border-t border-[#F8F9FA]/10 py-8 md:py-12 px-4 md:px-6 relative z-10 bg-[#04101E] pointer-events-none">
         <div class="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 pointer-events-auto">
             <div class="flex items-center gap-3">
-                <img src="my-logo.png" alt="Logo" class="h-5 md:h-6 w-auto opacity-90">
+                <img src="my-logo.png" alt="Logo" class="h-5 md:h-6 w-auto opacity-90" loading="lazy">
                 <span class="text-[#F8F9FA]/80 font-medium text-xs md:text-sm">IDCraft Pro</span>
             </div>
             
@@ -460,121 +477,123 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- DEFERRED SCRIPTS: Pushed to the bottom to avoid blocking the initial visual paint -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js" defer></script>
+    
+    <!-- Lenis Smooth Scrolling Library -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+    
     <script>
-        // Mobile Menu Toggle Logic
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const links = document.querySelectorAll('.mobile-link');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-        });
-
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                menu.classList.remove('flex');
-            });
-        });
-
-        // Initialize Scroll Animations
-        AOS.init({
-            duration: 800,
-            offset: 50,
-            once: true, 
-            easing: 'ease-out-cubic',
-        });
-        // --- Force Mobile Video Autoplay ---
         document.addEventListener("DOMContentLoaded", function() {
-            const videos = document.querySelectorAll('video');
-            
-            videos.forEach(video => {
-                // Hard-mute the video via JS just to be safe
-                video.muted = true; 
-                
-                // Attempt to play immediately
-                let playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        // If it fails (usually due to Low Power Mode), try playing it on the first scroll/touch
-                        window.addEventListener('touchstart', () => {
-                            video.play();
-                        }, { once: true });
-                        
-                        window.addEventListener('scroll', () => {
-                            video.play();
-                        }, { once: true });
+            // Lenis Cinematic Smooth Scroll Initialization
+            setTimeout(() => {
+                if (typeof Lenis !== 'undefined') {
+                    const lenis = new Lenis({
+                        duration: 1.2,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+                        direction: 'vertical',
+                        gestureDirection: 'vertical',
+                        smooth: true,
+                        mouseMultiplier: 1,
+                        smoothTouch: false, // Touch devices already have momentum scrolling
+                        touchMultiplier: 2,
+                    });
+
+                    function raf(time) {
+                        lenis.raf(time);
+                        requestAnimationFrame(raf);
+                    }
+                    requestAnimationFrame(raf);
+                }
+            }, 100);
+
+            // Mobile Menu Toggle Logic
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const links = document.querySelectorAll('.mobile-link');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('flex');
+            });
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    menu.classList.remove('flex');
+                });
+            });
+
+            // Initialize Scroll Animations (waits slightly for defer script to catch up)
+            setTimeout(() => {
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({ duration: 800, offset: 50, once: true, easing: 'ease-out-cubic' });
+                }
+            }, 300);
+
+            // Lazy Load Videos via IntersectionObserver (Crucial for PageSpeed)
+            const lazyVideos = [].slice.call(document.querySelectorAll("video.lazy-video"));
+            if ("IntersectionObserver" in window) {
+                let lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(video) {
+                        if (video.isIntersecting) {
+                            for (let source in video.target.children) {
+                                let videoSource = video.target.children[source];
+                                if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                                    videoSource.src = videoSource.dataset.src;
+                                }
+                            }
+                            video.target.load();
+                            video.target.play().catch(e => console.log("Autoplay prevented by browser: ", e));
+                            lazyVideoObserver.unobserve(video.target);
+                        }
+                    });
+                });
+                lazyVideos.forEach(function(lazyVideo) {
+                    lazyVideoObserver.observe(lazyVideo);
+                });
+            }
+
+            // Initialize Particle Background with Smart 120Hz Toggle
+            setTimeout(() => {
+                if (typeof tsParticles !== 'undefined') {
+                    tsParticles.load("tsparticles", {
+                        fpsLimit: window.innerWidth < 768 ? 60 : 120, // Smart 60Hz Mobile / 120Hz PC Toggle
+                        particles: {
+                            number: { value: window.innerWidth < 768 ? 40 : 100, density: { enable: true, value_area: 800 } },
+                            color: { value: ["#06D6A0", "#118AB2", "#F8F9FA"] },
+                            shape: { type: "circle" },
+                            opacity: { value: 0.15, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false } },
+                            size: { value: 2.5, random: true, anim: { enable: true, speed: 1, size_min: 0.1, sync: false } },
+                            links: { enable: true, distance: 150, color: "#118AB2", opacity: 0.15, width: 1 },
+                            move: { enable: true, speed: 0.5, direction: "none", random: false, straight: false, outModes: { default: "bounce" } }
+                        },
+                        interactivity: {
+                            detectsOn: "window", 
+                            events: {
+                                onHover: { enable: true, mode: "grab" },
+                                onClick: { enable: true, mode: "push" },
+                                resize: true
+                            },
+                            modes: { grab: { distance: 200, links: { opacity: 0.4 } }, push: { quantity: 3 } }
+                        },
+                        detectRetina: true
                     });
                 }
-            });
-        });
-        // Initialize Calmed, Elegant Particle Background
-        tsParticles.load("tsparticles", {
-            fpsLimit: 60,
-            particles: {
-                number: {
-                    value: window.innerWidth < 768 ? 40 : 100,
-                    density: { enable: true, value_area: 800 } 
-                },
-                color: {
-                    value: ["#06D6A0", "#118AB2", "#F8F9FA"]
-                },
-                shape: {
-                    type: "circle"
-                },
-                opacity: {
-                    value: 0.15, // Greatly reduced for enterprise subtlety
-                    random: true,
-                    anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false }
-                },
-                size: {
-                    value: 2.5,
-                    random: true,
-                    anim: { enable: true, speed: 1, size_min: 0.1, sync: false }
-                },
-                links: {
-                    enable: true,
-                    distance: 150,
-                    color: "#118AB2",
-                    opacity: 0.15, // Faded connections to reduce visual clutter
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 0.5, // Slowed down for a calm atmosphere
-                    direction: "none",
-                    random: false,
-                    straight: false,
-                    outModes: { default: "bounce" }
+            }, 400);
+
+            // 60FPS Scroll Hack: Disables heavy hover calculations while scrolling
+            let scrollTimer;
+            window.addEventListener('scroll', () => {
+                if (!document.body.classList.contains('is-scrolling')) {
+                    document.body.classList.add('is-scrolling');
                 }
-            },
-            interactivity: {
-                detectsOn: "window", 
-                events: {
-                    onHover: {
-                        enable: true,
-                        mode: "grab" 
-                    },
-                    onClick: {
-                        enable: true,
-                        mode: "push" 
-                    },
-                    resize: true
-                },
-                modes: {
-                    grab: {
-                        distance: 200, 
-                        links: { opacity: 0.4 }
-                    },
-                    push: {
-                        quantity: 3 
-                    }
-                }
-            },
-            detectRetina: true
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(() => {
+                    document.body.classList.remove('is-scrolling');
+                }, 150);
+            }, { passive: true });
         });
     </script>
 </body>
