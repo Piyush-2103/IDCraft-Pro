@@ -24,26 +24,6 @@
     <meta property="twitter:description" content="Generate thousands of custom ID cards in minutes. Connect Excel data, auto-generate QR codes, and export print-ready A4 grids natively on Windows.">
     <meta property="twitter:image" content="https://piyush-2103.github.io/IDCraft-Pro/my-logo.png">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "IDCraft Pro",
-      "operatingSystem": "Windows 10, Windows 11",
-      "applicationCategory": "BusinessApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "999",
-        "priceCurrency": "INR"
-      },
-      "description": "Enterprise-grade bulk ID card generation suite with dynamic Excel binding, visual workspace, and print-ready grid compilation.",
-      "creator": {
-        "@type": "Person",
-        "name": "Piyush Kumar Dugar"
-      },
-      "url": "https://piyush-2103.github.io/IDCraft-Pro/"
-    }
-    </script>
     <link rel="icon" type="image/png" href="my-logo.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,17 +43,32 @@
 
         /* Base Theme */
         html, body {
-            color: #F8F9FA; font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden !important; width: 100%; position: relative; 
-            margin: 0; padding: 0; background-color: transparent; 
+            color: #F8F9FA; 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden !important; 
+            width: 100%; 
+            position: relative; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #04101E; /* Dark Navy Canvas */
             cursor: none; 
         }
 
-        .bg-base { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #04101E; z-index: -5; }
+        /* ========================================== */
+        /* ✨ FIXED: tsParticles Background ✨       */
+        /* ========================================== */
+        
+        .bg-base { 
+            position: fixed; 
+            top: 0; left: 0; right: 0; bottom: 0; 
+            background-color: #04101E; 
+            z-index: 0; /* Layer 0: The very bottom canvas */
+        }
 
-        /* Layer 2: Ambient Color Mesh */
         .bg-mesh {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: -4;
+            position: fixed; 
+            top: 0; left: 0; right: 0; bottom: 0; 
+            z-index: 1; /* Layer 1: Sits on top of the base color */
             background: 
                 radial-gradient(circle at 15% 10%, rgba(17, 138, 178, 0.12) 0%, transparent 35%),   
                 radial-gradient(circle at 85% 30%, rgba(6, 214, 160, 0.08) 0%, transparent 35%),  
@@ -81,46 +76,49 @@
                 radial-gradient(circle at 80% 90%, rgba(6, 214, 160, 0.08) 0%, transparent 35%);  
         }
 
-        /* Glassmorphism Floating Orbs */
-        .glass-orb {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.2);
-            will-change: transform;
+        .orb { 
+            position: fixed; 
+            border-radius: 50%; filter: blur(90px); 
+            z-index: 1; /* Layer 1: Ambient light clouds */
+            opacity: 0.25; 
+            animation: float 25s infinite ease-in-out alternate; 
+            pointer-events: none;
+        }
+        .orb-1 { top: 5%; left: -10%; width: 45vw; height: 45vw; background: radial-gradient(circle, rgba(17, 138, 178, 0.4) 0%, rgba(0,0,0,0) 70%); }
+        .orb-2 { top: 40%; right: -10%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(6, 214, 160, 0.25) 0%, rgba(0,0,0,0) 70%); animation-delay: -5s; }
+        .orb-3 { bottom: 5%; left: -5%; width: 35vw; height: 35vw; background: radial-gradient(circle, rgba(17, 138, 178, 0.3) 0%, rgba(0,0,0,0) 70%); animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            33% { transform: translate(3%, 5%) scale(1.05) rotate(2deg); }
+            66% { transform: translate(-3%, 3%) scale(0.95) rotate(-2deg); }
+            100% { transform: translate(0, -5%) scale(1.02) rotate(0deg); }
         }
 
-        .glass-orb-1 { width: 150px; height: 150px; top: 15%; left: 10%; animation: glass-float-1 20s infinite ease-in-out alternate; }
-        .glass-orb-2 { width: 220px; height: 220px; top: 50%; right: 8%; animation: glass-float-2 25s infinite ease-in-out alternate; }
-        .glass-orb-3 { width: 120px; height: 120px; bottom: 20%; left: 20%; animation: glass-float-3 18s infinite ease-in-out alternate; }
-        .glass-orb-4 { width: 180px; height: 180px; top: 25%; right: 25%; animation: glass-float-4 28s infinite ease-in-out alternate; }
-        .glass-orb-5 { width: 90px; height: 90px; top: 75%; left: 50%; animation: glass-float-5 22s infinite ease-in-out alternate; }
-
-        @keyframes glass-float-1 { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(40px, 80px) rotate(45deg); } }
-        @keyframes glass-float-2 { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(-60px, -40px) rotate(-30deg); } }
-        @keyframes glass-float-3 { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(80px, -60px) rotate(60deg); } }
-        @keyframes glass-float-4 { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(-40px, 100px) rotate(-45deg); } }
-        @keyframes glass-float-5 { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(50px, -30px) rotate(20deg); } }
+        #tsparticles { 
+            position: fixed; 
+            top: 0; left: 0; width: 100vw; height: 100vh; 
+            z-index: 2; /* Layer 2: Safely above the background, but below the z-10 cards */
+            pointer-events: auto; /* Allows hover interaction */
+        }
+        /* ========================================== */
 
         /* Professional Glassmorphism UI Cards */
         .glass {
             background: linear-gradient(135deg, rgba(248, 249, 250, 0.08) 0%, rgba(248, 249, 250, 0.02) 100%);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(248, 249, 250, 0.12); box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.5); 
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(248, 249, 250, 0.15); box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.5); 
             transform: translateZ(0); backface-visibility: hidden; will-change: transform;
         }
         
         .glass-card {
-            background: rgba(248, 249, 250, 0.03); backdrop-filter: blur(12px);
-            border: 1px solid rgba(248, 249, 250, 0.08); border-top: 1px solid rgba(248, 249, 250, 0.12); border-left: 1px solid rgba(248, 249, 250, 0.12);
+            background: rgba(248, 249, 250, 0.04); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(248, 249, 250, 0.1); border-top: 1px solid rgba(248, 249, 250, 0.15); border-left: 1px solid rgba(248, 249, 250, 0.15);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform: translateZ(0); backface-visibility: hidden; will-change: transform; transform-style: preserve-3d;
         }
         
-        .glass-card:hover { border-color: rgba(248, 249, 250, 0.2); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); }
+        .glass-card:hover { border-color: rgba(248, 249, 250, 0.25); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); }
 
         .btn-primary { background: linear-gradient(135deg, #06D6A0 0%, #118AB2 100%); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; }
         .btn-primary:hover { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); transform: translateY(-2px); filter: brightness(1.1); }
@@ -161,16 +159,10 @@
 
     <div class="bg-base"></div>
     <div class="bg-mesh"></div>
-    
-    <div class="fixed inset-0 z-[-3] overflow-hidden pointer-events-none">
-        <div class="glass-orb glass-orb-1"></div>
-        <div class="glass-orb glass-orb-2"></div>
-        <div class="glass-orb glass-orb-3"></div>
-        <div class="glass-orb glass-orb-4"></div>
-        <div class="glass-orb glass-orb-5"></div>
-    </div>
-
-    <nav class="fixed w-full z-50 top-0 pt-4 px-4 md:px-6 transition-all duration-300 pointer-events-none hover-target">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div id="tsparticles"></div> <nav class="fixed w-full z-50 top-0 pt-4 px-4 md:px-6 transition-all duration-300 pointer-events-none hover-target">
         <div class="glass w-full max-w-7xl mx-auto rounded-2xl px-5 md:px-6 py-3 md:py-4 flex justify-between items-center pointer-events-auto">
             <div class="font-bold text-lg md:text-xl tracking-wide flex items-center gap-3 text-[#F8F9FA]">
                 <img src="my-logo.png" alt="IDCraft Pro Logo" class="h-7 md:h-8 w-auto hover:scale-110 transition-transform duration-300">
@@ -238,15 +230,15 @@
     
     <section class="w-full py-16 md:py-24 px-4 md:px-6 relative z-10 pointer-events-none">
         <div class="w-full max-w-6xl mx-auto pointer-events-auto">
-            <div class="text-center mb-12 md:mb-24" data-aos="fade-up">
+            <div class="text-center mb-16 md:mb-24" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-[#F8F9FA]">The <span class="text-gradient">Workspace</span></h2>
                 <p class="text-[#F8F9FA]/80 max-w-2xl mx-auto text-base md:text-lg px-2">Designed with a premium liquid-glass aesthetic so your staff can master it in minutes.</p>
             </div>
         
-            <div class="space-y-16 md:space-y-32">
+            <div class="space-y-24 md:space-y-32">
                 <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12" data-aos="fade-up">
                     <div class="w-full lg:w-7/12 order-1 lg:order-1 perspective-1000 hover-target">
-                        <div class="glass-card rounded-xl shadow-2xl p-1.5 md:p-2 bg-[#04101E]/40 border border-white/10 tilt-card">
+                        <div class="glass-card rounded-xl shadow-2xl transition-transform duration-700 hover:scale-[1.02] p-1.5 md:p-2 bg-[#04101E]/40 border border-white/10 tilt-card">
                             <div class="bg-black/20 rounded-t-lg px-3 py-2 md:px-4 md:py-2.5 flex items-center gap-1.5 md:gap-2 border-b border-white/5">
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FF5F56]"></div>
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
@@ -275,7 +267,7 @@
                         <p class="text-[#F8F9FA]/80 text-sm md:text-lg leading-relaxed">Launch recent .bip projects, manage your templates, and configure card dimensions and DPI resolution before diving into the visual design phase.</p>
                     </div>
                     <div class="w-full lg:w-7/12 order-1 lg:order-2 perspective-1000 hover-target">
-                        <div class="glass-card rounded-xl shadow-2xl p-1.5 md:p-2 bg-[#04101E]/40 border border-white/10 tilt-card">
+                        <div class="glass-card rounded-xl shadow-2xl transition-transform duration-700 hover:scale-[1.02] p-1.5 md:p-2 bg-[#04101E]/40 border border-white/10 tilt-card">
                             <div class="bg-black/20 rounded-t-lg px-3 py-2 md:px-4 md:py-2.5 flex items-center gap-1.5 md:gap-2 border-b border-white/5">
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FF5F56]"></div>
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
@@ -290,7 +282,7 @@
 
                 <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12" data-aos="fade-up">
                     <div class="w-full lg:w-7/12 order-1 lg:order-1 perspective-1000 hover-target">
-                        <div class="glass-card rounded-xl shadow-2xl p-1.5 md:p-2 bg-[#04101E]/40 border border-white/10 tilt-card">
+                        <div class="glass-card rounded-xl shadow-2xl transition-transform duration-700 hover:scale-[1.02] p-1.5 md:p-2 bg-[#04101E]/40 border border-white/10 tilt-card">
                             <div class="bg-black/20 rounded-t-lg px-3 py-2 md:px-4 md:py-2.5 flex items-center gap-1.5 md:gap-2 border-b border-white/5">
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FF5F56]"></div>
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
@@ -319,7 +311,7 @@
                         <p class="text-[#F8F9FA]/80 text-sm md:text-lg leading-relaxed">Let the engine do the heavy lifting. Automatically arrange your processed cards into print-ready A4 or 8x12 grids, complete with configurable cut-lines and bleed.</p>
                     </div>
                     <div class="w-full lg:w-7/12 order-1 lg:order-2 perspective-1000 hover-target">
-                        <div class="glass-card rounded-xl shadow-2xl p-1.5 md:p-2 bg-[#04101E]/40 border border-white/10 tilt-card">
+                        <div class="glass-card rounded-xl shadow-2xl transition-transform duration-700 hover:scale-[1.02] p-1.5 md:p-2 bg-[#04101E]/40 border border-white/10 tilt-card">
                             <div class="bg-black/20 rounded-t-lg px-3 py-2 md:px-4 md:py-2.5 flex items-center gap-1.5 md:gap-2 border-b border-white/5">
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FF5F56]"></div>
                                 <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
@@ -674,6 +666,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/g53x8/zO/o1tB2ZgKSM80XwA1H7w4wP81eP/nB2uM/BszQ2K0m1QkP+2r0hLp6I8nL2nU+x8p5S7dY2f+Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
@@ -708,6 +701,34 @@
                     AOS.init({ duration: 800, offset: 50, once: true, easing: 'ease-out-cubic' });
                 }
             }, 300);
+
+            // ✨ Initialize Particle Engine ✨
+            setTimeout(() => {
+                if (typeof tsParticles !== 'undefined') {
+                    tsParticles.load("tsparticles", {
+                        fpsLimit: window.innerWidth < 768 ? 60 : 120, 
+                        particles: {
+                            number: { value: window.innerWidth < 768 ? 40 : 100, density: { enable: true, value_area: 800 } },
+                            color: { value: ["#06D6A0", "#118AB2", "#F8F9FA"] },
+                            shape: { type: "circle" },
+                            opacity: { value: 0.15, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false } },
+                            size: { value: 2.5, random: true, anim: { enable: true, speed: 1, size_min: 0.1, sync: false } },
+                            links: { enable: true, distance: 150, color: "#118AB2", opacity: 0.15, width: 1 },
+                            move: { enable: true, speed: 0.5, direction: "none", random: false, straight: false, outModes: { default: "bounce" } }
+                        },
+                        interactivity: {
+                            detectsOn: "window", 
+                            events: {
+                                onHover: { enable: true, mode: "grab" },
+                                onClick: { enable: true, mode: "push" },
+                                resize: true
+                            },
+                            modes: { grab: { distance: 200, links: { opacity: 0.4 } }, push: { quantity: 3 } }
+                        },
+                        detectRetina: true
+                    });
+                }
+            }, 400);
 
             // Lazy Load Videos
             const lazyVideos = [].slice.call(document.querySelectorAll("video.lazy-video"));
