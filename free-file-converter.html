@@ -1,0 +1,3537 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script>
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transmorph — Universal File Converter</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #0a0a0f;
+        --bg2: #111118;
+        --bg3: #18181f;
+        --bg4: #1f1f28;
+        --border: #ffffff12;
+        --border2: #ffffff20;
+        --border3: #ffffff38;
+        --text: #f0f0f8;
+        --text2: #9898b0;
+        --text3: #55556a;
+        --accent: #6c5ce7;
+        --accent2: #a29bfe;
+        --accent3: #4834d4;
+        --teal: #00cec9;
+        --coral: #fd79a8;
+        --amber: #fdcb6e;
+        --green: #00b894;
+        --red: #ff7675;
+        --r: 12px;
+        --r2: 8px;
+        --r3: 18px;
+      }
+      html,
+      body {
+        height: 100%;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        overflow: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border2);
+        border-radius: 2px;
+      }
+      .app {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 20px;
+        height: 52px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+        background: var(--bg);
+      }
+      .logo {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 18px;
+        background: linear-gradient(135deg, #a29bfe, #6c5ce7, #fd79a8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        cursor: default;
+        user-select: none;
+      }
+      .logo-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent2), var(--coral));
+        display: inline-block;
+        margin-right: 7px;
+        vertical-align: middle;
+        margin-bottom: 2px;
+      }
+      .topbar-center {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+      .sw {
+        position: relative;
+        width: 300px;
+      }
+      .si {
+        width: 100%;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--r2);
+        padding: 8px 12px 8px 35px;
+        color: var(--text);
+        font-size: 13px;
+        font-family: "DM Sans", sans-serif;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .si:focus {
+        border-color: var(--accent);
+      }
+      .si::placeholder {
+        color: var(--text3);
+      }
+      .sic {
+        position: absolute;
+        left: 11px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 13px;
+        pointer-events: none;
+      }
+      .tr {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .ib {
+        width: 34px;
+        height: 34px;
+        border-radius: var(--r2);
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        color: var(--text2);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        transition: all 0.15s;
+      }
+      .ib:hover {
+        background: var(--bg4);
+        border-color: var(--border2);
+        color: var(--text);
+      }
+      .av {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--coral));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        cursor: pointer;
+      }
+      .main {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+      .sb {
+        width: 222px;
+        border-right: 1px solid var(--border);
+        background: var(--bg);
+        padding: 12px 0;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        overflow-y: auto;
+      }
+      .slb {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        color: var(--text3);
+        padding: 12px 16px 5px;
+        font-family: "Syne", sans-serif;
+      }
+      .sm {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: all 0.15s;
+        font-size: 13px;
+        color: var(--text2);
+        position: relative;
+        user-select: none;
+      }
+      .sm:hover {
+        color: var(--text);
+        background: var(--bg3);
+      }
+      .sm.on {
+        color: var(--text);
+        background: var(--bg3);
+      }
+      .sm.on::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        bottom: 6px;
+        width: 2.5px;
+        border-radius: 0 2px 2px 0;
+        background: linear-gradient(to bottom, var(--accent2), var(--coral));
+      }
+      .smi {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+      .sbg {
+        margin-left: auto;
+        background: var(--bg4);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1px 7px;
+        font-size: 10px;
+        color: var(--text3);
+        font-family: "Syne", sans-serif;
+        font-weight: 600;
+      }
+      .sdv {
+        height: 1px;
+        background: var(--border);
+        margin: 8px 12px;
+      }
+      .ct {
+        flex: 1;
+        overflow-y: auto;
+        padding: 28px 32px;
+      }
+      .ci {
+        max-width: 880px;
+        margin: 0 auto;
+      }
+      .pg {
+        display: none;
+        animation: fi 0.2s ease;
+      }
+      .pg.on {
+        display: block;
+      }
+      @keyframes fi {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .pt {
+        font-family: "Syne", sans-serif;
+        font-size: 24px;
+        font-weight: 800;
+        margin-bottom: 6px;
+        letter-spacing: -0.5px;
+      }
+      .ps {
+        font-size: 13px;
+        color: var(--text2);
+        margin-bottom: 26px;
+        line-height: 1.6;
+      }
+      .dz {
+        border: 2px dashed var(--border2);
+        border-radius: var(--r3);
+        padding: 48px 32px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 26px;
+        background: var(--bg2);
+      }
+      .dz::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(108, 92, 231, 0.07),
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .dz:hover,
+      .dz.ov {
+        border-color: var(--accent);
+        background: var(--bg3);
+      }
+      .dz:hover::before,
+      .dz.ov::before {
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(108, 92, 231, 0.18),
+          transparent 65%
+        );
+      }
+      .dzi {
+        width: 58px;
+        height: 58px;
+        border-radius: 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(108, 92, 231, 0.2),
+          rgba(253, 121, 168, 0.12)
+        );
+        border: 1px solid rgba(162, 155, 254, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+        margin: 0 auto 16px;
+      }
+      .dzt {
+        font-family: "Syne", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .dzs {
+        font-size: 13px;
+        color: var(--text2);
+        margin-bottom: 20px;
+        line-height: 1.7;
+      }
+      .dzb {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, var(--accent), var(--accent3));
+        color: #fff;
+        border: none;
+        border-radius: var(--r2);
+        padding: 11px 22px;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: "Syne", sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .dzb:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(108, 92, 231, 0.4);
+      }
+      .dch {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: center;
+        margin-top: 16px;
+      }
+      .ch {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 3px 9px;
+        font-size: 11px;
+        color: var(--text3);
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+      }
+      .stb {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-bottom: 26px;
+      }
+      .sc {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 18px;
+        text-align: center;
+      }
+      .sv {
+        font-family: "Syne", sans-serif;
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+      .sv em {
+        font-size: 14px;
+        color: var(--text2);
+        font-style: normal;
+        font-weight: 500;
+      }
+      .sl {
+        font-size: 11px;
+        color: var(--text3);
+      }
+      .stit {
+        font-family: "Syne", sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--text3);
+        margin-bottom: 13px;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+      .cg {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+        gap: 11px;
+        margin-bottom: 26px;
+      }
+      .cc {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 17px;
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .cc:hover {
+        border-color: var(--border2);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+      }
+      .cov {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.2s;
+        pointer-events: none;
+      }
+      .cc:hover .cov {
+        opacity: 1;
+      }
+      .cico {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin-bottom: 11px;
+        position: relative;
+        z-index: 1;
+      }
+      .cn {
+        font-family: "Syne", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 4px;
+        position: relative;
+        z-index: 1;
+      }
+      .cd {
+        font-size: 11px;
+        color: var(--text3);
+        position: relative;
+        z-index: 1;
+        line-height: 1.5;
+      }
+      .cct {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+        font-size: 10px;
+        font-weight: 700;
+        font-family: "Syne", sans-serif;
+        color: var(--text3);
+        z-index: 1;
+      }
+      .qg {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(138px, 1fr));
+        gap: 9px;
+        margin-bottom: 26px;
+      }
+      .qi {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--r2);
+        padding: 13px;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .qi:hover {
+        border-color: rgba(108, 92, 231, 0.4);
+        background: var(--bg3);
+        transform: translateY(-1px);
+      }
+      .qe {
+        font-size: 21px;
+        margin-bottom: 7px;
+      }
+      .qn {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 3px;
+      }
+      .qs {
+        font-size: 11px;
+        color: var(--text3);
+      }
+      .pn {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--r3);
+        padding: 24px;
+        margin-bottom: 22px;
+      }
+      .ph {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 18px;
+        gap: 12px;
+      }
+      .ptt {
+        font-family: "Syne", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 3px;
+      }
+      .pss {
+        font-size: 12px;
+        color: var(--text3);
+      }
+      .tg {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        border-radius: 7px;
+        padding: 3px 9px;
+        font-size: 11px;
+        font-weight: 600;
+        font-family: "Syne", sans-serif;
+        background: rgba(0, 184, 148, 0.12);
+        border: 1px solid rgba(0, 184, 148, 0.25);
+        color: var(--green);
+      }
+      .pls {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      .pl {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--r2);
+        padding: 7px 14px;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: "Syne", sans-serif;
+        color: var(--text2);
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .pl:hover {
+        border-color: var(--border2);
+        color: var(--text);
+      }
+      .pl.on {
+        background: linear-gradient(
+          135deg,
+          rgba(108, 92, 231, 0.25),
+          rgba(162, 155, 254, 0.15)
+        );
+        border-color: rgba(108, 92, 231, 0.5);
+        color: var(--accent2);
+      }
+      .bp {
+        background: linear-gradient(135deg, var(--accent), var(--accent3));
+        color: #fff;
+        border: none;
+        border-radius: var(--r2);
+        padding: 11px 24px;
+        font-size: 13px;
+        font-weight: 700;
+        font-family: "Syne", sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .bp:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(108, 92, 231, 0.4);
+      }
+      .bs {
+        background: var(--bg3);
+        border: 1px solid var(--border2);
+        border-radius: var(--r2);
+        padding: 11px 18px;
+        font-size: 13px;
+        color: var(--text2);
+        cursor: pointer;
+        transition: all 0.15s;
+        font-family: "DM Sans", sans-serif;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .bs:hover {
+        border-color: var(--border3);
+        color: var(--text);
+        background: var(--bg4);
+      }
+      .bd {
+        background: rgba(0, 184, 148, 0.12);
+        border: 1px solid rgba(0, 184, 148, 0.25);
+        border-radius: var(--r2);
+        padding: 8px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: "Syne", sans-serif;
+        color: var(--green);
+        cursor: pointer;
+        transition: all 0.15s;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+      }
+      .bd:hover {
+        background: rgba(0, 184, 148, 0.22);
+      }
+      .ar {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .rl {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        margin-top: 16px;
+      }
+      .ri {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        gap: 13px;
+      }
+      .ri:hover {
+        border-color: var(--border2);
+      }
+      .ric {
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        flex-shrink: 0;
+      }
+      .rb {
+        flex: 1;
+        min-width: 0;
+      }
+      .rn {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 3px;
+      }
+      .rm {
+        font-size: 11px;
+        color: var(--text3);
+      }
+      .re {
+        font-size: 11px;
+        font-weight: 700;
+        font-family: "Syne", sans-serif;
+        padding: 4px 10px;
+        border-radius: 6px;
+        background: rgba(255, 118, 117, 0.12);
+        color: var(--red);
+      }
+      .aip {
+        background: linear-gradient(
+          135deg,
+          rgba(108, 92, 231, 0.1),
+          rgba(253, 121, 168, 0.06)
+        );
+        border: 1px solid rgba(162, 155, 254, 0.18);
+        border-radius: var(--r3);
+        padding: 22px;
+        margin-bottom: 22px;
+        position: relative;
+        overflow: hidden;
+      }
+      .aip::before {
+        content: "✦";
+        position: absolute;
+        right: 20px;
+        top: 14px;
+        font-size: 40px;
+        color: rgba(162, 155, 254, 0.1);
+        line-height: 1;
+        pointer-events: none;
+      }
+      .ait {
+        font-family: "Syne", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--accent2);
+        margin-bottom: 14px;
+      }
+      .aig {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+        gap: 9px;
+      }
+      .af {
+        background: rgba(0, 0, 0, 0.22);
+        border: 1px solid rgba(162, 155, 254, 0.12);
+        border-radius: var(--r2);
+        padding: 13px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .af:hover {
+        border-color: rgba(162, 155, 254, 0.28);
+        background: rgba(0, 0, 0, 0.38);
+        transform: translateY(-1px);
+      }
+      .afn {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .afd {
+        font-size: 11px;
+        color: var(--text3);
+        line-height: 1.5;
+      }
+      .ss {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        margin-bottom: 14px;
+        overflow: hidden;
+      }
+      .sh {
+        padding: 14px 19px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .shi {
+        width: 27px;
+        height: 27px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+      }
+      .sht {
+        font-weight: 700;
+        font-size: 13px;
+        font-family: "Syne", sans-serif;
+      }
+      .sr {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 19px;
+        border-bottom: 1px solid var(--border);
+        gap: 14px;
+      }
+      .sr:last-child {
+        border-bottom: none;
+      }
+      .srf {
+        flex: 1;
+      }
+      .srl {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text);
+        margin-bottom: 2px;
+      }
+      .srd {
+        font-size: 12px;
+        color: var(--text3);
+        line-height: 1.5;
+      }
+      .tg2 {
+        width: 38px;
+        height: 22px;
+        border-radius: 11px;
+        background: var(--bg4);
+        border: 1px solid var(--border2);
+        cursor: pointer;
+        position: relative;
+        transition: background 0.2s;
+        flex-shrink: 0;
+      }
+      .tg2.on {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+      .tg2::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #fff;
+        transition: transform 0.2s;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+      }
+      .tg2.on::after {
+        transform: translateX(16px);
+      }
+      .hi {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .hi:last-child {
+        border-bottom: none;
+      }
+      .hem {
+        font-size: 15px;
+        flex-shrink: 0;
+      }
+      .hn {
+        font-size: 13px;
+        color: var(--text);
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .ha {
+        color: var(--accent2);
+        font-size: 12px;
+        margin: 0 4px;
+      }
+      .hm {
+        font-size: 11px;
+        color: var(--text3);
+        flex-shrink: 0;
+        display: flex;
+        gap: 10px;
+      }
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: var(--bg3);
+        border: 1px solid var(--border2);
+        border-radius: var(--r);
+        padding: 12px 18px;
+        font-size: 13px;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 9999;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        animation: su 0.25s ease;
+        max-width: 360px;
+      }
+      @keyframes su {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .inp {
+        width: 100%;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--r2);
+        padding: 9px 12px;
+        color: var(--text);
+        font-size: 13px;
+        font-family: "DM Sans", sans-serif;
+        outline: none;
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .inp:focus {
+        border-color: var(--accent);
+      }
+      .inp::placeholder {
+        color: var(--text3);
+      }
+      textarea.inp {
+        resize: vertical;
+        min-height: 90px;
+        line-height: 1.6;
+      }
+      .ni {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--r2);
+        padding: 8px 11px;
+        color: var(--text);
+        font-size: 13px;
+        width: 110px;
+        outline: none;
+        font-family: "DM Sans", sans-serif;
+      }
+      .ni:focus {
+        border-color: var(--accent);
+      }
+      .ob {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--r2);
+        padding: 12px;
+        font-size: 12px;
+        color: var(--text2);
+        min-height: 60px;
+        white-space: pre-wrap;
+        line-height: 1.6;
+        margin-bottom: 12px;
+        font-family: "DM Mono", "Courier New", monospace;
+        max-height: 220px;
+        overflow-y: auto;
+        word-break: break-all;
+      }
+      .es {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--text3);
+      }
+      .lbl {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        color: var(--text3);
+        font-family: "Syne", sans-serif;
+        margin-bottom: 7px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div class="topbar">
+        <div class="logo"><span class="logo-dot"></span>TRANSMORPH</div>
+        <div class="topbar-center">
+          <div class="sw">
+            <span class="sic">🔍</span
+            ><input
+              class="si"
+              id="searchInput"
+              type="text"
+              placeholder="Search tools… (jpg, csv, markdown, hash, diff…)"
+            />
+          </div>
+        </div>
+        <div class="tr">
+          <div class="ib" onclick="toggleTheme()" title="Dark/Light">🌙</div>
+          <div class="ib" onclick="nav('history')" title="History">🕐</div>
+          <div class="ib" onclick="nav('settings')" title="Settings">⚙️</div>
+          <div class="av">U</div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="sb">
+          <div class="slb">Workspace</div>
+          <div class="sm on" data-p="home" onclick="nav('home')">
+            <div class="smi">🏠</div>
+            <span>Home</span>
+          </div>
+          <div class="sm" data-p="ai" onclick="nav('ai')">
+            <div class="smi">✨</div>
+            <span>All Tools</span
+            ><span
+              class="sbg"
+              style="
+                background: rgba(108, 92, 231, 0.15);
+                border-color: rgba(108, 92, 231, 0.3);
+                color: var(--accent2);
+              "
+              >32</span
+            >
+          </div>
+          <div class="sdv"></div>
+          <div class="slb">Categories</div>
+          <div class="sm" onclick="openCat('images')">
+            <div
+              class="smi"
+              style="background: rgba(0, 206, 201, 0.12); border-radius: 5px"
+            >
+              🖼
+            </div>
+            <span>Images</span>
+          </div>
+          <div class="sm" onclick="openCat('data')">
+            <div
+              class="smi"
+              style="background: rgba(162, 155, 254, 0.12); border-radius: 5px"
+            >
+              📊
+            </div>
+            <span>Data / JSON / CSV</span>
+          </div>
+          <div class="sm" onclick="openCat('text')">
+            <div
+              class="smi"
+              style="background: rgba(0, 184, 148, 0.12); border-radius: 5px"
+            >
+              📝
+            </div>
+            <span>Text Tools</span>
+          </div>
+          <div class="sm" onclick="openCat('documents')">
+            <div
+              class="smi"
+              style="background: rgba(108, 92, 231, 0.12); border-radius: 5px"
+            >
+              📄
+            </div>
+            <span>Documents</span>
+          </div>
+          <div class="sm" onclick="openCat('dev')">
+            <div
+              class="smi"
+              style="background: rgba(253, 203, 110, 0.12); border-radius: 5px"
+            >
+              🛠
+            </div>
+            <span>Developer</span>
+          </div>
+          <div class="sm" onclick="openCat('utils')">
+            <div
+              class="smi"
+              style="background: rgba(255, 118, 117, 0.12); border-radius: 5px"
+            >
+              🔧
+            </div>
+            <span>Utilities</span>
+          </div>
+          <div class="sm" onclick="openCat('video')">
+            <div
+              class="smi"
+              style="background: rgba(253, 203, 110, 0.12); border-radius: 5px"
+            >
+              🎬
+            </div>
+            <span>Video</span>
+          </div>
+          <div class="sm" onclick="openCat('audio')">
+            <div
+              class="smi"
+              style="background: rgba(253, 121, 168, 0.12); border-radius: 5px"
+            >
+              🎵
+            </div>
+            <span>Audio</span>
+          </div>
+          <div class="sdv"></div>
+          <div class="sm" data-p="history" onclick="nav('history')">
+            <div class="smi">🕐</div>
+            <span>History</span>
+          </div>
+          <div class="sm" data-p="settings" onclick="nav('settings')">
+            <div class="smi">⚙️</div>
+            <span>Settings</span>
+          </div>
+        </div>
+        <div class="ct">
+          <div class="ci">
+            <!-- HOME -->
+            <div class="pg on" id="pg-home">
+              <div class="dz" id="homeDZ">
+                <div class="dzi">📁</div>
+                <div class="dzt">Drop any file to convert</div>
+                <div class="dzs">
+                  100% in-browser · Nothing leaves your device · No server, no
+                  uploads<br />Images, data, text, documents, video, audio and
+                  more.
+                </div>
+                <button class="dzb" id="hbb">📂 Browse files →</button>
+                <div class="dch">
+                  <span class="ch">JPG→PNG</span><span class="ch">PNG→WEBP</span
+                  ><span class="ch">SVG→PNG</span
+                  ><span class="ch">CSV→JSON</span
+                  ><span class="ch">JSON→YAML</span
+                  ><span class="ch">XML↔JSON</span
+                  ><span class="ch">MD→HTML</span><span class="ch">Base64</span
+                  ><span class="ch">Case</span><span class="ch">SHA-256</span
+                  ><span class="ch">Diff</span><span class="ch">Minify</span>
+                </div>
+              </div>
+              <div class="stb">
+                <div class="sc">
+                  <div class="sv" id="statCount">0</div>
+                  <div class="sl">Converted this session</div>
+                </div>
+                <div class="sc">
+                  <div class="sv" style="color: var(--teal)" id="statSize">
+                    0<em>B</em>
+                  </div>
+                  <div class="sl">Data processed</div>
+                </div>
+                <div class="sc">
+                  <div class="sv" style="color: var(--accent2)">
+                    100<em>%</em>
+                  </div>
+                  <div class="sl">Local — no uploads</div>
+                </div>
+                <div class="sc">
+                  <div class="sv" style="color: var(--green)">32<em>+</em></div>
+                  <div class="sl">Working tools</div>
+                </div>
+              </div>
+              <div class="stit">Categories</div>
+              <div class="cg">
+                <div class="cc" onclick="openCat('images')">
+                  <div
+                    class="cov"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(0, 206, 201, 0.1),
+                        transparent
+                      );
+                    "
+                  ></div>
+                  <div class="cico" style="background: rgba(0, 206, 201, 0.15)">
+                    🖼
+                  </div>
+                  <div class="cn">Images</div>
+                  <div class="cd">
+                    JPG, PNG, WEBP, GIF, BMP — resize, greyscale, SVG
+                  </div>
+                  <div class="cct">5 tools</div>
+                </div>
+                <div class="cc" onclick="openCat('data')">
+                  <div
+                    class="cov"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(162, 155, 254, 0.1),
+                        transparent
+                      );
+                    "
+                  ></div>
+                  <div
+                    class="cico"
+                    style="background: rgba(162, 155, 254, 0.15)"
+                  >
+                    📊
+                  </div>
+                  <div class="cn">Data</div>
+                  <div class="cd">CSV ↔ JSON ↔ YAML ↔ TSV ↔ XML</div>
+                  <div class="cct">8 tools</div>
+                </div>
+                <div class="cc" onclick="openCat('text')">
+                  <div
+                    class="cov"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(0, 184, 148, 0.1),
+                        transparent
+                      );
+                    "
+                  ></div>
+                  <div class="cico" style="background: rgba(0, 184, 148, 0.15)">
+                    📝
+                  </div>
+                  <div class="cn">Text Tools</div>
+                  <div class="cd">Case convert, Base64, code minifier</div>
+                  <div class="cct">3 tools</div>
+                </div>
+                <div class="cc" onclick="openCat('documents')">
+                  <div
+                    class="cov"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(108, 92, 231, 0.1),
+                        transparent
+                      );
+                    "
+                  ></div>
+                  <div
+                    class="cico"
+                    style="background: rgba(108, 92, 231, 0.15)"
+                  >
+                    📄
+                  </div>
+                  <div class="cn">Documents</div>
+                  <div class="cd">Markdown → HTML, HTML → Text</div>
+                  <div class="cct">3 tools</div>
+                </div>
+                <div class="cc" onclick="openCat('dev')">
+                  <div
+                    class="cov"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(253, 203, 110, 0.1),
+                        transparent
+                      );
+                    "
+                  ></div>
+                  <div
+                    class="cico"
+                    style="background: rgba(253, 203, 110, 0.15)"
+                  >
+                    🛠
+                  </div>
+                  <div class="cn">Developer</div>
+                  <div class="cd">JSON format, XML↔JSON, hash, base, URL</div>
+                  <div class="cct">5 tools</div>
+                </div>
+                <div class="cc" onclick="openCat('utils')">
+                  <div
+                    class="cov"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(255, 118, 117, 0.1),
+                        transparent
+                      );
+                    "
+                  ></div>
+                  <div
+                    class="cico"
+                    style="background: rgba(255, 118, 117, 0.15)"
+                  >
+                    🔧
+                  </div>
+                  <div class="cn">Utilities</div>
+                  <div class="cd">
+                    Word count, diff, file inspect, binary/Morse
+                  </div>
+                  <div class="cct">5 tools</div>
+                </div>
+                <div class="cc" onclick="openCat('video')">
+                  <div
+                    class="cov"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(253, 203, 110, 0.1),
+                        transparent
+                      );
+                    "
+                  ></div>
+                  <div
+                    class="cico"
+                    style="background: rgba(253, 203, 110, 0.15)"
+                  >
+                    🎬
+                  </div>
+                  <div class="cn">Video</div>
+                  <div class="cd">Frame extract as PNG, sprite sheet</div>
+                  <div class="cct">2 tools</div>
+                </div>
+                <div class="cc" onclick="openCat('audio')">
+                  <div
+                    class="cov"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(253, 121, 168, 0.1),
+                        transparent
+                      );
+                    "
+                  ></div>
+                  <div
+                    class="cico"
+                    style="background: rgba(253, 121, 168, 0.15)"
+                  >
+                    🎵
+                  </div>
+                  <div class="cn">Audio</div>
+                  <div class="cd">Read duration, type, and size metadata</div>
+                  <div class="cct">1 tool</div>
+                </div>
+              </div>
+              <div class="stit">Quick access</div>
+              <div class="qg">
+                <div class="qi" onclick="openCat('images')">
+                  <div class="qe">🖼</div>
+                  <div class="qn">JPG → PNG/WEBP</div>
+                  <div class="qs">Lossless convert</div>
+                </div>
+                <div class="qi" onclick="openCat('images')">
+                  <div class="qe">🔵</div>
+                  <div class="qn">SVG → PNG</div>
+                  <div class="qs">Rasterize vector</div>
+                </div>
+                <div class="qi" onclick="openCat('images')">
+                  <div class="qe">📐</div>
+                  <div class="qn">Resize Image</div>
+                  <div class="qs">Any dimension</div>
+                </div>
+                <div class="qi" onclick="openCat('data')">
+                  <div class="qe">📊</div>
+                  <div class="qn">CSV → JSON</div>
+                  <div class="qs">Structured data</div>
+                </div>
+                <div class="qi" onclick="openCat('data')">
+                  <div class="qe">🗂</div>
+                  <div class="qn">JSON → YAML</div>
+                  <div class="qs">Config format</div>
+                </div>
+                <div class="qi" onclick="openCat('data')">
+                  <div class="qe">🔀</div>
+                  <div class="qn">XML ↔ JSON</div>
+                  <div class="qs">Markup ↔ object</div>
+                </div>
+                <div class="qi" onclick="openCat('dev')">
+                  <div class="qe">📋</div>
+                  <div class="qn">JSON Formatter</div>
+                  <div class="qs">Validate & format</div>
+                </div>
+                <div class="qi" onclick="openCat('dev')">
+                  <div class="qe">#</div>
+                  <div class="qn">SHA-256 Hash</div>
+                  <div class="qs">Hash text or file</div>
+                </div>
+                <div class="qi" onclick="openCat('dev')">
+                  <div class="qe">🔢</div>
+                  <div class="qn">Base Convert</div>
+                  <div class="qs">Bin, Hex, Oct, Dec</div>
+                </div>
+                <div class="qi" onclick="openCat('dev')">
+                  <div class="qe">🔗</div>
+                  <div class="qn">URL Encode</div>
+                  <div class="qs">Encode/decode URLs</div>
+                </div>
+                <div class="qi" onclick="openCat('text')">
+                  <div class="qe">✍️</div>
+                  <div class="qn">Markdown → HTML</div>
+                  <div class="qs">Render docs</div>
+                </div>
+                <div class="qi" onclick="openCat('text')">
+                  <div class="qe">🔤</div>
+                  <div class="qn">Base64</div>
+                  <div class="qs">Encode/decode</div>
+                </div>
+                <div class="qi" onclick="openCat('text')">
+                  <div class="qe">🔡</div>
+                  <div class="qn">Case Converter</div>
+                  <div class="qs">camel, snake, UPPER</div>
+                </div>
+                <div class="qi" onclick="openCat('text')">
+                  <div class="qe">🗜</div>
+                  <div class="qn">Minify Code</div>
+                  <div class="qs">CSS, JS, JSON, HTML</div>
+                </div>
+                <div class="qi" onclick="openCat('utils')">
+                  <div class="qe">📏</div>
+                  <div class="qn">Word Counter</div>
+                  <div class="qs">Words, chars, time</div>
+                </div>
+                <div class="qi" onclick="openCat('utils')">
+                  <div class="qe">↔️</div>
+                  <div class="qn">Text Diff</div>
+                  <div class="qs">Compare two texts</div>
+                </div>
+                <div class="qi" onclick="openCat('utils')">
+                  <div class="qe">🎨</div>
+                  <div class="qn">Color Palette</div>
+                  <div class="qs">Extract from image</div>
+                </div>
+                <div class="qi" onclick="openCat('utils')">
+                  <div class="qe">🔍</div>
+                  <div class="qn">File Inspector</div>
+                  <div class="qs">Hex preview</div>
+                </div>
+                <div class="qi" onclick="openCat('utils')">
+                  <div class="qe">01</div>
+                  <div class="qn">Binary / Morse</div>
+                  <div class="qs">Text encoding</div>
+                </div>
+                <div class="qi" onclick="openCat('video')">
+                  <div class="qe">🎬</div>
+                  <div class="qn">Video Frame</div>
+                  <div class="qs">Extract PNG frame</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONVERT -->
+            <div class="pg" id="pg-convert">
+              <div class="pt" id="catTitle">Convert</div>
+              <div class="ps" id="catSub">Choose a tool</div>
+              <div id="catContent"></div>
+            </div>
+
+            <!-- ALL TOOLS -->
+            <div class="pg" id="pg-ai">
+              <div class="pt">All Tools</div>
+              <div class="ps">
+                Every working conversion — click any card to open it instantly.
+              </div>
+              <div class="aip">
+                <div class="ait">
+                  ✦ 32 working tools — all in-browser, no uploads, fully private
+                </div>
+                <div class="aig">
+                  <div class="af" onclick="openCat('images')">
+                    <div class="afn">🖼 Image Format Convert</div>
+                    <div class="afd">
+                      JPG, PNG, WEBP, BMP, GIF with resize & greyscale
+                    </div>
+                  </div>
+                  <div class="af" onclick="openCat('images')">
+                    <div class="afn">🔵 SVG → PNG</div>
+                    <div class="afd">Rasterize at any resolution</div>
+                  </div>
+                  <div class="af" onclick="openCat('data')">
+                    <div class="afn">📊 CSV → JSON</div>
+                    <div class="afd">CSV rows to JSON array</div>
+                  </div>
+                  <div class="af" onclick="openCat('data')">
+                    <div class="afn">📋 JSON → CSV</div>
+                    <div class="afd">JSON array to CSV spreadsheet</div>
+                  </div>
+                  <div class="af" onclick="openCat('data')">
+                    <div class="afn">🗂 JSON ↔ YAML</div>
+                    <div class="afd">Bidirectional config conversion</div>
+                  </div>
+                  <div class="af" onclick="openCat('data')">
+                    <div class="afn">📑 CSV ↔ TSV</div>
+                    <div class="afd">Comma ↔ tab separated</div>
+                  </div>
+                  <div class="af" onclick="openCat('data')">
+                    <div class="afn">🔀 XML ↔ JSON</div>
+                    <div class="afd">Markup ↔ object notation</div>
+                  </div>
+                  <div class="af" onclick="openCat('documents')">
+                    <div class="afn">✍️ Markdown → HTML</div>
+                    <div class="afd">Render .md as styled page</div>
+                  </div>
+                  <div class="af" onclick="openCat('documents')">
+                    <div class="afn">🌐 HTML → Plain Text</div>
+                    <div class="afd">Strip all tags</div>
+                  </div>
+                  <div class="af" onclick="openCat('documents')">
+                    <div class="afn">📖 Text File Viewer</div>
+                    <div class="afd">Open any .txt file</div>
+                  </div>
+                  <div class="af" onclick="openCat('text')">
+                    <div class="afn">🔡 Case Converter</div>
+                    <div class="afd">
+                      UPPER, lower, camel, snake, kebab, Pascal
+                    </div>
+                  </div>
+                  <div class="af" onclick="openCat('text')">
+                    <div class="afn">🔤 Base64 Encode/Decode</div>
+                    <div class="afd">Text or file ↔ Base64</div>
+                  </div>
+                  <div class="af" onclick="openCat('text')">
+                    <div class="afn">🗜 Code Minifier</div>
+                    <div class="afd">JS, CSS, HTML, JSON</div>
+                  </div>
+                  <div class="af" onclick="openCat('dev')">
+                    <div class="afn">📋 JSON Formatter</div>
+                    <div class="afd">Format, validate, minify JSON</div>
+                  </div>
+                  <div class="af" onclick="openCat('dev')">
+                    <div class="afn">🔢 Number Base Convert</div>
+                    <div class="afd">Bin, Oct, Dec, Hex</div>
+                  </div>
+                  <div class="af" onclick="openCat('dev')">
+                    <div class="afn"># SHA-256 Hash</div>
+                    <div class="afd">Hash text or file (Web Crypto API)</div>
+                  </div>
+                  <div class="af" onclick="openCat('dev')">
+                    <div class="afn">🔗 URL Encode/Decode</div>
+                    <div class="afd">Encode/decode URL components</div>
+                  </div>
+                  <div class="af" onclick="openCat('utils')">
+                    <div class="afn">📏 Word Counter</div>
+                    <div class="afd">Words, chars, lines, read time</div>
+                  </div>
+                  <div class="af" onclick="openCat('utils')">
+                    <div class="afn">↔️ Text Diff</div>
+                    <div class="afd">Line-by-line comparison</div>
+                  </div>
+                  <div class="af" onclick="openCat('utils')">
+                    <div class="afn">🎨 Image Metadata + Palette</div>
+                    <div class="afd">Dimensions, size, dominant colors</div>
+                  </div>
+                  <div class="af" onclick="openCat('utils')">
+                    <div class="afn">🔍 File Inspector</div>
+                    <div class="afd">Hex dump + file metadata</div>
+                  </div>
+                  <div class="af" onclick="openCat('utils')">
+                    <div class="afn">01 Binary / Morse</div>
+                    <div class="afd">Text ↔ binary bits / Morse code</div>
+                  </div>
+                  <div class="af" onclick="openCat('video')">
+                    <div class="afn">🎬 Video Frame Extractor</div>
+                    <div class="afd">Any frame → PNG</div>
+                  </div>
+                  <div class="af" onclick="openCat('video')">
+                    <div class="afn">🎞 Video Sprite Sheet</div>
+                    <div class="afd">Multi-frame PNG strip</div>
+                  </div>
+                  <div class="af" onclick="openCat('audio')">
+                    <div class="afn">🎵 Audio File Info</div>
+                    <div class="afd">Duration, type, size</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- HISTORY -->
+            <div class="pg" id="pg-history">
+              <div class="pt">History</div>
+              <div class="ps">
+                Conversions this session. Download links stay active while the
+                page is open.
+              </div>
+              <div class="pn" id="histPanel">
+                <div class="es">
+                  🕐<br /><br /><strong
+                    style="
+                      color: var(--text2);
+                      font-family: &quot;Syne&quot;, sans-serif;
+                    "
+                    >No conversions yet</strong
+                  ><br /><br />Convert a file and it appears here with a
+                  download link
+                </div>
+              </div>
+            </div>
+
+            <!-- SETTINGS -->
+            <div class="pg" id="pg-settings">
+              <div class="pt">Settings</div>
+              <div class="ps">Preferences for your session.</div>
+              <div class="ss">
+                <div class="sh">
+                  <div class="shi" style="background: rgba(0, 184, 148, 0.15)">
+                    🔒
+                  </div>
+                  <div class="sht">Privacy</div>
+                </div>
+                <div class="sr">
+                  <div class="srf">
+                    <div class="srl">Local processing only</div>
+                    <div class="srd">
+                      All conversions run in your browser. Nothing is ever sent
+                      to a server.
+                    </div>
+                  </div>
+                  <div class="tg2 on" style="cursor: default"></div>
+                </div>
+                <div class="sr">
+                  <div class="srf">
+                    <div class="srl">Save history</div>
+                    <div class="srd">
+                      Keep a log of conversions during this session
+                    </div>
+                  </div>
+                  <div
+                    class="tg2 on"
+                    id="tgHist"
+                    onclick="this.classList.toggle('on')"
+                  ></div>
+                </div>
+              </div>
+              <div class="ss">
+                <div class="sh">
+                  <div class="shi" style="background: rgba(108, 92, 231, 0.15)">
+                    🎨
+                  </div>
+                  <div class="sht">Appearance</div>
+                </div>
+                <div class="sr">
+                  <div class="srf">
+                    <div class="srl">Dark mode</div>
+                    <div class="srd">Toggle between dark and light theme</div>
+                  </div>
+                  <div class="tg2 on" id="tgDark" onclick="toggleTheme()"></div>
+                </div>
+                <div class="sr">
+                  <div class="srf">
+                    <div class="srl">Image export quality</div>
+                    <div class="srd">Quality for JPG / WEBP output (1–10)</div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 10px">
+                    <input
+                      type="range"
+                      min="1"
+                      max="10"
+                      value="9"
+                      id="qualR"
+                      style="accent-color: var(--accent); width: 100px"
+                      oninput="
+                        document.getElementById('qualV').textContent = (
+                          this.value / 10
+                        ).toFixed(1)
+                      "
+                    /><span
+                      id="qualV"
+                      style="
+                        font-size: 13px;
+                        color: var(--accent2);
+                        font-family: &quot;Syne&quot;, sans-serif;
+                        font-weight: 700;
+                        min-width: 26px;
+                      "
+                      >0.9</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="ss">
+                <div class="sh">
+                  <div
+                    class="shi"
+                    style="background: rgba(253, 203, 110, 0.15)"
+                  >
+                    ℹ️
+                  </div>
+                  <div class="sht">About</div>
+                </div>
+                <div class="sr">
+                  <div class="srf">
+                    <div class="srl">Transmorph v2.0</div>
+                    <div class="srd">
+                      32+ tools running 100% in your browser. No backend. No
+                      uploads. No tracking. Canvas API · FileReader API · Web
+                      Crypto API · native JS.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ci -->
+        </div>
+        <!-- ct -->
+      </div>
+      <!-- main -->
+    </div>
+    <!-- app -->
+
+    <script>
+      // ─── STATE & NAV ──────────────────────────────────────────
+      const S = { dark: true, count: 0, bytes: 0, hist: [] };
+      function nav(p) {
+        document
+          .querySelectorAll(".pg")
+          .forEach((e) => e.classList.remove("on"));
+        document
+          .querySelectorAll(".sm")
+          .forEach((e) => e.classList.remove("on"));
+        document.getElementById("pg-" + p)?.classList.add("on");
+        document
+          .querySelectorAll('[data-p="' + p + '"]')
+          .forEach((e) => e.classList.add("on"));
+      }
+      function toggleTheme() {
+        S.dark = !S.dark;
+        document.getElementById("tgDark")?.classList.toggle("on", S.dark);
+        const R = document.documentElement.style;
+        if (!S.dark) {
+          R.setProperty("--bg", "#f4f4f8");
+          R.setProperty("--bg2", "#fff");
+          R.setProperty("--bg3", "#eeeef4");
+          R.setProperty("--bg4", "#e3e3ee");
+          R.setProperty("--text", "#111118");
+          R.setProperty("--text2", "#55556a");
+          R.setProperty("--text3", "#9898b0");
+          R.setProperty("--border", "#00000014");
+          R.setProperty("--border2", "#00000022");
+          R.setProperty("--border3", "#00000038");
+        } else {
+          R.setProperty("--bg", "#0a0a0f");
+          R.setProperty("--bg2", "#111118");
+          R.setProperty("--bg3", "#18181f");
+          R.setProperty("--bg4", "#1f1f28");
+          R.setProperty("--text", "#f0f0f8");
+          R.setProperty("--text2", "#9898b0");
+          R.setProperty("--text3", "#55556a");
+          R.setProperty("--border", "#ffffff12");
+          R.setProperty("--border2", "#ffffff20");
+          R.setProperty("--border3", "#ffffff38");
+        }
+      }
+      // ─── TOAST ────────────────────────────────────────────────
+      function toast(msg, ic = "✓") {
+        document.querySelectorAll(".toast").forEach((t) => t.remove());
+        const el = document.createElement("div");
+        el.className = "toast";
+        el.innerHTML = `<span style="font-size:16px">${ic}</span><span>${msg}</span>`;
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 3500);
+      }
+      // ─── UTIL ─────────────────────────────────────────────────
+      function fmtSz(b) {
+        if (!b || b < 0) return "?B";
+        if (b > 1073741824) return (b / 1073741824).toFixed(1) + "GB";
+        if (b > 1048576) return (b / 1048576).toFixed(1) + "MB";
+        if (b > 1024) return (b / 1024).toFixed(1) + "KB";
+        return b + "B";
+      }
+      function nowT() {
+        return new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      }
+      function getQ() {
+        return (document.getElementById("qualR")?.value || 9) / 10;
+      }
+      function escH(t) {
+        return String(t)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+      function dlBlob(blob, name) {
+        const u = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = u;
+        a.download = name;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(u), 120000);
+        return u;
+      }
+      function pick(accept, multi, cb) {
+        const fi = document.createElement("input");
+        fi.type = "file";
+        fi.accept = accept || "*";
+        fi.multiple = !!multi;
+        fi.onchange = (e) => {
+          if (e.target.files.length) cb(Array.from(e.target.files));
+        };
+        fi.click();
+      }
+      function selPill(el, gid) {
+        document
+          .querySelectorAll("#" + gid + " .pl")
+          .forEach((p) => p.classList.remove("on"));
+        el.classList.add("on");
+      }
+      function addResult(cid, { icon, name, meta, url, fname, error }) {
+        let c = document.getElementById(cid);
+        if (!c) return;
+        if (!c.classList.contains("rl")) c.classList.add("rl");
+        const d = document.createElement("div");
+        d.className = "ri";
+        d.innerHTML = `<div class="ric" style="background:${error ? "rgba(255,118,117,.12)" : "rgba(0,184,148,.12)"}">${icon}</div><div class="rb"><div class="rn">${escH(name)}</div><div class="rm">${escH(meta)}</div></div>${url ? `<button class="bd" onclick="trigDl('${url}','${escH(fname)}')">↓ Download</button>` : ""}${error ? `<div class="re">Error</div>` : ""}`;
+        c.appendChild(d);
+        d.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+      function trigDl(url, name) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = name;
+        a.click();
+      }
+      function record(icon, from, to, size, url, fname) {
+        S.count++;
+        document.getElementById("statCount").textContent = S.count;
+        S.hist.unshift({ icon, from, to, size, time: nowT(), url, fname });
+        updateSz();
+        if (document.getElementById("tgHist")?.classList.contains("on")) {
+          const hp = document.getElementById("histPanel");
+          if (hp)
+            hp.innerHTML = S.hist
+              .map(
+                (h) =>
+                  `<div class="hi"><div class="hem">${h.icon}</div><div class="hn">${escH(h.from)} <span class="ha">→</span> ${escH(h.to)}</div><div class="hm"><span>${h.size}</span><span>${h.time}</span></div>${h.url ? `<button class="bd" onclick="trigDl('${h.url}','${escH(h.fname)}')">↓ Download</button>` : ""}</div>`,
+              )
+              .join("");
+        }
+      }
+      function updateSz() {
+        let b = S.bytes,
+          u = "B";
+        if (b > 1073741824) {
+          b = (b / 1073741824).toFixed(1);
+          u = "GB";
+        } else if (b > 1048576) {
+          b = (b / 1048576).toFixed(1);
+          u = "MB";
+        } else if (b > 1024) {
+          b = (b / 1024).toFixed(1);
+          u = "KB";
+        }
+        document.getElementById("statSize").innerHTML =
+          b + "<em>" + u + "</em>";
+      }
+
+      // ─── CATEGORY ROUTER ──────────────────────────────────────
+      function openCat(cat) {
+        const cfg = {
+          images: {
+            title: "🖼 Image Converter",
+            sub: "Convert any image format using the Canvas API. Resize, greyscale, and rasterize SVGs — fully local.",
+          },
+          data: {
+            title: "📊 Data Converter",
+            sub: "Convert between CSV, JSON, YAML, TSV and XML — all bidirectional, all instant.",
+          },
+          text: {
+            title: "📝 Text Tools",
+            sub: "Case converter, Base64 encoder/decoder, and code minifier.",
+          },
+          documents: {
+            title: "📄 Document Tools",
+            sub: "Markdown → HTML, HTML → plain text, and text file viewer.",
+          },
+          dev: {
+            title: "🛠 Developer Tools",
+            sub: "JSON formatter, XML↔JSON, SHA-256 hash, number base converter, and URL encoder.",
+          },
+          utils: {
+            title: "🔧 Utilities",
+            sub: "Word counter, text diff, image metadata, file inspector, binary and Morse code.",
+          },
+          video: {
+            title: "🎬 Video Tools",
+            sub: "Extract any frame as PNG or generate a multi-frame sprite sheet using the browser video decoder.",
+          },
+          audio: {
+            title: "🎵 Audio Tools",
+            sub: "Read metadata from any audio file: duration, MIME type, and file size.",
+          },
+        }[cat];
+        if (!cfg) return;
+        document.getElementById("catTitle").textContent = cfg.title;
+        document.getElementById("catSub").textContent = cfg.sub;
+        document.getElementById("catContent").innerHTML = "";
+        ({
+          images: buildImages,
+          data: buildData,
+          text: buildText,
+          documents: buildDocuments,
+          dev: buildDev,
+          utils: buildUtils,
+          video: buildVideo,
+          audio: buildAudio,
+        })[cat]?.();
+        nav("convert");
+      }
+
+      // ── IMAGES ────────────────────────────────────────────────
+      function buildImages() {
+        document.getElementById("catContent").innerHTML = `
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Image Format Converter</div><div class="pss">Canvas API · JPG, PNG, WEBP, BMP, GIF · resize & greyscale</div></div><span class="tg">● Canvas API</span></div>
+          <div class="lbl">Output format</div>
+          <div class="pls" id="imgP">
+            <div class="pl on" data-fmt="image/png" onclick="selPill(this,'imgP')">PNG</div>
+            <div class="pl" data-fmt="image/jpeg" onclick="selPill(this,'imgP')">JPG</div>
+            <div class="pl" data-fmt="image/webp" onclick="selPill(this,'imgP')">WEBP</div>
+            <div class="pl" data-fmt="image/bmp" onclick="selPill(this,'imgP')">BMP</div>
+            <div class="pl" data-fmt="image/gif" onclick="selPill(this,'imgP')">GIF</div>
+          </div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px">
+            <div><div class="lbl" style="margin-bottom:6px">Width px (optional)</div><input class="ni" id="imgW" type="number" placeholder="e.g. 800"></div>
+            <div><div class="lbl" style="margin-bottom:6px">Height px (optional)</div><input class="ni" id="imgH" type="number" placeholder="e.g. 600"></div>
+            <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:13px;color:var(--text2);padding-bottom:9px"><input type="checkbox" id="imgGr" style="accent-color:var(--accent)"> Greyscale</label>
+          </div>
+          <button class="bp" onclick="pickImgs()">📂 Choose images & convert</button>
+          <div id="imgOut"></div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">SVG → PNG</div><div class="pss">Rasterize an SVG at any width</div></div></div>
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:14px"><div class="lbl" style="margin-bottom:0">Output width (px):</div><input class="ni" id="svgW" type="number" value="1024"></div>
+          <button class="bp" onclick="pickSvg()">📂 Choose SVG file(s)</button>
+          <div id="svgOut"></div>
+        </div>`;
+      }
+      const MEXT = {
+        "image/jpeg": "jpg",
+        "image/png": "png",
+        "image/webp": "webp",
+        "image/bmp": "bmp",
+        "image/gif": "gif",
+      };
+      function imgConv(file, mime, opts) {
+        return new Promise((res, rej) => {
+          const u = URL.createObjectURL(file);
+          const img = new Image();
+          img.onload = () => {
+            let w = opts.w || img.naturalWidth,
+              h = opts.h || img.naturalHeight;
+            if (opts.w && !opts.h)
+              h = Math.round(img.naturalHeight * (opts.w / img.naturalWidth));
+            if (opts.h && !opts.w)
+              w = Math.round(img.naturalWidth * (opts.h / img.naturalHeight));
+            const cv = document.createElement("canvas");
+            cv.width = w;
+            cv.height = h;
+            const ctx = cv.getContext("2d");
+            if (mime === "image/jpeg") {
+              ctx.fillStyle = "#fff";
+              ctx.fillRect(0, 0, w, h);
+            }
+            ctx.drawImage(img, 0, 0, w, h);
+            if (opts.gr) {
+              const id = ctx.getImageData(0, 0, w, h);
+              for (let i = 0; i < id.data.length; i += 4) {
+                const g =
+                  id.data[i] * 0.299 +
+                  id.data[i + 1] * 0.587 +
+                  id.data[i + 2] * 0.114;
+                id.data[i] = id.data[i + 1] = id.data[i + 2] = g;
+              }
+              ctx.putImageData(id, 0, 0);
+            }
+            URL.revokeObjectURL(u);
+            cv.toBlob(
+              (b) => {
+                b ? res(b) : rej(new Error("toBlob failed"));
+              },
+              mime,
+              getQ(),
+            );
+          };
+          img.onerror = () => {
+            URL.revokeObjectURL(u);
+            rej(new Error("Cannot load: " + file.name));
+          };
+          img.src = u;
+        });
+      }
+      function pickImgs() {
+        pick("image/*", true, async (files) => {
+          const mime =
+            document.querySelector("#imgP .on")?.dataset.fmt || "image/png";
+          const ext = MEXT[mime] || "png";
+          const w = parseInt(document.getElementById("imgW")?.value) || 0;
+          const h = parseInt(document.getElementById("imgH")?.value) || 0;
+          const gr = document.getElementById("imgGr")?.checked || false;
+          for (const f of files) {
+            try {
+              const blob = await imgConv(f, mime, { w, h, gr });
+              const out = f.name.replace(/\.[^.]+$/, "") + "." + ext;
+              const url = dlBlob(blob, out);
+              S.bytes += f.size;
+              updateSz();
+              addResult("imgOut", {
+                icon: "🖼",
+                name: out,
+                meta: `${fmtSz(f.size)} → ${fmtSz(blob.size)} · ${ext.toUpperCase()}${gr ? " · greyscale" : ""}`,
+                url,
+                fname: out,
+              });
+              record("🖼", f.name, out, fmtSz(blob.size), url, out);
+              toast(`✓ ${out}`, "🖼");
+            } catch (e) {
+              addResult("imgOut", {
+                icon: "⚠️",
+                name: f.name,
+                meta: e.message,
+                error: true,
+              });
+            }
+          }
+        });
+      }
+      function pickSvg() {
+        pick(".svg,image/svg+xml", true, (files) => {
+          files.forEach((f) => {
+            const w = parseInt(document.getElementById("svgW")?.value) || 1024;
+            const r = new FileReader();
+            r.onload = (e) => {
+              const b2 = new Blob([e.target.result], { type: "image/svg+xml" });
+              const bu = URL.createObjectURL(b2);
+              const img = new Image();
+              img.onload = () => {
+                const ar = img.naturalHeight / img.naturalWidth || 1;
+                const cv = document.createElement("canvas");
+                cv.width = w;
+                cv.height = Math.round(w * ar);
+                cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+                URL.revokeObjectURL(bu);
+                cv.toBlob((blob) => {
+                  const out = f.name.replace(/\.[^.]+$/, "") + ".png";
+                  const url = dlBlob(blob, out);
+                  S.bytes += f.size;
+                  updateSz();
+                  addResult("svgOut", {
+                    icon: "🔵",
+                    name: out,
+                    meta: `SVG→PNG · ${w}px · ${fmtSz(blob.size)}`,
+                    url,
+                    fname: out,
+                  });
+                  record("🔵", f.name, out, fmtSz(blob.size), url, out);
+                  toast(`SVG→PNG: ${out}`, "🔵");
+                }, "image/png");
+              };
+              img.onerror = () => {
+                URL.revokeObjectURL(bu);
+                addResult("svgOut", {
+                  icon: "⚠️",
+                  name: f.name,
+                  meta: "Cannot render SVG",
+                  error: true,
+                });
+              };
+              img.src = bu;
+            };
+            r.readAsText(f);
+          });
+        });
+      }
+
+      // ── DATA ──────────────────────────────────────────────────
+      function buildData() {
+        document.getElementById("catContent").innerHTML = `
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Data Format Converter</div><div class="pss">Select direction, then choose a file. Bidirectional for all pairs.</div></div><span class="tg">● Local</span></div>
+          <div class="pls" id="dataP">
+            <div class="pl on" data-dir="csv2json" onclick="selPill(this,'dataP')">CSV → JSON</div>
+            <div class="pl" data-dir="json2csv" onclick="selPill(this,'dataP')">JSON → CSV</div>
+            <div class="pl" data-dir="json2yaml" onclick="selPill(this,'dataP')">JSON → YAML</div>
+            <div class="pl" data-dir="yaml2json" onclick="selPill(this,'dataP')">YAML → JSON</div>
+            <div class="pl" data-dir="csv2tsv" onclick="selPill(this,'dataP')">CSV → TSV</div>
+            <div class="pl" data-dir="tsv2csv" onclick="selPill(this,'dataP')">TSV → CSV</div>
+            <div class="pl" data-dir="json2xml" onclick="selPill(this,'dataP')">JSON → XML</div>
+            <div class="pl" data-dir="xml2json" onclick="selPill(this,'dataP')">XML → JSON</div>
+          </div>
+          <button class="bp" onclick="pickData()">📂 Choose file(s) & convert</button>
+          <div id="dataOut"></div>
+        </div>`;
+      }
+      function splitCSV(row) {
+        const r = [];
+        let cur = "",
+          inQ = false;
+        for (let i = 0; i < row.length; i++) {
+          const c = row[i];
+          if (c === '"') inQ = !inQ;
+          else if (c === "," && !inQ) {
+            r.push(cur.trim());
+            cur = "";
+          } else cur += c;
+        }
+        r.push(cur.trim());
+        return r;
+      }
+      function csvToJson(csv) {
+        const rows = csv
+          .trim()
+          .split("\n")
+          .filter((r) => r.trim());
+        if (!rows.length) throw new Error("Empty CSV");
+        const h = splitCSV(rows[0]);
+        return rows.slice(1).map((row) => {
+          const v = splitCSV(row);
+          const o = {};
+          h.forEach((k, i) => (o[k] = v[i] ?? ""));
+          return o;
+        });
+      }
+      function jsonToCsv(arr) {
+        if (!Array.isArray(arr) || !arr.length)
+          throw new Error("JSON must be a non-empty array");
+        const k = Object.keys(arr[0]);
+        return [
+          k.join(","),
+          ...arr.map((r) =>
+            k
+              .map((key) => {
+                const v = r[key];
+                return typeof v === "string"
+                  ? '"' + v.replace(/"/g, '""') + '"'
+                  : (v ?? "");
+              })
+              .join(","),
+          ),
+        ].join("\n");
+      }
+      function j2y(v, ind = 0) {
+        const p = " ".repeat(ind);
+        if (v === null || v === undefined) return "null";
+        if (typeof v === "boolean" || typeof v === "number") return String(v);
+        if (typeof v === "string")
+          return v.includes(":") ||
+            v.includes("#") ||
+            v.includes("\n") ||
+            v === ""
+            ? `"${v.replace(/"/g, '\\"')}"`
+            : v;
+        if (Array.isArray(v))
+          return v
+            .map((i) => `${p}- ${j2y(i, ind + 2).trimStart()}`)
+            .join("\n");
+        return Object.entries(v)
+          .map(([k, vv]) =>
+            typeof vv === "object" && vv !== null
+              ? `${p}${k}:\n${j2y(vv, ind + 2)}`
+              : `${p}${k}: ${j2y(vv, 0)}`,
+          )
+          .join("\n");
+      }
+      function y2j(yaml) {
+        function pv(v) {
+          if (v === "true") return true;
+          if (v === "false") return false;
+          if (v === "null" || v === "~") return null;
+          if (!isNaN(v) && v !== "") return Number(v);
+          return v.replace(/^["']|["']$/g, "");
+        }
+        const lines = yaml.split("\n");
+        const root = {};
+        const stk = [{ obj: root, ind: -2 }];
+        for (const line of lines) {
+          if (!line.trim() || line.trim().startsWith("#")) continue;
+          const ind = line.search(/\S/);
+          while (stk.length > 1 && ind <= stk[stk.length - 1].ind) stk.pop();
+          const m = line.trim().match(/^([^:]+):\s*(.*)$/);
+          if (!m) continue;
+          const [, key, val] = m;
+          const k = key.trim();
+          if (val.trim()) {
+            stk[stk.length - 1].obj[k] = pv(val.trim());
+          } else {
+            const child = {};
+            stk[stk.length - 1].obj[k] = child;
+            stk.push({ obj: child, ind });
+          }
+        }
+        return root;
+      }
+      function csvToTsv(csv) {
+        return csv
+          .split("\n")
+          .map((r) => splitCSV(r).join("\t"))
+          .join("\n");
+      }
+      function tsvToCsv(tsv) {
+        return tsv
+          .split("\n")
+          .map((r) =>
+            r
+              .split("\t")
+              .map((v) => '"' + v.replace(/"/g, '""') + '"')
+              .join(","),
+          )
+          .join("\n");
+      }
+      function xmlToJson(xml) {
+        const d = new DOMParser().parseFromString(xml, "application/xml");
+        const err = d.querySelector("parsererror");
+        if (err) throw new Error("Invalid XML");
+        function n2o(node) {
+          if (node.nodeType === 3) return node.nodeValue.trim();
+          const obj = {};
+          if (node.attributes?.length) {
+            obj["@attrs"] = {};
+            for (const a of node.attributes) obj["@attrs"][a.name] = a.value;
+          }
+          for (const c of node.childNodes) {
+            if (c.nodeType === 3 && !c.nodeValue.trim()) continue;
+            const k = c.nodeName;
+            const v = n2o(c);
+            if (obj[k] === undefined) obj[k] = v;
+            else if (Array.isArray(obj[k])) obj[k].push(v);
+            else obj[k] = [obj[k], v];
+          }
+          return obj;
+        }
+        return { [d.documentElement.nodeName]: n2o(d.documentElement) };
+      }
+      function jsonToXml(obj, tag = "root", ind = 0) {
+        const p = " ".repeat(ind);
+        if (typeof obj !== "object" || obj === null)
+          return `${p}<${tag}>${String(obj ?? "")}</${tag}>`;
+        if (Array.isArray(obj))
+          return obj.map((v) => jsonToXml(v, tag, ind)).join("\n");
+        let attrs = "",
+          children = "";
+        for (const [k, v] of Object.entries(obj)) {
+          if (k === "@attrs") {
+            for (const [ak, av] of Object.entries(v)) attrs += ` ${ak}="${av}"`;
+            continue;
+          }
+          if (typeof v === "object" && v !== null)
+            children += "\n" + jsonToXml(v, k, ind + 2);
+          else children += `\n${p}  <${k}>${v}</${k}>`;
+        }
+        return children
+          ? `${p}<${tag}${attrs}>${children}\n${p}</${tag}>`
+          : `${p}<${tag}${attrs}/>`;
+      }
+      function pickData() {
+        const dir =
+          document.querySelector("#dataP .on")?.dataset.dir || "csv2json";
+        const am = {
+          csv2json: ".csv,text/csv",
+          json2csv: ".json,application/json",
+          json2yaml: ".json,application/json",
+          yaml2json: ".yaml,.yml",
+          csv2tsv: ".csv",
+          tsv2csv: ".tsv",
+          json2xml: ".json,application/json",
+          xml2json: ".xml,text/xml,application/xml",
+        };
+        const em = {
+          csv2json: "json",
+          json2csv: "csv",
+          json2yaml: "yaml",
+          yaml2json: "json",
+          csv2tsv: "tsv",
+          tsv2csv: "csv",
+          json2xml: "xml",
+          xml2json: "json",
+        };
+        const mm = {
+          json: "application/json",
+          csv: "text/csv",
+          yaml: "text/yaml",
+          tsv: "text/tab-separated-values",
+          xml: "application/xml",
+        };
+        pick(am[dir] || "*", true, (files) => {
+          files.forEach((f) => {
+            const rd = new FileReader();
+            rd.onload = (e) => {
+              try {
+                let out;
+                const txt = e.target.result;
+                if (dir === "csv2json")
+                  out = JSON.stringify(csvToJson(txt), null, 2);
+                else if (dir === "json2csv") out = jsonToCsv(JSON.parse(txt));
+                else if (dir === "json2yaml") out = j2y(JSON.parse(txt));
+                else if (dir === "yaml2json")
+                  out = JSON.stringify(y2j(txt), null, 2);
+                else if (dir === "csv2tsv") out = csvToTsv(txt);
+                else if (dir === "tsv2csv") out = tsvToCsv(txt);
+                else if (dir === "json2xml")
+                  out =
+                    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+                    jsonToXml(JSON.parse(txt), "root", 0);
+                else if (dir === "xml2json")
+                  out = JSON.stringify(xmlToJson(txt), null, 2);
+                const ext = em[dir];
+                const blob = new Blob([out], { type: mm[ext] || "text/plain" });
+                const outN = f.name.replace(/\.[^.]+$/, "") + "." + ext;
+                const url = dlBlob(blob, outN);
+                S.bytes += f.size;
+                updateSz();
+                addResult("dataOut", {
+                  icon: "📊",
+                  name: outN,
+                  meta: `${dir.replace("2", " → ")} · ${fmtSz(blob.size)}`,
+                  url,
+                  fname: outN,
+                });
+                record("📊", f.name, outN, fmtSz(blob.size), url, outN);
+                toast(`${f.name} → ${outN}`, "📊");
+              } catch (err) {
+                addResult("dataOut", {
+                  icon: "⚠️",
+                  name: f.name,
+                  meta: "Error: " + err.message,
+                  error: true,
+                });
+                toast(err.message, "⚠️");
+              }
+            };
+            rd.readAsText(f);
+          });
+        });
+      }
+
+      // ── TEXT TOOLS ────────────────────────────────────────────
+      function buildText() {
+        document.getElementById("catContent").innerHTML = `
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Case Converter</div><div class="pss">Live conversion as you type</div></div></div>
+          <textarea class="inp" id="caseIn" placeholder="Type or paste text here…" oninput="liveCase()"></textarea>
+          <div class="pls" id="caseP">
+            ${[
+              ["upper", "UPPER"],
+              ["lower", "lower"],
+              ["title", "Title Case"],
+              ["sentence", "Sentence"],
+              ["camel", "camelCase"],
+              ["snake", "snake_case"],
+              ["kebab", "kebab-case"],
+              ["pascal", "PascalCase"],
+            ]
+              .map(
+                (c, i) =>
+                  `<div class="pl${i === 0 ? " on" : ""}" data-mode="${c[0]}" onclick="selPill(this,'caseP');liveCase()">${c[1]}</div>`,
+              )
+              .join("")}
+          </div>
+          <div class="ob" id="caseOut" style="min-height:80px"></div>
+          <div class="ar" style="margin-top:8px">
+            <button class="bp" onclick="copyCO()">📋 Copy</button>
+            <button class="bs" onclick="dlCO()">↓ Download .txt</button>
+          </div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Base64 Encode / Decode</div><div class="pss">Text or file ↔ Base64</div></div></div>
+          <div class="pls" id="b64P">
+            <div class="pl on" data-mode="enc" onclick="selPill(this,'b64P')">Encode text</div>
+            <div class="pl" data-mode="dec" onclick="selPill(this,'b64P')">Decode Base64</div>
+            <div class="pl" data-mode="file" onclick="selPill(this,'b64P')">Encode file</div>
+          </div>
+          <textarea class="inp" id="b64In" placeholder="Enter text or Base64 string…" style="font-family:'DM Mono',monospace;font-size:12px"></textarea>
+          <div class="ar" style="margin-bottom:12px">
+            <button class="bp" onclick="doB64()">⚡ Convert</button>
+            <button class="bs" onclick="pickB64File()">📂 Choose file</button>
+          </div>
+          <div class="ob" id="b64Out"></div>
+          <div class="ar" style="margin-top:8px">
+            <button class="bp" onclick="copyB64()">📋 Copy result</button>
+            <button class="bs" onclick="dlB64()">↓ Download result</button>
+          </div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Code / Text Minifier</div><div class="pss">Strips comments and compresses whitespace. Works with HTML, CSS, JS, JSON.</div></div></div>
+          <button class="bp" onclick="pickMinify()">📂 Choose file(s) to minify</button>
+          <div id="minOut"></div>
+        </div>`;
+      }
+      function liveCase() {
+        const t = document.getElementById("caseIn")?.value || "";
+        const m = document.querySelector("#caseP .on")?.dataset.mode || "upper";
+        const o = document.getElementById("caseOut");
+        if (o) o.textContent = doCase(t, m);
+      }
+      function doCase(t, m) {
+        if (m === "upper") return t.toUpperCase();
+        if (m === "lower") return t.toLowerCase();
+        if (m === "title")
+          return t.replace(
+            /\w\S*/g,
+            (w) => w[0].toUpperCase() + w.slice(1).toLowerCase(),
+          );
+        if (m === "sentence")
+          return t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
+        if (m === "camel")
+          return t
+            .toLowerCase()
+            .replace(/[^a-z0-9]+(.)/g, (_, c) => c.toUpperCase());
+        if (m === "snake")
+          return t
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "_")
+            .replace(/^_+|_+$/g, "");
+        if (m === "kebab")
+          return t
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+        if (m === "pascal") {
+          const r = t
+            .toLowerCase()
+            .replace(/[^a-z0-9]+(.)/g, (_, c) => c.toUpperCase());
+          return r.charAt(0).toUpperCase() + r.slice(1);
+        }
+        return t;
+      }
+      function copyCO() {
+        navigator.clipboard?.writeText(
+          document.getElementById("caseOut")?.textContent || "",
+        );
+        toast("Copied", "📋");
+      }
+      function dlCO() {
+        const t = document.getElementById("caseOut")?.textContent || "";
+        const b = new Blob([t], { type: "text/plain" });
+        const u = dlBlob(b, "converted.txt");
+        record(
+          "📝",
+          "text",
+          "converted.txt",
+          fmtSz(b.size),
+          u,
+          "converted.txt",
+        );
+      }
+      function doB64() {
+        const m = document.querySelector("#b64P .on")?.dataset.mode || "enc";
+        const inp = document.getElementById("b64In")?.value || "";
+        const o = document.getElementById("b64Out");
+        if (!o) return;
+        try {
+          if (m === "enc")
+            o.textContent = btoa(unescape(encodeURIComponent(inp)));
+          else if (m === "dec")
+            o.textContent = decodeURIComponent(escape(atob(inp.trim())));
+          else o.textContent = "Use the Choose file button to encode a file.";
+        } catch (e) {
+          o.textContent = "Error: " + e.message;
+        }
+      }
+      function pickB64File() {
+        pick("*", false, (files) => {
+          const f = files[0];
+          if (!f) return;
+          const r = new FileReader();
+          r.onload = (e) => {
+            const b64 = e.target.result.split(",")[1];
+            const o = document.getElementById("b64Out");
+            if (o) o.textContent = b64;
+            const blob = new Blob([b64], { type: "text/plain" });
+            const n = f.name + ".b64.txt";
+            const u = dlBlob(blob, n);
+            S.bytes += f.size;
+            updateSz();
+            record("🔤", f.name, n, fmtSz(blob.size), u, n);
+            toast(`Encoded: ${n}`, "🔤");
+          };
+          r.readAsDataURL(f);
+        });
+      }
+      function copyB64() {
+        navigator.clipboard?.writeText(
+          document.getElementById("b64Out")?.textContent || "",
+        );
+        toast("Copied", "📋");
+      }
+      function dlB64() {
+        const t = document.getElementById("b64Out")?.textContent || "";
+        const b = new Blob([t], { type: "text/plain" });
+        const u = dlBlob(b, "b64_result.txt");
+        record(
+          "🔤",
+          "b64",
+          "b64_result.txt",
+          fmtSz(b.size),
+          u,
+          "b64_result.txt",
+        );
+      }
+      function pickMinify() {
+        pick(".js,.css,.html,.htm,.json,.txt", true, (files) => {
+          files.forEach((f) => {
+            const r = new FileReader();
+            r.onload = (e) => {
+              const min = e.target.result
+                .replace(/\/\*[\s\S]*?\*\//g, "")
+                .replace(/\/\/[^\n]*/g, "")
+                .replace(/<!--[\s\S]*?-->/g, "")
+                .replace(/[ \t]+/g, " ")
+                .replace(/\n\s*\n/g, "\n")
+                .trim();
+              const blob = new Blob([min], { type: "text/plain" });
+              const ext = f.name.includes(".")
+                ? f.name.slice(f.name.lastIndexOf("."))
+                : "";
+              const n = f.name.replace(/\.[^.]+$/, "") + ".min" + ext;
+              const saved = f.size
+                ? Math.round((1 - blob.size / f.size) * 100)
+                : 0;
+              const u = dlBlob(blob, n);
+              S.bytes += f.size;
+              updateSz();
+              addResult("minOut", {
+                icon: "🗜",
+                name: n,
+                meta: `${fmtSz(f.size)} → ${fmtSz(blob.size)} · ${saved}% smaller`,
+                url: u,
+                fname: n,
+              });
+              record("🗜", f.name, n, fmtSz(blob.size), u, n);
+              toast(`Minified: ${n} (${saved}% smaller)`, "🗜");
+            };
+            r.readAsText(f);
+          });
+        });
+      }
+
+      // ── DOCUMENTS ─────────────────────────────────────────────
+      function buildDocuments() {
+        document.getElementById("catContent").innerHTML = `
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Images → PDF</div><div class="pss">Combine multiple JPG or PNG images into a single PDF document.</div></div><span class="tg">● pdf-lib</span></div>
+          <button class="bp" onclick="pickImgToPdf()">📂 Choose images</button>
+          <div id="pdfOut"></div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Image to Text (OCR)</div><div class="pss">Extract text from scanned images. (Note: Downloads a ~25MB language model on first run).</div></div><span class="tg">● Tesseract.js</span></div>
+          <button class="bp" onclick="pickOCR()">📂 Choose Image(s) to read</button>
+          <div id="ocrOut"></div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">PDF → Images</div><div class="pss">Extract all pages of a PDF into individual PNG images.</div></div><span class="tg">● pdf.js</span></div>
+          <button class="bp" onclick="pickPdfToImg()">📂 Choose PDF</button>
+          <div id="pdfImgOut"></div>
+        </div>
+        <div class="pn"><div class="ph"><div><div class="ptt">Markdown → HTML</div><div class="pss">Converts a .md file to a complete styled HTML page ready to open in any browser</div></div></div><button class="bp" onclick="pickMd()">📂 Choose .md file(s)</button><div id="mdOut"></div></div>
+        <div class="pn"><div class="ph"><div><div class="ptt">HTML → Plain Text</div><div class="pss">Strip all HTML markup and extract clean readable text</div></div></div><button class="bp" onclick="pickHtml()">📂 Choose .html file(s)</button><div id="htmlOut"></div></div>
+        <div class="pn"><div class="ph"><div><div class="ptt">Text File Viewer</div><div class="pss">Open and preview any plain text file in-browser</div></div></div><button class="bp" onclick="pickTxt()">📂 Open text file</button><div id="txtPrev"></div></div>`;
+      }
+      function mdToHtml(md) {
+        return md
+          .replace(/^#{6}\s(.+)/gm, "<h6>$1</h6>")
+          .replace(/^#{5}\s(.+)/gm, "<h5>$1</h5>")
+          .replace(/^#{4}\s(.+)/gm, "<h4>$1</h4>")
+          .replace(/^###\s(.+)/gm, "<h3>$1</h3>")
+          .replace(/^##\s(.+)/gm, "<h2>$1</h2>")
+          .replace(/^#\s(.+)/gm, "<h1>$1</h1>")
+          .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+          .replace(/\*(.+?)\*/g, "<em>$1</em>")
+          .replace(/`(.+?)`/g, "<code>$1</code>")
+          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+          .replace(/^>\s(.+)/gm, "<blockquote>$1</blockquote>")
+          .replace(/^---+$/gm, "<hr>")
+          .replace(/\n\n/g, "</p><p>");
+      }
+      function pickMd() {
+        pick(".md,.markdown", true, (files) => {
+          files.forEach((f) => {
+            const r = new FileReader();
+            r.onload = (e) => {
+              const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${f.name}</title><style>body{font-family:system-ui,sans-serif;max-width:760px;margin:48px auto;padding:0 24px;line-height:1.75;color:#1a1a2e}h1,h2,h3{border-bottom:1px solid #eee;padding-bottom:.3em;margin-top:1.5em}code{background:#f4f4f8;padding:2px 6px;border-radius:4px}blockquote{border-left:4px solid #ddd;margin:0;padding-left:1em;color:#666}a{color:#6c5ce7}hr{border:none;border-top:1px solid #eee}</style></head><body><p>${mdToHtml(e.target.result)}</p></body></html>`;
+              const blob = new Blob([html], { type: "text/html" });
+              const n = f.name.replace(/\.[^.]+$/, "") + ".html";
+              const u = dlBlob(blob, n);
+              S.bytes += f.size;
+              updateSz();
+              addResult("mdOut", {
+                icon: "🌐",
+                name: n,
+                meta: `Markdown→HTML · ${fmtSz(blob.size)}`,
+                url: u,
+                fname: n,
+              });
+              record("🌐", f.name, n, fmtSz(blob.size), u, n);
+              toast(`${f.name}→${n}`, "🌐");
+            };
+            r.readAsText(f);
+          });
+        });
+      }
+      function pickHtml() {
+        pick(".html,.htm", true, (files) => {
+          files.forEach((f) => {
+            const r = new FileReader();
+            r.onload = (e) => {
+              const d = document.createElement("div");
+              d.innerHTML = e.target.result;
+              const txt = d.textContent || d.innerText || "";
+              const blob = new Blob([txt], { type: "text/plain" });
+              const n = f.name.replace(/\.[^.]+$/, "") + ".txt";
+              const u = dlBlob(blob, n);
+              S.bytes += f.size;
+              updateSz();
+              addResult("htmlOut", {
+                icon: "📄",
+                name: n,
+                meta: `HTML→Text · ${fmtSz(blob.size)}`,
+                url: u,
+                fname: n,
+              });
+              record("📄", f.name, n, fmtSz(blob.size), u, n);
+              toast(`HTML→Text: ${n}`, "📄");
+            };
+            r.readAsText(f);
+          });
+        });
+      }
+      function pickTxt() {
+        pick(".txt,.text,text/plain", false, (files) => {
+          const f = files[0];
+          if (!f) return;
+          const r = new FileReader();
+          r.onload = (e) => {
+            const p = document.getElementById("txtPrev");
+            if (p)
+              p.innerHTML = `<div class="pn" style="margin-top:14px"><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:12px">${escH(f.name)}</div><pre style="white-space:pre-wrap;font-size:12px;color:var(--text2);line-height:1.65;font-family:'DM Mono',monospace;max-height:400px;overflow-y:auto">${escH(e.target.result.substring(0, 30000))}</pre></div>`;
+          };
+          r.readAsText(f);
+        });
+      }
+
+      // ── PDF TOOLS ─────────────────────────────────────────────
+      function pickImgToPdf() {
+        pick("image/jpeg, image/png", true, async (files) => {
+          if (!files.length) return;
+          toast("Generating PDF…", "⏳");
+          try {
+            const pdfDoc = await PDFLib.PDFDocument.create();
+            for (const f of files) {
+              const arr = await f.arrayBuffer();
+              let img;
+              if (f.type === "image/jpeg") img = await pdfDoc.embedJpg(arr);
+              else if (f.type === "image/png") img = await pdfDoc.embedPng(arr);
+              else continue;
+
+              const page = pdfDoc.addPage([img.width, img.height]);
+              page.drawImage(img, {
+                x: 0,
+                y: 0,
+                width: img.width,
+                height: img.height,
+              });
+            }
+            const pdfBytes = await pdfDoc.save();
+            const blob = new Blob([pdfBytes], { type: "application/pdf" });
+            const n = "Combined_Images.pdf";
+            const u = dlBlob(blob, n);
+
+            S.bytes += blob.size;
+            updateSz();
+            addResult("pdfOut", {
+              icon: "📄",
+              name: n,
+              meta: `${files.length} images combined · ${fmtSz(blob.size)}`,
+              url: u,
+              fname: n,
+            });
+            record("📄", "Images", n, fmtSz(blob.size), u, n);
+            toast(`Created: ${n}`, "📄");
+          } catch (e) {
+            addResult("pdfOut", {
+              icon: "⚠️",
+              name: "Error",
+              meta: e.message,
+              error: true,
+            });
+          }
+        });
+      }
+
+      function pickPdfToImg() {
+        pick("application/pdf", false, async (files) => {
+          const f = files[0];
+          if (!f) return;
+          toast("Reading PDF pages…", "⏳");
+          try {
+            const arr = await f.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: arr }).promise;
+
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+              const page = await pdf.getPage(pageNum);
+              const viewport = page.getViewport({ scale: 2.0 }); // High quality scale
+
+              const canvas = document.createElement("canvas");
+              const ctx = canvas.getContext("2d");
+              canvas.width = viewport.width;
+              canvas.height = viewport.height;
+
+              await page.render({ canvasContext: ctx, viewport: viewport })
+                .promise;
+
+              canvas.toBlob((blob) => {
+                const n =
+                  f.name.replace(/\.[^.]+$/, "") + `_Page_${pageNum}.png`;
+                const u = dlBlob(blob, n);
+                S.bytes += blob.size;
+                updateSz();
+                addResult("pdfImgOut", {
+                  icon: "🖼",
+                  name: n,
+                  meta: `Page ${pageNum} · ${canvas.width}x${canvas.height} · ${fmtSz(blob.size)}`,
+                  url: u,
+                  fname: n,
+                });
+                record("🖼", f.name, n, fmtSz(blob.size), u, n);
+              }, "image/png");
+            }
+            toast(`Extracted ${pdf.numPages} pages`, "✓");
+          } catch (e) {
+            addResult("pdfImgOut", {
+              icon: "⚠️",
+              name: f.name,
+              meta: "Could not parse PDF",
+              error: true,
+            });
+          }
+        });
+      }
+      // ── OCR TOOLS ─────────────────────────────────────────────
+      function pickOCR() {
+        pick("image/*", true, async (files) => {
+          if (!files.length) return;
+
+          // Tesseract takes a moment to load the worker, so we alert the user
+          toast("Initializing OCR... This may take a moment.", "⏳");
+
+          try {
+            // Create the worker once to process all selected images
+            const worker = await Tesseract.createWorker("eng");
+
+            for (const f of files) {
+              toast(`Reading ${f.name}...`, "👁️");
+
+              // Create a local URL for the image
+              const u = URL.createObjectURL(f);
+
+              // Run the OCR recognition
+              const ret = await worker.recognize(u);
+              const text = ret.data.text;
+
+              // Package the extracted text into a downloadable .txt file
+              const blob = new Blob([text], { type: "text/plain" });
+              const n = f.name.replace(/\.[^.]+$/, "") + "_Extracted_Text.txt";
+              const dlUrl = dlBlob(blob, n);
+
+              // Update stats and UI
+              S.bytes += f.size;
+              updateSz();
+              addResult("ocrOut", {
+                icon: "👁️",
+                name: n,
+                meta: `Extracted ${text.length} characters · ${fmtSz(blob.size)}`,
+                url: dlUrl,
+                fname: n,
+              });
+              record("👁️", f.name, n, fmtSz(blob.size), dlUrl, n);
+              toast(`Completed: ${n}`, "✓");
+
+              URL.revokeObjectURL(u);
+            }
+
+            // Clean up the worker when done to free memory
+            await worker.terminate();
+          } catch (e) {
+            addResult("ocrOut", {
+              icon: "⚠️",
+              name: "OCR Error",
+              meta: e.message,
+              error: true,
+            });
+          }
+        });
+      }
+      // ── DEVELOPER TOOLS ───────────────────────────────────────
+      function buildDev() {
+        document.getElementById("catContent").innerHTML = `
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">JSON Formatter & Validator</div><div class="pss">Paste raw or minified JSON to format with indentation and validate syntax</div></div></div>
+          <textarea class="inp" id="jfIn" placeholder='{"name":"Alice","age":30}' style="font-family:'DM Mono',monospace;font-size:12px;min-height:80px"></textarea>
+          <div class="ar" style="margin-bottom:12px">
+            <button class="bp" onclick="doJFmt()">⚡ Format & validate</button>
+            <button class="bs" onclick="doJMin()">🗜 Minify</button>
+            <button class="bs" onclick="dlJFmt()">↓ Download .json</button>
+            <button class="bs" onclick="copyJFmt()">📋 Copy</button>
+          </div>
+          <div class="ob" id="jfOut" style="min-height:80px"></div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">XML ↔ JSON Converter</div><div class="pss">Convert between XML markup and JSON object notation</div></div></div>
+          <div class="pls" id="xmlP">
+            <div class="pl on" data-dir="xml2json" onclick="selPill(this,'xmlP')">XML → JSON</div>
+            <div class="pl" data-dir="json2xml" onclick="selPill(this,'xmlP')">JSON → XML</div>
+          </div>
+          <button class="bp" onclick="pickXml()">📂 Choose file</button>
+          <div id="xmlOut"></div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Number Base Converter</div><div class="pss">Convert between binary, octal, decimal and hexadecimal</div></div></div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+            <input class="inp" id="numIn" type="text" placeholder="Enter number…" style="margin-bottom:0;width:180px" oninput="doBase()">
+            <select id="numBase" onchange="doBase()" style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:9px 12px;color:var(--text);font-size:13px;font-family:'DM Sans',sans-serif;outline:none;cursor:pointer">
+              <option value="10">Decimal (base 10)</option><option value="2">Binary (base 2)</option><option value="8">Octal (base 8)</option><option value="16">Hexadecimal (base 16)</option>
+            </select>
+          </div>
+          <div class="ob" id="baseOut" style="min-height:60px"></div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">SHA-256 Hash Generator</div><div class="pss">Hash text or any file using the Web Crypto API — runs locally, nothing is sent anywhere</div></div></div>
+          <textarea class="inp" id="hashIn" placeholder="Paste text to hash…" style="min-height:60px"></textarea>
+          <div class="ar" style="margin-bottom:12px">
+            <button class="bp" onclick="hashText()">⚡ Hash text</button>
+            <button class="bs" onclick="pickHash()">📂 Hash a file</button>
+          </div>
+          <div class="ob" id="hashOut"></div>
+          <button class="bs" style="margin-top:8px" onclick="copyHash()">📋 Copy hash</button>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">URL Encoder / Decoder</div><div class="pss">Encode special characters for URLs, or decode encoded URLs back to readable text</div></div></div>
+          <div class="pls" id="urlP">
+            <div class="pl on" data-mode="enc" onclick="selPill(this,'urlP');doUrl()">Encode</div>
+            <div class="pl" data-mode="dec" onclick="selPill(this,'urlP');doUrl()">Decode</div>
+          </div>
+          <textarea class="inp" id="urlIn" placeholder="https://example.com/search?q=hello world" oninput="doUrl()" style="min-height:60px"></textarea>
+          <div class="ob" id="urlOut"></div>
+          <button class="bs" style="margin-top:8px" onclick="copyUrl()">📋 Copy result</button>
+        </div>`;
+      }
+      function doJFmt() {
+        const inp = document.getElementById("jfIn")?.value || "";
+        const o = document.getElementById("jfOut");
+        if (!o) return;
+        try {
+          o.textContent = JSON.stringify(JSON.parse(inp), null, 2);
+          o.style.color = "var(--green)";
+        } catch (e) {
+          o.textContent = "❌ Invalid JSON: " + e.message;
+          o.style.color = "var(--red)";
+        }
+      }
+      function doJMin() {
+        const inp = document.getElementById("jfIn")?.value || "";
+        const o = document.getElementById("jfOut");
+        if (!o) return;
+        try {
+          o.textContent = JSON.stringify(JSON.parse(inp));
+          o.style.color = "var(--text2)";
+        } catch (e) {
+          o.textContent = "❌ Invalid JSON: " + e.message;
+          o.style.color = "var(--red)";
+        }
+      }
+      function dlJFmt() {
+        const t = document.getElementById("jfOut")?.textContent || "";
+        if (t.startsWith("❌")) return toast("Fix the JSON first", "⚠️");
+        const b = new Blob([t], { type: "application/json" });
+        const u = dlBlob(b, "formatted.json");
+        record(
+          "📋",
+          "JSON",
+          "formatted.json",
+          fmtSz(b.size),
+          u,
+          "formatted.json",
+        );
+        toast("Downloaded formatted.json", "↓");
+      }
+      function copyJFmt() {
+        navigator.clipboard?.writeText(
+          document.getElementById("jfOut")?.textContent || "",
+        );
+        toast("Copied", "📋");
+      }
+      function pickXml() {
+        const dir =
+          document.querySelector("#xmlP .on")?.dataset.dir || "xml2json";
+        const acc =
+          dir === "xml2json"
+            ? ".xml,text/xml,application/xml"
+            : ".json,application/json";
+        pick(acc, false, (files) => {
+          const f = files[0];
+          if (!f) return;
+          const r = new FileReader();
+          r.onload = (e) => {
+            try {
+              let out, n, mime;
+              if (dir === "xml2json") {
+                out = JSON.stringify(xmlToJson(e.target.result), null, 2);
+                n = f.name.replace(/\.[^.]+$/, "") + ".json";
+                mime = "application/json";
+              } else {
+                out =
+                  '<?xml version="1.0" encoding="UTF-8"?>\n' +
+                  jsonToXml(JSON.parse(e.target.result), "root", 0);
+                n = f.name.replace(/\.[^.]+$/, "") + ".xml";
+                mime = "application/xml";
+              }
+              const blob = new Blob([out], { type: mime });
+              const u = dlBlob(blob, n);
+              S.bytes += f.size;
+              updateSz();
+              addResult("xmlOut", {
+                icon: "🔀",
+                name: n,
+                meta: `${dir.replace("2", " → ")} · ${fmtSz(blob.size)}`,
+                url: u,
+                fname: n,
+              });
+              record("🔀", f.name, n, fmtSz(blob.size), u, n);
+              toast(`${f.name}→${n}`, "🔀");
+            } catch (err) {
+              addResult("xmlOut", {
+                icon: "⚠️",
+                name: f.name,
+                meta: "Error: " + err.message,
+                error: true,
+              });
+            }
+          };
+          r.readAsText(f);
+        });
+      }
+      function doBase() {
+        const raw = document.getElementById("numIn")?.value.trim() || "";
+        const fb = parseInt(document.getElementById("numBase")?.value || "10");
+        const o = document.getElementById("baseOut");
+        if (!o || !raw) return;
+        try {
+          const d = parseInt(raw, fb);
+          if (isNaN(d)) throw new Error("Invalid number for base " + fb);
+          o.textContent = `Decimal:      ${d}\nBinary:       ${d.toString(2)}\nOctal:        ${d.toString(8)}\nHexadecimal:  ${d.toString(16).toUpperCase()}\nHex (0x):     0x${d.toString(16).toUpperCase()}`;
+          o.style.color = "var(--text2)";
+        } catch (e) {
+          o.textContent = "❌ " + e.message;
+          o.style.color = "var(--red)";
+        }
+      }
+      async function hashText() {
+        const t = document.getElementById("hashIn")?.value || "";
+        const o = document.getElementById("hashOut");
+        if (!o) return;
+        try {
+          const buf = await crypto.subtle.digest(
+            "SHA-256",
+            new TextEncoder().encode(t),
+          );
+          const hex = Array.from(new Uint8Array(buf))
+            .map((b) => b.toString(16).padStart(2, "0"))
+            .join("");
+          o.textContent = "SHA-256: " + hex;
+          o.style.color = "var(--accent2)";
+          toast("Hash generated", "#");
+        } catch (e) {
+          o.textContent = "Error: " + e.message;
+          o.style.color = "var(--red)";
+        }
+      }
+      function pickHash() {
+        pick("*", false, async (files) => {
+          const f = files[0];
+          if (!f) return;
+          toast("Hashing…", "⏳");
+          const buf = await f.arrayBuffer();
+          const hb = await crypto.subtle.digest("SHA-256", buf);
+          const hex = Array.from(new Uint8Array(hb))
+            .map((b) => b.toString(16).padStart(2, "0"))
+            .join("");
+          const o = document.getElementById("hashOut");
+          if (o) {
+            o.textContent = `File:    ${f.name}\nSize:    ${fmtSz(f.size)}\nSHA-256: ${hex}`;
+            o.style.color = "var(--accent2)";
+          }
+          toast(`Hashed: ${f.name}`, "#");
+        });
+      }
+      function copyHash() {
+        navigator.clipboard?.writeText(
+          document.getElementById("hashOut")?.textContent || "",
+        );
+        toast("Copied", "📋");
+      }
+      function doUrl() {
+        const m = document.querySelector("#urlP .on")?.dataset.mode || "enc";
+        const inp = document.getElementById("urlIn")?.value || "";
+        const o = document.getElementById("urlOut");
+        if (!o) return;
+        try {
+          o.textContent =
+            m === "enc" ? encodeURIComponent(inp) : decodeURIComponent(inp);
+          o.style.color = "var(--text2)";
+        } catch (e) {
+          o.textContent = "❌ " + e.message;
+          o.style.color = "var(--red)";
+        }
+      }
+      function copyUrl() {
+        navigator.clipboard?.writeText(
+          document.getElementById("urlOut")?.textContent || "",
+        );
+        toast("Copied", "📋");
+      }
+
+      // ── UTILITIES ─────────────────────────────────────────────
+      function buildUtils() {
+        document.getElementById("catContent").innerHTML = `
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Word & Character Counter</div><div class="pss">Live stats as you type</div></div></div>
+          <textarea class="inp" id="wcIn" placeholder="Paste text here…" oninput="doWC()" style="min-height:120px"></textarea>
+          <div id="wcOut" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:4px"></div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Text Diff</div><div class="pss">Compare two blocks of text — line by line diff with added/removed highlights</div></div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+            <div><div class="lbl" style="margin-bottom:6px">Original</div><textarea class="inp" id="diffA" placeholder="Original text…" style="min-height:120px;margin-bottom:0"></textarea></div>
+            <div><div class="lbl" style="margin-bottom:6px">Modified</div><textarea class="inp" id="diffB" placeholder="Modified text…" style="min-height:120px;margin-bottom:0"></textarea></div>
+          </div>
+          <button class="bp" onclick="doDiff()">⚡ Compare</button>
+          <div id="diffOut" style="margin-top:14px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.7"></div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Image Metadata & Color Palette</div><div class="pss">Inspect image dimensions, size, type and extract dominant colors</div></div></div>
+          <button class="bp" onclick="pickImgMeta()">📂 Choose image(s)</button>
+          <div id="metaOut"></div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">File Inspector</div><div class="pss">Name, size, MIME type, last modified, hex dump of first 256 bytes</div></div></div>
+          <button class="bp" onclick="pickInspect()">📂 Choose any file</button>
+          <div id="inspOut"></div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Text ↔ Binary / Morse Code</div><div class="pss">Convert text to 8-bit binary or Morse code, and back</div></div></div>
+          <div class="pls" id="binP">
+            <div class="pl on" data-mode="t2b" onclick="selPill(this,'binP');doBin()">Text → Binary</div>
+            <div class="pl" data-mode="b2t" onclick="selPill(this,'binP');doBin()">Binary → Text</div>
+            <div class="pl" data-mode="t2m" onclick="selPill(this,'binP');doBin()">Text → Morse</div>
+            <div class="pl" data-mode="m2t" onclick="selPill(this,'binP');doBin()">Morse → Text</div>
+          </div>
+          <textarea class="inp" id="binIn" placeholder="Enter text or binary…" oninput="doBin()" style="min-height:60px"></textarea>
+          <div class="ob" id="binOut"></div>
+          <button class="bs" style="margin-top:8px" onclick="copyBin()">📋 Copy</button>
+        </div>`;
+      }
+      function doWC() {
+        const t = document.getElementById("wcIn")?.value || "";
+        const o = document.getElementById("wcOut");
+        if (!o) return;
+        const w = t.trim() ? t.trim().split(/\s+/).length : 0;
+        const c = t.length;
+        const cn = t.replace(/\s/g, "").length;
+        const ln = t ? t.split("\n").length : 0;
+        const se = t.trim()
+          ? t.split(/[.!?]+/).filter((s) => s.trim()).length
+          : 0;
+        const rm = Math.ceil(w / 200) || "<1";
+        o.innerHTML = [
+          { v: w, l: "Words" },
+          { v: c, l: "Characters" },
+          { v: cn, l: "No spaces" },
+          { v: ln, l: "Lines" },
+          { v: se, l: "Sentences" },
+          { v: rm + "m", l: "Read time" },
+        ]
+          .map(
+            (s) =>
+              `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px;text-align:center"><div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:4px">${s.v}</div><div style="font-size:11px;color:var(--text3)">${s.l}</div></div>`,
+          )
+          .join("");
+      }
+      function doDiff() {
+        const a = (document.getElementById("diffA")?.value || "").split("\n");
+        const b = (document.getElementById("diffB")?.value || "").split("\n");
+        const o = document.getElementById("diffOut");
+        if (!o) return;
+        let html = "",
+          adds = 0,
+          dels = 0;
+        const mx = Math.max(a.length, b.length);
+        for (let i = 0; i < mx; i++) {
+          const la = a[i],
+            lb = b[i];
+          if (la === lb) {
+            html += `<div style="padding:2px 8px;color:var(--text3)">&nbsp; ${escH(la ?? "")}</div>`;
+          } else {
+            if (la !== undefined) {
+              dels++;
+              html += `<div style="padding:2px 8px;background:rgba(255,118,117,.1);color:var(--red);border-left:3px solid var(--red)">− ${escH(la)}</div>`;
+            }
+            if (lb !== undefined) {
+              adds++;
+              html += `<div style="padding:2px 8px;background:rgba(0,184,148,.1);color:var(--green);border-left:3px solid var(--green)">+ ${escH(lb)}</div>`;
+            }
+          }
+        }
+        o.innerHTML = `<div style="font-size:11px;color:var(--text3);margin-bottom:8px;font-family:'Syne',sans-serif;font-weight:600">+${adds} additions &nbsp; −${dels} removals</div>${html}`;
+      }
+      function pickImgMeta() {
+        pick("image/*", true, async (files) => {
+          if (!document.getElementById("metaOut").classList.contains("rl"))
+            document.getElementById("metaOut").classList.add("rl");
+          for (const f of files) {
+            try {
+              await new Promise((res, rej) => {
+                const u = URL.createObjectURL(f);
+                const img = new Image();
+                img.onload = () => {
+                  const W = Math.min(img.naturalWidth, 200),
+                    H = Math.min(img.naturalHeight, 200);
+                  const cv = document.createElement("canvas");
+                  cv.width = W;
+                  cv.height = H;
+                  const ctx = cv.getContext("2d");
+                  ctx.drawImage(img, 0, 0, W, H);
+                  const data = ctx.getImageData(0, 0, W, H).data;
+                  const bk = {};
+                  for (let i = 0; i < data.length; i += 20) {
+                    const r = Math.round(data[i] / 32) * 32,
+                      g = Math.round(data[i + 1] / 32) * 32,
+                      b = Math.round(data[i + 2] / 32) * 32;
+                    const k = `${r},${g},${b}`;
+                    bk[k] = (bk[k] || 0) + 1;
+                  }
+                  const pal = Object.entries(bk)
+                    .sort((a, b2) => b2[1] - a[1])
+                    .slice(0, 8)
+                    .map(([k]) => {
+                      const [r, g, b] = k.split(",");
+                      return `rgb(${r},${g},${b})`;
+                    });
+                  URL.revokeObjectURL(u);
+                  const sw = pal
+                    .map(
+                      (c) =>
+                        `<span style="display:inline-block;width:22px;height:22px;border-radius:4px;background:${c};border:1px solid rgba(255,255,255,.15);margin-right:4px;vertical-align:middle" title="${c}"></span>`,
+                    )
+                    .join("");
+                  const d = document.createElement("div");
+                  d.className = "ri";
+                  d.innerHTML = `<div class="ric" style="background:rgba(0,206,201,.12)">🖼</div><div class="rb"><div class="rn">${escH(f.name)}</div><div class="rm">${img.naturalWidth}×${img.naturalHeight}px · ${fmtSz(f.size)} · ${f.type || "image"}</div><div style="margin-top:8px">${sw}</div></div>`;
+                  document.getElementById("metaOut").appendChild(d);
+                  toast(`Metadata: ${f.name}`, "🖼");
+                  res();
+                };
+                img.onerror = () => {
+                  URL.revokeObjectURL(u);
+                  rej(new Error("Cannot load"));
+                };
+                img.src = u;
+              });
+            } catch (e) {
+              addResult("metaOut", {
+                icon: "⚠️",
+                name: f.name,
+                meta: e.message,
+                error: true,
+              });
+            }
+          }
+        });
+      }
+      function pickInspect() {
+        pick("*", false, (files) => {
+          const f = files[0];
+          if (!f) return;
+          const r = new FileReader();
+          r.onload = (e) => {
+            const bytes = new Uint8Array(e.target.result);
+            const hex = Array.from(bytes)
+              .map((b) => b.toString(16).padStart(2, "0").toUpperCase())
+              .join(" ");
+            const asc = Array.from(bytes)
+              .map((b) => (b >= 32 && b < 127 ? String.fromCharCode(b) : "."))
+              .join("");
+            if (!document.getElementById("inspOut").classList.contains("rl"))
+              document.getElementById("inspOut").classList.add("rl");
+            const d = document.createElement("div");
+            d.className = "ri";
+            d.style.flexDirection = "column";
+            d.style.alignItems = "flex-start";
+            d.style.gap = "10px";
+            d.innerHTML = `<div style="display:flex;align-items:center;gap:12px;width:100%"><div class="ric" style="background:rgba(253,203,110,.12)">🔍</div><div class="rb"><div class="rn">${escH(f.name)}</div><div class="rm">Size: ${fmtSz(f.size)} · Type: ${f.type || "unknown"} · Modified: ${new Date(f.lastModified).toLocaleString()}</div></div></div><div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);line-height:1.8;word-break:break-all;width:100%"><div class="lbl">HEX (first 256 bytes)</div><div style="color:var(--accent2);margin-top:4px">${escH(hex)}</div><div class="lbl" style="margin-top:8px">ASCII</div><div style="color:var(--text2);margin-top:4px">${escH(asc)}</div></div>`;
+            document.getElementById("inspOut").appendChild(d);
+            toast(`Inspected: ${f.name}`, "🔍");
+          };
+          r.readAsArrayBuffer(f.slice(0, 256));
+        });
+      }
+      const MR = {
+        A: ".-",
+        B: "-...",
+        C: "-.-.",
+        D: "-..",
+        E: ".",
+        F: "..-.",
+        G: "--.",
+        H: "....",
+        I: "..",
+        J: ".---",
+        K: "-.-",
+        L: ".-..",
+        M: "--",
+        N: "-.",
+        O: "---",
+        P: ".--.",
+        Q: "--.-",
+        R: ".-.",
+        S: "...",
+        T: "-",
+        U: "..-",
+        V: "...-",
+        W: ".--",
+        X: "-..-",
+        Y: "-.--",
+        Z: "--..",
+        0: "-----",
+        1: ".----",
+        2: "..---",
+        3: "...--",
+        4: "....-",
+        5: ".....",
+        6: "-....",
+        7: "--...",
+        8: "---..",
+        9: "----.",
+      };
+      const MRR = Object.fromEntries(
+        Object.entries(MR).map(([k, v]) => [v, k]),
+      );
+      function doBin() {
+        const m = document.querySelector("#binP .on")?.dataset.mode || "t2b";
+        const inp = document.getElementById("binIn")?.value || "";
+        const o = document.getElementById("binOut");
+        if (!o) return;
+        try {
+          if (m === "t2b")
+            o.textContent = [...inp]
+              .map((c) => c.charCodeAt(0).toString(2).padStart(8, "0"))
+              .join(" ");
+          else if (m === "b2t")
+            o.textContent = inp
+              .trim()
+              .split(/\s+/)
+              .map((b) => String.fromCharCode(parseInt(b, 2)))
+              .join("");
+          else if (m === "t2m")
+            o.textContent = inp
+              .toUpperCase()
+              .split("")
+              .map((c) => (c === " " ? "/" : MR[c] || "?"))
+              .join(" ");
+          else if (m === "m2t")
+            o.textContent = inp
+              .trim()
+              .split(" / ")
+              .map((w) =>
+                w
+                  .split(" ")
+                  .map((c) => MRR[c] || "?")
+                  .join(""),
+              )
+              .join(" ");
+          o.style.color = "var(--text2)";
+        } catch (e) {
+          o.textContent = "Error: " + e.message;
+          o.style.color = "var(--red)";
+        }
+      }
+      function copyBin() {
+        navigator.clipboard?.writeText(
+          document.getElementById("binOut")?.textContent || "",
+        );
+        toast("Copied", "📋");
+      }
+
+      // ── VIDEO ─────────────────────────────────────────────────
+      function buildVideo() {
+        document.getElementById("catContent").innerHTML = `
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Video Frame Extractor</div><div class="pss">Extract any single frame from a video as a PNG. Enter the exact time in seconds.</div></div></div>
+          <div style="display:flex;gap:12px;align-items:center;margin-bottom:16px;flex-wrap:wrap">
+            <label style="font-size:13px;color:var(--text2)">Time (seconds):</label>
+            <input class="ni" id="fT" type="number" value="1" min="0" step="0.5">
+          </div>
+          <button class="bp" onclick="pickFrame()">📂 Choose video file</button>
+          <div id="frameOut"></div>
+        </div>
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Video → Frame Sprite Sheet</div><div class="pss">Sample N frames evenly from the video and export as a single stacked PNG sprite sheet.</div></div></div>
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+            <label style="font-size:13px;color:var(--text2)">Frame width (px):</label>
+            <input class="ni" id="spW" type="number" value="320" min="64" max="640">
+            <label style="font-size:13px;color:var(--text2)">Number of frames:</label>
+            <input class="ni" id="spN" type="number" value="8" min="2" max="30" style="width:80px">
+          </div>
+          <button class="bp" onclick="pickSprite()">📂 Choose video file</button>
+          <div id="spriteOut"></div>
+        </div>`;
+      }
+      function pickFrame() {
+        pick("video/*", false, (files) => {
+          const f = files[0];
+          if (!f) return;
+          const t = parseFloat(document.getElementById("fT")?.value) || 1;
+          const v = document.createElement("video");
+          v.preload = "metadata";
+          v.muted = true;
+          v.src = URL.createObjectURL(f);
+          v.onloadedmetadata = () => {
+            v.currentTime = Math.min(t, v.duration - 0.05);
+          };
+          v.onseeked = () => {
+            const cv = document.createElement("canvas");
+            cv.width = v.videoWidth;
+            cv.height = v.videoHeight;
+            cv.getContext("2d").drawImage(v, 0, 0);
+            cv.toBlob((blob) => {
+              const n = f.name.replace(/\.[^.]+$/, "") + `_frame_${t}s.png`;
+              const u = dlBlob(blob, n);
+              S.bytes += f.size;
+              updateSz();
+              addResult("frameOut", {
+                icon: "🎬",
+                name: n,
+                meta: `Frame at ${t}s · ${v.videoWidth}×${v.videoHeight} · ${fmtSz(blob.size)}`,
+                url: u,
+                fname: n,
+              });
+              record("🎬", f.name, n, fmtSz(blob.size), u, n);
+              toast(`Frame: ${n}`, "🎬");
+              URL.revokeObjectURL(v.src);
+            }, "image/png");
+          };
+          v.onerror = () =>
+            addResult("frameOut", {
+              icon: "⚠️",
+              name: f.name,
+              meta: "Could not load video",
+              error: true,
+            });
+          toast("Loading video…", "⏳");
+        });
+      }
+      function pickSprite() {
+        pick("video/*", false, (files) => {
+          const f = files[0];
+          if (!f) return;
+          const sw = parseInt(document.getElementById("spW")?.value) || 320;
+          const nF = Math.max(
+            2,
+            Math.min(30, parseInt(document.getElementById("spN")?.value) || 8),
+          );
+          toast("Sampling frames…", "⏳");
+          const v = document.createElement("video");
+          v.preload = "metadata";
+          v.muted = true;
+          v.src = URL.createObjectURL(f);
+          v.onloadedmetadata = () => {
+            const dur = Math.min(v.duration, 10);
+            const sh =
+              Math.round(sw * (v.videoHeight / v.videoWidth)) ||
+              Math.round((sw * 9) / 16);
+            const frms = [];
+            let i = 0;
+            const cv = document.createElement("canvas");
+            cv.width = sw;
+            cv.height = sh;
+            const ctx = cv.getContext("2d");
+            function cap() {
+              if (i >= nF) {
+                const s2 = document.createElement("canvas");
+                s2.width = sw;
+                s2.height = sh * nF;
+                const sc = s2.getContext("2d");
+                let ld = 0;
+                frms.forEach((src, fi) => {
+                  const img = new Image();
+                  img.onload = () => {
+                    sc.drawImage(img, 0, fi * sh);
+                    ld++;
+                    if (ld === nF) {
+                      s2.toBlob((blob) => {
+                        const n =
+                          f.name.replace(/\.[^.]+$/, "") + `_sprite_${nF}f.png`;
+                        const u = dlBlob(blob, n);
+                        S.bytes += f.size;
+                        updateSz();
+                        addResult("spriteOut", {
+                          icon: "🎞",
+                          name: n,
+                          meta: `${nF} frames · ${sw}×${sh} each · ${fmtSz(blob.size)}`,
+                          url: u,
+                          fname: n,
+                        });
+                        record("🎞", f.name, n, fmtSz(blob.size), u, n);
+                        toast(`Sprite: ${n}`, "🎞");
+                        URL.revokeObjectURL(v.src);
+                      }, "image/png");
+                    }
+                  };
+                  img.src = src;
+                });
+                return;
+              }
+              v.currentTime = (i / nF) * dur;
+              v.onseeked = () => {
+                ctx.drawImage(v, 0, 0, sw, sh);
+                frms.push(cv.toDataURL("image/png"));
+                i++;
+                cap();
+              };
+            }
+            cap();
+          };
+          v.onerror = () =>
+            addResult("spriteOut", {
+              icon: "⚠️",
+              name: f.name,
+              meta: "Could not load video",
+              error: true,
+            });
+        });
+      }
+
+      // ── AUDIO ─────────────────────────────────────────────────
+      function buildAudio() {
+        document.getElementById("catContent").innerHTML = `
+        <div class="pn">
+          <div class="ph"><div><div class="ptt">Audio File Info</div><div class="pss">Read duration, MIME type, and size from any audio file — MP3, WAV, FLAC, OGG, AAC, M4A, OPUS and more</div></div></div>
+          <button class="bp" onclick="pickAudio()">📂 Choose audio file(s)</button>
+          <div id="audioOut"></div>
+        </div>`;
+      }
+      function pickAudio() {
+        pick("audio/*", true, (files) => {
+          files.forEach((f) => {
+            const au = document.createElement("audio");
+            const u = URL.createObjectURL(f);
+            au.src = u;
+            au.onloadedmetadata = () => {
+              const d = au.duration;
+              const m = isFinite(d) ? Math.floor(d / 60) : 0;
+              const s = isFinite(d) ? Math.floor(d % 60) : 0;
+              addResult("audioOut", {
+                icon: "🎵",
+                name: f.name,
+                meta: `Duration: ${m}:${s.toString().padStart(2, "0")} · Size: ${fmtSz(f.size)} · Type: ${f.type || "unknown"}`,
+              });
+              toast(`${f.name} · ${m}:${s.toString().padStart(2, "0")}`, "🎵");
+              URL.revokeObjectURL(u);
+            };
+            au.onerror = () => {
+              addResult("audioOut", {
+                icon: "🎵",
+                name: f.name,
+                meta: `Size: ${fmtSz(f.size)} · Type: ${f.type || "unknown"} · (metadata unavailable)`,
+              });
+              URL.revokeObjectURL(u);
+            };
+          });
+        });
+      }
+
+      // ── HOME DROP ─────────────────────────────────────────────
+      function guess(files) {
+        if (!files.length) return;
+        const f = files[0];
+        const t = f.type;
+        const n = f.name.toLowerCase();
+        if (
+          t.startsWith("image/") ||
+          /\.(jpg|jpeg|png|webp|gif|bmp|ico|svg)$/.test(n)
+        )
+          return openCat("images");
+        if (
+          t.startsWith("audio/") ||
+          /\.(mp3|wav|flac|aac|ogg|m4a|opus)$/.test(n)
+        )
+          return openCat("audio");
+        if (t.startsWith("video/") || /\.(mp4|mkv|mov|avi|webm|flv)$/.test(n))
+          return openCat("video");
+        if (/\.(xml)$/.test(n)) return openCat("dev");
+        if (/\.(json|yaml|yml|csv|tsv)$/.test(n)) return openCat("data");
+        if (/\.(md|markdown)$/.test(n)) return openCat("documents");
+        if (/\.(html|htm)$/.test(n)) return openCat("documents");
+        if (/\.(js|css|ts|jsx|tsx)$/.test(n)) return openCat("text");
+        openCat("utils");
+      }
+      const dz = document.getElementById("homeDZ");
+      const hbb = document.getElementById("hbb");
+      hbb.addEventListener("click", (e) => {
+        e.stopPropagation();
+        pick("*", true, guess);
+      });
+      dz.addEventListener("click", (e) => {
+        if (e.target === hbb || hbb.contains(e.target)) return;
+        pick("*", true, guess);
+      });
+      dz.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dz.classList.add("ov");
+      });
+      dz.addEventListener("dragleave", () => dz.classList.remove("ov"));
+      dz.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dz.classList.remove("ov");
+        guess(Array.from(e.dataTransfer.files));
+      });
+
+      // ── SEARCH ────────────────────────────────────────────────
+      document
+        .getElementById("searchInput")
+        .addEventListener("keydown", function (e) {
+          if (e.key !== "Enter" || !this.value.trim()) return;
+          const v = this.value.toLowerCase();
+          if (/jpg|png|webp|svg|image|gif|bmp|ico/.test(v)) openCat("images");
+          else if (/mp3|wav|flac|audio|aac/.test(v)) openCat("audio");
+          else if (/mp4|video|mov|mkv|frame|sprite/.test(v)) openCat("video");
+          else if (/xml/.test(v)) openCat("dev");
+          else if (/json|csv|yaml|yml|tsv|data/.test(v)) openCat("data");
+          else if (/markdown|html|htm|pdf/.test(v)) openCat("documents");
+          else if (/base64|case|minif|upper|lower/.test(v)) openCat("text");
+          else if (/hash|sha|hex|url|base.conv|json.format|xml/.test(v))
+            openCat("dev");
+          else if (/diff|word.count|binary|morse|inspect|palette/.test(v))
+            openCat("utils");
+          else openCat("utils");
+          this.value = "";
+        });
+    </script>
+  </body>
+</html>
