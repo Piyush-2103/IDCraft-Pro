@@ -311,7 +311,17 @@
                                     <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
                                     <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#27C93F]"></div>
                                 </div>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/VZtyCRwYfeI?si=58cL8iUye6IdPoIy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <div class="aspect-video w-full rounded-b-lg overflow-hidden bg-[#04101e]">
+                                    <iframe 
+                                        class="w-full h-full pointer-events-none" 
+                                        src="https://www.youtube.com/embed/VZtyCRwYfeI?autoplay=1&mute=1&loop=1&playlist=VZtyCRwYfeI&controls=0&modestbranding=1" 
+                                        title="YouTube video player" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
                             </div>
                         </div>
                         <div class="w-full lg:w-5/12 order-2 lg:order-2 text-center lg:text-left">
@@ -338,9 +348,17 @@
                                     <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
                                     <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#27C93F]"></div>
                                 </div>
-                                <video class="w-full h-auto rounded-b-lg opacity-95 lazy-video" loop muted playsinline preload="none" style="background-color: #04101e;">
-                                    <source data-src="home.mp4" type="video/mp4">
-                                </video>
+                                <div class="aspect-video w-full rounded-b-lg overflow-hidden bg-[#04101e]">
+                                    <iframe 
+                                        class="w-full h-full pointer-events-none" 
+                                        src="https://www.youtube.com/embed/7xnkAFmcr6U?autoplay=1&mute=1&loop=1&playlist=7xnkAFmcr6U&controls=0&modestbranding=1" 
+                                        title="YouTube video player" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -353,9 +371,17 @@
                                     <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
                                     <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#27C93F]"></div>
                                 </div>
-                                <video class="w-full h-auto rounded-b-lg opacity-95 lazy-video" loop muted playsinline preload="none" style="background-color: #04101e;">
-                                    <source data-src="workspace.mp4" type="video/mp4">
-                                </video>
+                                <div class="aspect-video w-full rounded-b-lg overflow-hidden bg-[#04101e]">
+                                    <iframe 
+                                        class="w-full h-full pointer-events-none" 
+                                        src="https://www.youtube.com/embed/6L5XMfBFAos?autoplay=1&mute=1&loop=1&playlist=6L5XMfBFAos&controls=0&modestbranding=1" 
+                                        title="YouTube video player" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
                             </div>
                         </div>
                         <div class="w-full lg:w-5/12 order-2 lg:order-2 text-center lg:text-left">
@@ -382,9 +408,17 @@
                                     <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#FFBD2E]"></div>
                                     <div class="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#27C93F]"></div>
                                 </div>
-                                <video class="w-full h-auto rounded-b-lg opacity-95 lazy-video" loop muted playsinline preload="none" style="background-color: #04101e;">
-                                    <source data-src="output.mp4" type="video/mp4">
-                                </video>
+                                <div class="aspect-video w-full rounded-b-lg overflow-hidden bg-[#04101e]">
+                                    <iframe 
+                                        class="w-full h-full pointer-events-none" 
+                                        src="https://www.youtube.com/embed/DOF7T_jdFao?autoplay=1&mute=1&loop=1&playlist=DOF7T_jdFao&controls=0&modestbranding=1" 
+                                        title="YouTube video player" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -819,29 +853,6 @@
                 }
             }, 400);
 
-            // Lazy Load Videos
-            const lazyVideos = [].slice.call(document.querySelectorAll("video.lazy-video"));
-            if ("IntersectionObserver" in window) {
-                let lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(function(video) {
-                        if (video.isIntersecting) {
-                            for (let source in video.target.children) {
-                                let videoSource = video.target.children[source];
-                                if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-                                    videoSource.src = videoSource.dataset.src;
-                                }
-                            }
-                            video.target.load();
-                            video.target.play().catch(e => console.log("Autoplay prevented by browser: ", e));
-                            lazyVideoObserver.unobserve(video.target);
-                        }
-                    });
-                });
-                lazyVideos.forEach(function(lazyVideo) {
-                    lazyVideoObserver.observe(lazyVideo);
-                });
-            }
-
             // Mobile Menu Toggle Logic
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
@@ -901,7 +912,7 @@
                 }
                 requestAnimationFrame(animateOutline);
 
-                document.querySelectorAll('a, button, .hover-target, input, select, textarea').forEach(el => {
+                document.querySelectorAll('a, button, .hover-target, input, select, textarea, iframe').forEach(el => {
                     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
                     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
                 });
