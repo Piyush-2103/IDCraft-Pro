@@ -1,6 +1,46 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>FreeConvertHub — 100% Free Universal File & Data Converter</title>
+    <meta name="title" content="FreeConvertHub — 100% Free Universal File & Data Converter" />
+    <meta name="description" content="FreeConvertHub is a secure, in-browser file converter. Convert images, CSV to JSON, Markdown to HTML, extract PDF pages, and more. 100% free with no server uploads." />
+    <meta name="keywords" content="free file converter, image converter, csv to json, pdf to image, in-browser converter, secure file conversion, local file converter, markdown to html, format json" />
+    <meta name="author" content="FreeConvertHub" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://yourwebsite.com/freeconverthub" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourwebsite.com/freeconverthub" />
+    <meta property="og:title" content="FreeConvertHub — Secure In-Browser File Converter" />
+    <meta property="og:description" content="Convert files instantly in your browser. No uploads, no limits, 100% free. Supports images, data, documents, and developer tools." />
+    <meta property="og:image" content="https://yourwebsite.com/og-image.png" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://yourwebsite.com/freeconverthub" />
+    <meta property="twitter:title" content="FreeConvertHub — Secure In-Browser File Converter" />
+    <meta property="twitter:description" content="Convert files instantly in your browser. No uploads, no limits, 100% free. Supports images, data, documents, and developer tools." />
+    <meta property="twitter:image" content="https://yourwebsite.com/og-image.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "FreeConvertHub",
+      "url": "https://yourwebsite.com/freeconverthub",
+      "description": "A 100% free, secure, in-browser universal file converter. Process images, data formats, text, documents, and audio/video utilities locally without server uploads.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
@@ -8,9 +48,7 @@
       pdfjsLib.GlobalWorkerOptions.workerSrc =
         "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
     </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transmorph — Universal File Converter</title>
+    
     <link
       href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
@@ -78,6 +116,8 @@
         background: var(--bg);
       }
       .logo {
+        margin: 0; /* Important for h1 override */
+        padding: 0; /* Important for h1 override */
         font-family: "Syne", sans-serif;
         font-weight: 800;
         font-size: 18px;
@@ -991,7 +1031,7 @@
   <body>
     <div class="app">
       <div class="topbar">
-        <div class="logo"><span class="logo-dot"></span>TRANSMORPH</div>
+        <h1 class="logo"><span class="logo-dot"></span>FREECONVERTHUB</h1>
         <div class="topbar-center">
           <div class="sw">
             <span class="sic">🔍</span
@@ -1116,7 +1156,6 @@
         </div>
         <div class="ct">
           <div class="ci">
-            <!-- HOME -->
             <div class="pg on" id="pg-home">
               <div class="dz" id="homeDZ">
                 <div class="dzi">📁</div>
@@ -1434,14 +1473,12 @@
               </div>
             </div>
 
-            <!-- CONVERT -->
             <div class="pg" id="pg-convert">
               <div class="pt" id="catTitle">Convert</div>
               <div class="ps" id="catSub">Choose a tool</div>
               <div id="catContent"></div>
             </div>
 
-            <!-- ALL TOOLS -->
             <div class="pg" id="pg-ai">
               <div class="pt">All Tools</div>
               <div class="ps">
@@ -1560,7 +1597,6 @@
               </div>
             </div>
 
-            <!-- HISTORY -->
             <div class="pg" id="pg-history">
               <div class="pt">History</div>
               <div class="ps">
@@ -1581,7 +1617,6 @@
               </div>
             </div>
 
-            <!-- SETTINGS -->
             <div class="pg" id="pg-settings">
               <div class="pt">Settings</div>
               <div class="ps">Preferences for your session.</div>
@@ -1674,7 +1709,7 @@
                 </div>
                 <div class="sr">
                   <div class="srf">
-                    <div class="srl">Transmorph v2.0</div>
+                    <div class="srl">FreeConvertHub v1.0</div>
                     <div class="srd">
                       32+ tools running 100% in your browser. No backend. No
                       uploads. No tracking. Canvas API · FileReader API · Web
@@ -1685,14 +1720,9 @@
               </div>
             </div>
           </div>
-          <!-- ci -->
+          </div>
         </div>
-        <!-- ct -->
       </div>
-      <!-- main -->
-    </div>
-    <!-- app -->
-
     <script>
       // ─── STATE & NAV ──────────────────────────────────────────
       const S = { dark: true, count: 0, bytes: 0, hist: [] };
@@ -2492,7 +2522,7 @@
               const min = e.target.result
                 .replace(/\/\*[\s\S]*?\*\//g, "")
                 .replace(/\/\/[^\n]*/g, "")
-                .replace(/<!--[\s\S]*?-->/g, "")
+                .replace(//g, "")
                 .replace(/[ \t]+/g, " ")
                 .replace(/\n\s*\n/g, "\n")
                 .trim();
