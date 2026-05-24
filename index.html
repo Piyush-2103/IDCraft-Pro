@@ -23,7 +23,7 @@
   <meta property="twitter:image" content="https://piyush-2103.github.io/IDCraft-Pro/N5.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IDCraft Pro","operatingSystem":"Windows 10, Windows 11","applicationCategory":"BusinessApplication","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"84"},"offers":{"@type":"Offer","price":"999.00","priceCurrency":"INR"},"creator":{"@type":"Organization","name":"Arham Studios"},"description":"Enterprise bulk ID card generation software for Windows."}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a free ID generator?","acceptedAnswer":{"@type":"Answer","text":"IDCraft Pro offers a free 7-day trial that acts as a free ID generator for up to 20 cards per day. For unlimited bulk generation, you can upgrade to our premium lifetime license."}},{"@type":"Question","name":"What makes this the best bulk ID card generator?","acceptedAnswer":{"@type":"Answer","text":"Unlike web-based ID card software, IDCraft Pro runs securely on your Windows desktop. It instantly binds hundreds of photos and Excel records into print-ready A4 grids without uploading sensitive data to the cloud."}}]}</script>
-  <link rel="icon" type="image/png" href="https://piyush-2103.github.io/IDCraft-Pro/N5.png">
+  <link rel="icon" type="image/png" href="https://piyush-2103.github.io/IDCraft-Pro/logo.ico">
   <link rel="apple-touch-icon" href="https://piyush-2103.github.io/IDCraft-Pro/N4.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1307,6 +1307,275 @@
     cursor: pointer; border: none; transition: background .2s;
   }
   .dev-modal-ok:hover { background: var(--amber); }
+
+  /* ═══════════════════════════════════════════════════════
+     MOBILE OPTIMISATION — phones ≤ 600 px
+     All rules are inside @media so the desktop is untouched.
+  ═══════════════════════════════════════════════════════ */
+
+  /* ── Global touch targets & readability ── */
+  @media (max-width:600px) {
+    /* Larger base font so small text stays legible */
+    body { font-size: 16px; }
+
+    /* Let long URLs / mono strings wrap instead of blowing the layout */
+    .mono, .spec-k, .spec-v,
+    .req-table td, .price-list li,
+    .footer-links a { word-break: break-word; }
+
+    /* Give every anchor / button a comfortable tap target */
+    a, button { min-height: 44px; }
+    .nav-links a, #mob-menu a { min-height: 48px; }
+  }
+
+  /* ── Nav ── */
+  @media (max-width:600px) {
+    .nav-inner { height: 56px; }
+    .nav-brand  { padding: 0 16px 0 0; font-size: 13px; }
+    .nav-brand img { height: 24px; }
+    #mob-btn    { padding: 0 16px; }
+    #mob-menu a { padding: 16px 20px; font-size: 13px; }
+  }
+
+  /* ── Hero ── */
+  @media (max-width:600px) {
+    #hero {
+      margin-top: 56px;                /* matches shrunken nav */
+      min-height: unset;
+      grid-template-columns: 1fr !important;
+    }
+    .hero-left {
+      padding: 36px 20px 28px !important;
+      border-right: none !important;
+    }
+    .hero-title { font-size: clamp(3.2rem, 14vw, 5rem) !important; }
+
+    /* hero stats: 2×2 grid so all four sit flush */
+    .hero-meta {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 !important;
+      margin-top: 28px;
+      padding-top: 0 !important;
+      border-top: none !important;
+    }
+    /* hide the 1-px vertical divider <div>s on mobile */
+    .hero-meta > div[style*="width:1px"] { display: none !important; }
+    .hero-meta > div:not([style*="width:1px"]) {
+      padding: 16px 14px;
+      border: 1px solid var(--rule);
+      margin: -1px 0 0 -1px;   /* collapsed border trick */
+    }
+
+    .hero-right {
+      border-left: none !important;
+      border-top: 1px solid var(--rule);
+    }
+    .hero-desc-block { padding: 24px 20px !important; }
+    .hero-spec-block { padding: 20px 20px !important; }
+    .hero-cta-block  { padding: 20px 20px 32px !important; }
+
+    /* spec table: wrap long values */
+    .spec-row { flex-wrap: wrap; gap: 4px; }
+    .spec-k   { flex: 0 0 100%; }
+
+    .btn-primary, .btn-ghost {
+      font-size: 11px !important;
+      padding: 15px 16px !important;
+      min-height: 48px;
+    }
+  }
+
+  /* ── Workflow ── */
+  @media (max-width:600px) {
+    #workflow { padding: 48px 0 0 !important; }
+
+    .wf-header-left {
+      padding: 0 0 24px !important;
+      border-right: none !important;
+      border-bottom: 1px solid var(--rule);
+    }
+    .wf-header-right { padding: 20px 0 24px !important; gap: 20px !important; }
+
+    .section-title-huge { font-size: clamp(2.8rem, 13vw, 4.5rem) !important; }
+
+    /* step pills: wrap & shrink */
+    .wf-step-pills { flex-wrap: wrap; gap: 8px !important; }
+    .wf-step-pill  { padding: 8px 10px !important; }
+    .wf-pill-label { font-size: 9px !important; }
+    .wf-step-arrow { display: none; }
+
+    /* stats row: equal-width cells, no overflow */
+    .wf-header-stats { flex-wrap: nowrap; overflow: hidden; }
+    .wf-hstat { padding: 12px 8px !important; }
+    .wf-hstat-n { font-size: 1.3rem !important; }
+    .wf-hstat-l { font-size: 8px !important; }
+
+    /* workflow tabs: 2-up then 1-up at 380px */
+    .wf-tabs { grid-template-columns: repeat(2,1fr) !important; }
+    .wf-tab  { padding: 14px 12px !important; }
+    .wf-tab-title { font-size: 10px !important; }
+
+    /* active panel */
+    .wf-panel.active { grid-template-columns: 1fr !important; }
+    .wf-panel-text { padding: 28px 0 20px !important; border-right: none !important; border-bottom: 1px solid var(--rule); }
+    .wf-panel-vid  { padding: 20px 0 28px !important; }
+    .wf-panel-num  { font-size: 4.5rem !important; }
+    .wf-panel-title { font-size: 1.8rem !important; }
+  }
+  @media (max-width:380px) {
+    .wf-tabs { grid-template-columns: 1fr !important; }
+  }
+
+  /* ── Features ── */
+  @media (max-width:600px) {
+    #features { padding: 48px 0 0 !important; }
+    .feat-header { padding: 48px 0 32px !important; flex-direction: column; gap: 12px; }
+    .feat-header-title { font-size: clamp(2.2rem, 11vw, 3.5rem) !important; }
+    .feat-header-sub { margin-left: 0 !important; }
+    .feat-grid { grid-template-columns: 1fr !important; }
+    .feat-item { padding: 28px 20px !important; border-right: none !important; }
+    .feat-big-num { font-size: 3.2rem !important; }
+  }
+
+  /* ── Requirements ── */
+  @media (max-width:600px) {
+    #requirements { padding: 0 !important; }
+    .req-wrap { padding: 48px 0 !important; }
+
+    .req-top {
+      flex-direction: column !important;
+      gap: 16px !important;
+      padding-bottom: 24px !important;
+      margin-bottom: 32px !important;
+    }
+    .req-top-title  { font-size: clamp(2rem, 10vw, 3rem) !important; }
+    .req-top-right  { width: 100% !important; }
+
+    .req-quick-stats { grid-template-columns: 1fr !important; }
+    .req-qstat {
+      flex-direction: row !important;
+      text-align: left !important;
+      border-right: none !important;
+      border-bottom: 1px solid var(--rule) !important;
+      padding: 14px 16px !important;
+    }
+    .req-qstat:last-child { border-bottom: none !important; }
+
+    .req-cols { grid-template-columns: 1fr !important; gap: 0 !important; }
+    .req-col:first-child {
+      border-right: none !important;
+      padding-right: 0 !important;
+      border-bottom: 1px solid var(--rule) !important;
+      padding-bottom: 28px !important;
+      margin-bottom: 28px !important;
+    }
+    .req-col:last-child { padding-left: 0 !important; }
+
+    /* make the req table cells wrap nicely */
+    .req-table .rk { width: 70px !important; font-size: 9px !important; }
+    .req-table .rv2 { font-size: .83rem !important; }
+  }
+
+  /* ── Pricing ── */
+  @media (max-width:600px) {
+    .price-wrap { grid-template-columns: 1fr !important; }
+    .price-col { padding: 40px 20px !important; }
+    .price-col:first-child { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
+    .price-amount-big { font-size: clamp(3rem, 13vw, 5rem) !important; }
+    .price-tier-label { margin-top: 0 !important; flex-wrap: wrap; }
+    .price-sub-line   { flex-wrap: wrap; gap: 8px !important; }
+    .btn-amber, .btn-ink { min-height: 52px; font-size: 11px !important; }
+  }
+
+  /* ── FAQ ── */
+  @media (max-width:600px) {
+    #faq { padding: 48px 0 !important; }
+    .faq-top { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .faq-title { font-size: clamp(2rem, 10vw, 3rem) !important; }
+    .faq-btn   { font-size: .9rem !important; padding: 18px 0 !important; gap: 16px; }
+    .faq-btn-icon { flex-shrink: 0; }
+    /* ensure long questions wrap */
+    .faq-btn span:first-child { flex: 1; }
+    .faq-item.open .faq-body { max-height: 400px; } /* taller for wrapped text */
+  }
+
+  /* ── Reviews ── */
+  @media (max-width:600px) {
+    .reviews-wrap { padding: 48px 0 !important; }
+    .reviews-top  { flex-direction: column; align-items: flex-start !important; gap: 20px !important; }
+    .reviews-top-title { font-size: clamp(2.2rem, 11vw, 3.5rem) !important; }
+    .review-cta-btn  { width: 100% !important; justify-content: center !important; }
+    .dev-unlock-btn  { width: 100% !important; justify-content: center !important; }
+    #rating-bar      { flex-wrap: wrap !important; }
+    .reviews-grid    { grid-template-columns: 1fr !important; }
+    .review-card     { border-right: none !important; padding: 24px 16px !important; }
+    .review-verified { font-size: 7px !important; top: 12px; right: 12px; }
+  }
+
+  /* ── Review modal ── */
+  @media (max-width:600px) {
+    .modal-box { padding: 24px 20px !important; }
+    .modal-title { font-size: 1.6rem !important; }
+    .form-grid { grid-template-columns: 1fr !important; }
+    /* star rating stays accessible on touch */
+    .star-input label { width: 36px; height: 36px; }
+    .star-input label svg { width: 28px; height: 28px; }
+  }
+
+  /* ── Contact ── */
+  @media (max-width:600px) {
+    .contact-grid { grid-template-columns: 1fr !important; }
+    .contact-left  { padding: 48px 20px 28px !important; border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
+    .contact-right { padding: 28px 20px 48px !important; }
+    .contact-title { font-size: clamp(1.9rem, 10vw, 3rem) !important; }
+    .channels { grid-template-columns: repeat(2,1fr) !important; gap: 8px !important; }
+    .channel  { padding: 14px 10px !important; }
+    .form-submit { min-height: 52px; }
+  }
+
+  /* ── Download CTA ── */
+  @media (max-width:600px) {
+    .dl-inner { padding: 56px 0 !important; grid-template-columns: 1fr !important; gap: 32px !important; }
+    .dl-title { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
+    .dl-cta-col { width: 100% !important; min-width: unset !important; }
+    .btn-amber { justify-content: center !important; min-height: 52px; }
+  }
+
+  /* ── Footer ── */
+  @media (max-width:600px) {
+    .footer-top    { grid-template-columns: 1fr 1fr !important; }
+    .footer-col    { padding: 28px 20px !important; }
+    .footer-bottom { padding: 20px !important; flex-direction: column !important; text-align: center !important; gap: 8px !important; }
+  }
+  @media (max-width:380px) {
+    .footer-top { grid-template-columns: 1fr !important; }
+  }
+
+  /* ── Extra-small phones (≤ 380 px) ── */
+  @media (max-width:380px) {
+    .wrap { padding: 0 14px !important; }
+    .hero-left  { padding-left: 14px !important; padding-right: 14px !important; }
+    .hero-desc-block, .hero-spec-block, .hero-cta-block { padding-left: 14px !important; padding-right: 14px !important; }
+    .contact-left, .contact-right { padding-left: 14px !important; padding-right: 14px !important; }
+    .hero-title { font-size: clamp(2.8rem, 13vw, 4rem) !important; }
+    .nav-brand  { font-size: 12px; gap: 8px; }
+    .nav-brand img { height: 22px; }
+    #mob-menu a { padding: 14px 14px; }
+    .wf-tabs    { grid-template-columns: 1fr !important; }
+    .feat-item  { padding: 22px 14px !important; }
+    .price-col  { padding: 32px 14px !important; }
+    .modal-box  { padding: 20px 14px !important; }
+  }
+
+  /* ── Prevent horizontal overflow on all screens ── */
+  @media (max-width:768px) {
+    img, video, iframe, svg { max-width: 100%; }
+    .vid-frame, .vid-aspect { max-width: 100%; }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    /* spec rows shouldn't force a min-width */
+    .spec-row .spec-v { text-align: right; max-width: 55%; word-break: break-word; }
+  }
 
   </style>
 </head>
