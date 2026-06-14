@@ -1577,15 +1577,182 @@
     .spec-row .spec-v { text-align: right; max-width: 55%; word-break: break-word; }
   }
 
+
+  /* ═══════════════════════════════════════════════════════
+     UX IMPROVEMENTS — targeting 90%+ audit score
+     Fixes: Visual Hierarchy, Color Contrast, Typography,
+     Consistency, Responsiveness, Task Clarity, Navigation
+     Depth, Friction Points, Accessibility, Conversion Clarity
+  ═══════════════════════════════════════════════════════ */
+
+  /* ── 1. SKIP LINK (Accessibility) ── */
+  .skip-link {
+    position: fixed; top: -100%; left: 0; z-index: 99999;
+    background: var(--amber); color: #fff;
+    font-family: var(--mono); font-size: 13px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: 14px 28px;
+    transition: top .2s;
+  }
+  .skip-link:focus { top: 0; outline: 3px solid var(--ink); outline-offset: 2px; }
+
+  /* ── 2. GLOBAL FOCUS STYLES (Accessibility) ── */
+  *:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+  /* ── 3. COLOR CONTRAST — lift muted text (WCAG AA needs 4.5:1) ── */
+  /* #7A6E5F on #F2EDE4 = ~3.7:1 — too low. We darken to pass. */
+  :root { --muted: #5C5244; }  /* darkened from #7A6E5F → passes AA */
+
+  /* muted on dark backgrounds (footer, ticker) already fine — keep paper vars */
+  footer .footer-brand-desc { color: rgba(242,237,228,.55); }  /* boosted from .4 */
+  footer .footer-col-title   { color: rgba(242,237,228,.5);  } /* boosted from .3 */
+  footer .footer-links a     { color: rgba(242,237,228,.65); } /* boosted from .45 */
+  footer .footer-bottom p    { color: rgba(242,237,228,.45); } /* boosted from .25 */
+  .dl-sub { color: rgba(242,237,228,.75); }                    /* boosted from .55 */
+  .ticker-item { color: rgba(242,237,228,.65); }               /* boosted from .4  */
+  .price-col.featured .price-sub-line { color: rgba(242,237,228,.65); }
+  .price-col.featured .price-list li.off { color: rgba(242,237,228,.5); }
+  .price-note { color: rgba(242,237,228,.5); }
+
+  /* ── 4. VISUAL HIERARCHY — hero CTA prominence ── */
+  .btn-primary {
+    background: var(--amber);
+    color: #fff;
+    font-size: 13px;
+    padding: 18px 28px;
+    box-shadow: 0 4px 20px rgba(232,101,10,0.35);
+  }
+  .btn-primary:hover { background: #c4520a; transform: translateY(-2px); box-shadow: 0 6px 28px rgba(232,101,10,0.45); }
+
+  /* Ghost button more distinct from primary */
+  .btn-ghost {
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+  }
+  .btn-ghost:hover { border-color: var(--amber); background: var(--amber-lt); color: var(--amber); }
+
+  /* ── 5. NAV ACTIVE STATE (Consistency) ── */
+  .nav-links a[aria-current="page"],
+  .nav-links a.nav-active { color: var(--amber); border-bottom: 2px solid var(--amber); }
+
+  /* Underline nav links on hover for clearer affordance */
+  .nav-links a:hover { color: var(--ink); background: var(--paper2); }
+
+  /* Download CTA button in nav — make it visually primary */
+  .nav-cta {
+    background: var(--amber);
+    color: #fff;
+    border-left: none;
+    font-size: 12px;
+    letter-spacing: .08em;
+  }
+  .nav-cta:hover { background: #c4520a; color: #fff; }
+
+  /* ── 6. TASK CLARITY — hero CTA label tweak ── */
+  /* "Download for Windows — Free Trial" → already good; 
+     add a subtext micro-note beneath buttons for reassurance */
+  .cta-trust-note {
+    font-family: var(--mono); font-size: 9px; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted); text-align: center; margin-top: 4px;
+  }
+
+  /* ── 7. PRICING — reduce friction on "Purchase in Software" ── */
+  /* The alert-based purchase button hurts conversion; style it as primary
+     and add a micro note for clarity */
+  .price-purchase-note {
+    font-family: var(--mono); font-size: 9px; letter-spacing: .1em;
+    text-transform: uppercase; color: rgba(242,237,228,.5);
+    text-align: center; margin-top: 10px; line-height: 1.6;
+  }
+
+  /* ── 8. NAVIGATION DEPTH — sticky section breadcrumb ── */
+  #section-breadcrumb {
+    position: fixed; bottom: 24px; right: 24px; z-index: 400;
+    background: var(--ink); color: var(--paper);
+    font-family: var(--mono); font-size: 9px; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase;
+    padding: 8px 14px;
+    border: 1px solid rgba(242,237,228,.12);
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s, transform .3s var(--ease);
+    transform: translateY(8px);
+    display: flex; align-items: center; gap: 8px;
+  }
+  #section-breadcrumb.vis { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  #section-breadcrumb .sb-dot { width: 5px; height: 5px; background: var(--amber); flex-shrink: 0; }
+  @media (max-width:600px) { #section-breadcrumb { bottom: 16px; right: 16px; } }
+
+  /* ── 9. CONVERSION CLARITY — social proof strip ── */
+  .proof-strip {
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+  }
+  .proof-item {
+    display: flex; align-items: center; gap: 7px;
+    font-family: var(--mono); font-size: 9px; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+  }
+  .proof-item svg { width: 12px; height: 12px; color: var(--amber); flex-shrink: 0; }
+
+  /* ── 10. TYPOGRAPHY — improve line-height consistency ── */
+  .hero-desc { font-size: 1rem; line-height: 1.75; font-style: normal; color: var(--ink2); }
+  .feat-desc { font-size: .9rem; line-height: 1.75; color: var(--muted); }
+  .wf-body-text { font-size: 1rem; line-height: 1.75; color: var(--muted); }
+  .faq-body-inner { font-style: normal; font-size: .95rem; line-height: 1.9; }
+
+  /* ── 11. RESPONSIVENESS — mobile CTA always visible ── */
+  @media (max-width:600px) {
+    /* Floating download pill on mobile */
+    #mobile-cta-float {
+      display: flex;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+      background: var(--amber); color: #fff;
+      font-family: var(--mono); font-size: 12px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 16px 24px; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 -4px 24px rgba(232,101,10,0.4);
+      text-decoration: none;
+    }
+    #mobile-cta-float svg { width: 16px; height: 16px; flex-shrink: 0; }
+    /* Ensure footer doesn't get hidden behind float bar */
+    footer { padding-bottom: 64px; }
+  }
+  @media (min-width:601px) { #mobile-cta-float { display: none; } }
+
+  /* ── 12. FAQ — open first item by default for scannability ── */
+  /* (done in JS below) */
+
+  /* ── 13. CONTACT FORM — label prominence ── */
+  .form-label { font-size: 10px; color: var(--ink); font-weight: 700; }
+  .form-field { font-size: .95rem; }
+  .form-field:focus { border-color: var(--amber); box-shadow: 0 0 0 3px var(--amber-lt); }
+
+  /* ── 14. FEATURE GRID — hover state more obvious ── */
+  .feat-item:hover .feat-name { color: var(--amber); }
+  .feat-item:hover .feat-big-num { color: var(--paper2); }
+
+  /* ── 15. SECTION LABELS visibility ── */
+  .sec-num { font-size: 11px; color: var(--amber); font-weight: 700; }
+
   </style>
 </head>
 <body>
 
+  <!-- Skip to content — accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- Progress bar -->
-  <div id="prog"></div>
+  <div id="prog" role="progressbar" aria-label="Page scroll progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
   <!-- Custom cursor -->
-  <div id="cur"></div>
+  <div id="cur" aria-hidden="true"></div>
 
   <!-- ══ NAV ══════════════════════════════════════════ -->
   <header id="nav" role="banner">
@@ -1628,7 +1795,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <!-- ══ HERO ══════════════════════════════════════════ -->
     <section id="hero" aria-label="Hero">
       <div class="wrap" style="padding:0; display:contents;">
@@ -1685,11 +1852,30 @@
           </div>
           <div class="hero-cta-block rv d3">
             <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe"
-               class="btn-primary" title="Download for Windows">
+               class="btn-primary" title="Download IDCraft Pro for Windows — Free Trial"
+               aria-label="Download IDCraft Pro for Windows — Free 7-day trial, no credit card required">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
               Download for Windows — Free Trial
             </a>
-            <a href="#pricing" class="btn-ghost">View Licensing Plans</a>
+            <a href="#pricing" class="btn-ghost" aria-label="View IDCraft Pro licensing and pricing plans">View Licensing Plans</a>
+            <div class="proof-strip" role="list">
+              <div class="proof-item" role="listitem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                No credit card
+              </div>
+              <div class="proof-item" role="listitem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                7-day free trial
+              </div>
+              <div class="proof-item" role="listitem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                Windows 10/11 · ~40 MB
+              </div>
+              <div class="proof-item" role="listitem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                100% offline
+              </div>
+            </div>
           </div>
         </div>
 
@@ -2076,8 +2262,15 @@
                 <li class="on"><span class="price-check on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Grid Rotation &amp; Mirroring</li>
               </ul>
               <div class="price-cta rv d3">
-                <button onclick="alert('Download the Trial software and click \'Buy FULL Version\' to process your secure payment.')" class="btn-amber">Purchase in Software</button>
-                <div class="price-note">Seamless UPI Payments inside the App</div>
+                <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe"
+                   class="btn-amber" style="display:flex;align-items:center;gap:10px;justify-content:center;text-decoration:none;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                  Download &amp; Purchase In-App
+                </a>
+                <div class="price-purchase-note">
+                  Download the trial → click "Buy Full Version" inside the app<br>
+                  Secure UPI / card payment · Instant licence key
+                </div>
               </div>
             </div>
           </div>
@@ -2725,6 +2918,154 @@ This cannot be undone.`);
       </div>
     </div>
   </div>
+
+  <!-- Section breadcrumb — navigation depth indicator -->
+  <div id="section-breadcrumb" aria-live="polite" aria-label="Current section">
+    <div class="sb-dot"></div>
+    <span id="sb-label"></span>
+  </div>
+
+  <!-- Mobile sticky CTA — always visible on small screens -->
+  <a id="mobile-cta-float"
+     href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe"
+     aria-label="Download IDCraft Pro free trial for Windows">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+    Download Free Trial
+  </a>
+
+  <script>
+  /* ═══════════════════════════════════════════════
+     UX IMPROVEMENT SCRIPTS
+  ═══════════════════════════════════════════════ */
+
+  (function() {
+
+    /* 1. ACTIVE NAV HIGHLIGHT on scroll */
+    const sections = document.querySelectorAll('section[id], div[id="pricing"]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sectionMap = {
+      'hero': 'hero', 'workflow': 'workflow', 'features': 'features',
+      'requirements': 'requirements', 'pricing': 'pricing',
+      'faq': 'faq', 'reviews': 'reviews', 'contact': 'contact'
+    };
+    const sectionNames = {
+      'hero': 'Home', 'workflow': 'Workflow', 'features': 'Features',
+      'requirements': 'Requirements', 'pricing': 'Licensing',
+      'faq': 'FAQ', 'reviews': 'Reviews', 'contact': 'Contact'
+    };
+
+    const breadcrumb = document.getElementById('section-breadcrumb');
+    const sbLabel    = document.getElementById('sb-label');
+
+    function updateActiveNav() {
+      let current = '';
+      sections.forEach(s => {
+        const rect = s.getBoundingClientRect();
+        if (rect.top <= 120) current = s.id;
+      });
+      navLinks.forEach(a => {
+        const href = a.getAttribute('href');
+        if (href === '#' + current) {
+          a.classList.add('nav-active');
+          a.setAttribute('aria-current', 'page');
+        } else {
+          a.classList.remove('nav-active');
+          a.removeAttribute('aria-current');
+        }
+      });
+      // breadcrumb
+      if (current && current !== 'hero') {
+        sbLabel.textContent = sectionNames[current] || current;
+        breadcrumb.classList.add('vis');
+      } else {
+        breadcrumb.classList.remove('vis');
+      }
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+
+    /* 2. OPEN FIRST FAQ ITEM by default */
+    const firstFaq = document.querySelector('.faq-item');
+    if (firstFaq) {
+      firstFaq.classList.add('open');
+      const body = firstFaq.querySelector('.faq-body');
+      const btn  = firstFaq.querySelector('.faq-btn');
+      if (body) body.style.maxHeight = body.scrollHeight + 'px';
+      if (btn)  btn.setAttribute('aria-expanded', 'true');
+    }
+
+    /* 3. SMOOTH-SCROLL for all anchor links (belt-and-suspenders) */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // move focus for keyboard / screen-reader users
+          el.setAttribute('tabindex', '-1');
+          el.focus({ preventScroll: true });
+        }
+      });
+    });
+
+    /* 4. HIDE MOBILE FLOAT CTA after user scrolls past pricing */
+    const pricingSection = document.getElementById('pricing');
+    const mobileFloat    = document.getElementById('mobile-cta-float');
+    if (pricingSection && mobileFloat) {
+      const obs = new IntersectionObserver(entries => {
+        // hide once pricing is visible — user has seen it
+        mobileFloat.style.display = entries[0].isIntersecting ? 'none' : '';
+      }, { threshold: 0.3 });
+      obs.observe(pricingSection);
+    }
+
+    /* 5. FORM VALIDATION FEEDBACK — contact form */
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        let valid = true;
+        contactForm.querySelectorAll('[required]').forEach(field => {
+          if (!field.value.trim()) {
+            valid = false;
+            field.classList.add('field-error');
+            field.setAttribute('aria-invalid', 'true');
+          } else {
+            field.classList.remove('field-error');
+            field.removeAttribute('aria-invalid');
+          }
+        });
+        if (!valid) {
+          e.preventDefault();
+          const firstErr = contactForm.querySelector('.field-error');
+          if (firstErr) firstErr.focus();
+        }
+      });
+      contactForm.querySelectorAll('[required]').forEach(field => {
+        field.addEventListener('input', () => {
+          if (field.value.trim()) {
+            field.classList.remove('field-error');
+            field.removeAttribute('aria-invalid');
+          }
+        });
+      });
+    }
+
+    /* 6. ANNOUNCE page region to screen readers on nav click */
+    document.querySelectorAll('.nav-links a, .mob-cta').forEach(a => {
+      a.addEventListener('click', () => {
+        const region = document.querySelector(a.getAttribute('href'));
+        if (region) region.setAttribute('tabindex', '-1');
+      });
+    });
+
+  })();
+  </script>
+
+  <style>
+    /* Field error state */
+    .field-error { border-color: #c0392b !important; box-shadow: 0 0 0 3px rgba(192,57,43,.15) !important; }
+  </style>
 
 </body>
 </html>
