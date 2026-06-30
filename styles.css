@@ -1,7 +1,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --amber:#E8650A;--amber-dk:#C4520A;--amber-lt:#FFF0E6;--amber-md:rgba(232,101,10,.22);
-  --bg:#F0EDE8;--bg2:#E8E3DC;--ink:#1A1612;--ink2:#3D3630;--ink3:#6B6259;
+  --bg:#F0EDE8;--bg2:#E8E3DC;--ink:#1A1612;--ink2:#3D3630;--ink3:#6B6259;--star-empty:#D8D0C4;
   --white:#FFFFFF;--rule:rgba(26,22,18,.1);--success:#1A7A4A;
   --peach:#FFDED0;--sky:#D0E8FF;--mint:#CFFFEA;--lemon:#FFF6CC;--lilac:#EAD8FF;--rose:#FFD6E8;
   --body:'Nunito',sans-serif;--disp:'Bebas Neue',sans-serif;--mono:'IBM Plex Mono',monospace;
@@ -202,7 +202,31 @@ img{max-width:100%;display:block}
 .price-note{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);text-align:center;margin-top:12px;line-height:1.7}
 .btn-wout{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;font-family:var(--body);font-weight:800;font-size:14px;padding:15px 24px;min-height:52px;border-radius:var(--rmd);background:transparent;border:2px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);cursor:pointer;transition:border-color .18s,background .18s,transform .18s var(--ease)}
 .btn-wout:hover{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.08);transform:translateY(-2px)}
-@media(max-width:700px){.price-grid{grid-template-columns:1fr}#pricing{padding:0 0 56px}.pricing-blob{padding:40px 24px}}
+@media(max-width:700px){
+  #pricing{padding:0 0 56px}
+  .pricing-blob{padding:36px 18px;border-radius:var(--rlg)}
+  .pricing-top{margin-bottom:32px}
+  .pricing-top .sec-title{font-size:clamp(1.9rem,7vw,2.6rem)}
+  .pricing-top .sec-sub{font-size:.88rem;padding:0 8px}
+  .price-grid{grid-template-columns:1fr;gap:20px;max-width:420px}
+  .price-card{padding:28px 22px}
+  .price-card.featured{margin-top:14px}
+  .price-card.featured::before{font-size:8px;padding:4px 14px;top:-12px}
+  .price-tier{font-size:9px;margin-bottom:14px}
+  .price-amount{font-size:2.8rem}
+  .price-old{font-size:1.1rem}
+  .price-meta{font-size:9px;margin-bottom:20px}
+  .price-divider{margin-bottom:18px}
+  .price-list{gap:10px;margin-bottom:24px}
+  .price-list li{font-size:.85rem}
+  .pcheck{width:18px;height:18px}
+  .price-note{font-size:8px;line-height:1.6}
+}
+@media(max-width:380px){
+  .pricing-blob{padding:28px 14px}
+  .price-card{padding:22px 16px}
+  .price-amount{font-size:2.4rem}
+}
 /* FAQ */
 #faq{padding:0 0 96px}
 .faq-wrap{max-width:780px;margin:0 auto}
@@ -268,7 +292,7 @@ body.dev-mode .review-delete-btn:hover{background:rgba(192,57,43,.15)}
 .rv-input:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-lt);outline:none}
 .rv-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
 .rv-star-row{display:flex;gap:8px;flex-direction:row}
-.rv-star{font-size:30px;cursor:pointer;color:var(--bg2);transition:color .15s,transform .15s;line-height:1;user-select:none}
+.rv-star{font-size:30px;cursor:pointer;color:var(--star-empty);transition:color .15s,transform .15s;line-height:1;user-select:none}
 .rv-star.lit{color:var(--amber)}
 .rv-star:hover{transform:scale(1.15)}
 #review-modal .btn{width:100%;margin-top:8px}
@@ -351,9 +375,63 @@ footer{background:var(--ink);border-radius:var(--rxl) var(--rxl) 0 0;border:3px 
 /* ═══════════════════════════════════════════════
    DARK THEME
 ═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   THEME TRANSITION ANIMATION
+═══════════════════════════════════════════════ */
+
+/* Smooth color crossfade as a baseline for every browser,
+   so even without the circular reveal the swap feels soft */
+body, .nav-inner, .hero-card, .faq-item, .req-card, .review-card,
+.channel, .cf-card, .rv-box, .dev-box, #rating-bar, #open-review-modal,
+#load-more-btn, .wf-tabs, .wf-panels, .ml, .price-card, .feat-card,
+.trust-chip, .wf-pill, .hero-badge, footer, .pricing-blob, .dl-blob,
+.ticker-wrap, .hcard-top, .form-field, .rv-input, .dev-input,
+#theme-toggle, #section-breadcrumb, #mobile-cta-float {
+  transition: background-color .45s ease, border-color .45s ease,
+              color .45s ease, box-shadow .45s ease;
+}
+
+/* View Transitions API — circular reveal driven by JS clip-path animation.
+   The NEW snapshot must always sit above the OLD one so the clip-path
+   reveal is actually visible regardless of which direction we're going. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  display: block;
+}
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 9999; }
+
+/* Fallback ripple — used on browsers without View Transitions API */
+.theme-ripple {
+  position: fixed; z-index: 99998; pointer-events: none;
+  width: 0; height: 0; border-radius: 50%;
+  background: var(--bg);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width .6s cubic-bezier(0.65,0,0.35,1),
+              height .6s cubic-bezier(0.65,0,0.35,1),
+              opacity .6s ease;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  body, .nav-inner, .hero-card, .faq-item, .req-card, .review-card,
+  .channel, .cf-card, .rv-box, .dev-box, #rating-bar, #open-review-modal,
+  #load-more-btn, .wf-tabs, .wf-panels, .ml, .price-card, .feat-card,
+  .trust-chip, .wf-pill, .hero-badge, footer, .pricing-blob, .dl-blob,
+  .ticker-wrap, .hcard-top, .form-field, .rv-input, .dev-input,
+  #theme-toggle, #section-breadcrumb, #mobile-cta-float {
+    transition: none;
+  }
+  .theme-ripple { transition: none; }
+}
+
 [data-theme="dark"] {
   --bg:    #0D0B09;
   --bg2:   #1A1612;
+  --star-empty: #4A4038;
   --ink:   #F5EFE6;
   --ink2:  #D4C9BA;
   --ink3:  #8A7E72;

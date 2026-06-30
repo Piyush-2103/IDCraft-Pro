@@ -1,16 +1,63 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
-  /* DARK MODE TOGGLE */
+  /* DARK MODE TOGGLE — with sleek circular-reveal transition */
   const root = document.documentElement;
   const toggleBtn = document.getElementById('theme-toggle');
   const saved = localStorage.getItem('idcraft-theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   if (saved === 'dark' || (!saved && prefersDark)) root.setAttribute('data-theme', 'dark');
 
-  toggleBtn.addEventListener('click', () => {
+  function applyTheme(next) {
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('idcraft-theme', next);
+  }
+
+  toggleBtn.addEventListener('click', (e) => {
     const isDark = root.getAttribute('data-theme') === 'dark';
-    root.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    localStorage.setItem('idcraft-theme', isDark ? 'light' : 'dark');
+    const next = isDark ? 'light' : 'dark';
+
+    // Circular reveal origin = the toggle button itself
+    const rect = toggleBtn.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    // Prefer the native View Transitions API for a buttery-smooth clip-path animation
+    if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const transition = document.startViewTransition(() => applyTheme(next));
+      transition.ready.then(() => {
+        document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${endRadius}px at ${x}px ${y}px)`
+            ]
+          },
+          {
+            duration: 650,
+            easing: 'cubic-bezier(0.65, 0, 0.35, 1)',
+            pseudoElement: '::view-transition-new(root)'
+          }
+        );
+      });
+    } else {
+      // Fallback: animated overlay ripple for browsers without View Transitions API
+      const ripple = document.createElement('div');
+      ripple.className = 'theme-ripple';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      document.body.appendChild(ripple);
+      requestAnimationFrame(() => {
+        ripple.style.width = ripple.style.height = endRadius * 2.4 + 'px';
+        ripple.style.opacity = '1';
+      });
+      setTimeout(() => applyTheme(next), 220);
+      ripple.addEventListener('transitionend', () => ripple.remove());
+      setTimeout(() => ripple.remove(), 900);
+    }
   });
 
   /* PROGRESS */
@@ -133,7 +180,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   let allReviews=[],visCount=6,devMode=false;
 
   function renderCard(r,idx){
-    const stars=Array.from({length:5},(_,i)=>`<span style="color:${i<r.rating?'var(--amber)':'var(--bg2)'}">${starSVG}</span>`).join('');
+    const stars=Array.from({length:5},(_,i)=>`<span style="color:${i<r.rating?'var(--amber)':'var(--star-empty)'}">${starSVG}</span>`).join('');
     return `<div class="review-card rv" data-idx="${idx}">
       <button class="review-delete-btn" data-idx="${idx}" title="Delete" aria-label="Delete review"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
       <div class="rv-meta"><div class="rv-avatar">${initials(r.name)}</div><div><div class="rv-name">${esc(r.name)}</div>${r.role?`<div class="rv-role">${esc(r.role)}</div>`:''}</div></div>
