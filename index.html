@@ -1,3060 +1,414 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta name="google-site-verification" content="u81_YtJpVu1VITE_qINn88yg-ztolnWQVBaF1D_ftKE"/>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>IDCraft Pro | Enterprise Bulk ID Card Generator Software</title>
-  <meta name="title" content="IDCraft Pro | Enterprise Bulk ID Card Generator Software">
-  <meta name="description" content="Generate thousands of single or dual-sided custom ID cards in minutes. IDCraft Pro is a secure Windows bulk ID card generator with Excel data binding and auto-QR codes.">
-  <meta name="keywords" content="bulk ID card generator, ID card software, employee badge creator, student ID generator, excel to ID card, IDCraft Pro, ID card printing software, batch ID creation, offline ID maker">
-  <meta name="author" content="Piyush Kumar Dugar">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <link rel="canonical" href="https://piyush-2103.github.io/IDCraft-Pro/">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://piyush-2103.github.io/IDCraft-Pro/">
-  <meta property="og:title" content="IDCraft Pro | Enterprise Bulk ID Card Generator">
-  <meta property="og:description" content="Bridge the gap between complex database management and print-ready visual design. Generate thousands of custom ID cards with zero manual data entry.">
-  <meta property="og:image" content="https://piyush-2103.github.io/IDCraft-Pro/N5.png">
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://piyush-2103.github.io/IDCraft-Pro/">
-  <meta property="twitter:title" content="IDCraft Pro | Enterprise Bulk ID Card Generator">
-  <meta property="twitter:description" content="Generate thousands of custom ID cards in minutes. Connect Excel data, auto-generate QR codes, and export print-ready A4 grids natively on Windows.">
-  <meta property="twitter:image" content="https://piyush-2103.github.io/IDCraft-Pro/N5.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IDCraft Pro","operatingSystem":"Windows 10, Windows 11","applicationCategory":"BusinessApplication","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"84"},"offers":{"@type":"Offer","price":"999.00","priceCurrency":"INR"},"creator":{"@type":"Organization","name":"Arham Studios"},"description":"Enterprise bulk ID card generation software for Windows."}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a free ID generator?","acceptedAnswer":{"@type":"Answer","text":"IDCraft Pro offers a free 7-day trial that acts as a free ID generator for up to 20 cards per day. For unlimited bulk generation, you can upgrade to our premium lifetime license."}},{"@type":"Question","name":"What makes this the best bulk ID card generator?","acceptedAnswer":{"@type":"Answer","text":"Unlike web-based ID card software, IDCraft Pro runs securely on your Windows desktop. It instantly binds hundreds of photos and Excel records into print-ready A4 grids without uploading sensitive data to the cloud."}}]}</script>
-  <link rel="icon" type="image/png" href="https://piyush-2103.github.io/IDCraft-Pro/logo.ico">
-  <link rel="apple-touch-icon" href="https://piyush-2103.github.io/IDCraft-Pro/N4.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-
-  <style>
-  /* ═══════════════════════════════════════════════════════
-     TOKENS & RESET
-  ═══════════════════════════════════════════════════════ */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --ink:      #0F0E0B;
-    --ink2:     #1E1D19;
-    --paper:    #F2EDE4;
-    --paper2:   #E8E1D4;
-    --paper3:   #DDD5C4;
-    --amber:    #E8650A;
-    --amber-lt: rgba(232,101,10,0.12);
-    --amber-md: rgba(232,101,10,0.25);
-    --rule:     rgba(15,14,11,0.18);
-    --rule-hv:  rgba(15,14,11,0.35);
-    --muted:    #4A3F33;
-    --mono:     'IBM Plex Mono', monospace;
-    --disp:     'Bebas Neue', sans-serif;
-    --body:     'Lora', serif;
-    --ease:     cubic-bezier(0.16,1,0.3,1);
-  }
-
-  html { overflow-x: hidden; scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--body);
-    background: var(--paper);
-    color: var(--ink);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    cursor: none;
-    /* paper noise texture via SVG data-uri */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  }
-  @media (max-width:768px) { body { cursor: auto; } }
-
-  /* ═══════════════════════════════════════════════════════
-     MOBILE RESPONSIVENESS — comprehensive phone fixes
-  ═══════════════════════════════════════════════════════ */
-
-  /* hero */
-  @media (max-width:600px) {
-    #hero { display: flex; flex-direction: column; }
-    .hero-left { padding: 40px 20px 32px !important; border-right: none !important; }
-    .hero-title { font-size: clamp(3.8rem,16vw,5.5rem); }
-    .hero-meta { gap: 0; border-top: 1px solid var(--rule); }
-    .hero-meta > div { flex: 1; padding: 16px 12px; text-align: center; }
-    .hero-meta > div:not([style]) { flex: 1; text-align: center; border-right: 1px solid var(--rule); }
-    .hero-meta > div:last-child { border-right: none; }
-    .hero-right { border-top: 1px solid var(--rule); }
-    .hero-desc-block { padding: 24px 20px; }
-    .hero-spec-block { padding: 20px 20px; }
-    .hero-cta-block  { padding: 20px 20px 32px; }
-    .btn-primary, .btn-ghost { font-size: 12px; padding: 16px 20px; min-height: 52px; }
-  }
-
-  /* ticker */
-  @media (max-width:480px) {
-    .ticker-item { padding: 0 16px; gap: 16px; }
-  }
-
-  /* workflow */
-  @media (max-width:600px) {
-    #workflow { padding: 56px 0 0; }
-    .wf-header-left { padding: 0 0 28px !important; }
-    .wf-header-right { padding: 16px 0 28px !important; }
-    .section-title-huge { font-size: clamp(3rem,14vw,5rem); }
-    .wf-step-pills { gap: 6px; }
-    .wf-step-pill { padding: 7px 10px; gap: 6px; }
-    .wf-pill-label { font-size: 9px; }
-    .wf-header-stats { }
-    .wf-hstat { padding: 12px 10px; }
-    .wf-hstat-n { font-size: 1.4rem; }
-    .wf-tab { padding: 16px 14px; }
-    .wf-tab-title { font-size: 11px; }
-    .wf-panel-text { padding: 32px 0 24px !important; }
-    .wf-panel-vid  { padding: 0 0 32px !important; }
-    .wf-panel-num  { font-size: 5rem; }
-    .wf-panel-title { font-size: 2rem; }
-  }
-
-  /* features */
-  @media (max-width:600px) {
-    #features { padding: 56px 0 !important; }
-    .feat-header { padding-bottom: 32px; }
-    .feat-header-title { font-size: clamp(2.4rem,12vw,3.5rem); }
-    .feat-item { padding: 28px 20px; }
-    .feat-big-num { font-size: 3.5rem; }
-  }
-
-  /* requirements */
-  @media (max-width:860px) {
-    .req-top { flex-direction: column; gap: 28px; }
-    .req-top-right { width: 100%; }
-    .req-quick-stats { grid-template-columns: repeat(3, 1fr); }
-    .req-qstat { flex-direction: column; text-align: center; gap: 8px; border-right: 1px solid var(--rule); border-bottom: none; padding: 16px 12px; }
-    .req-qstat:last-child { border-right: none; }
-  }
-  @media (max-width:600px) {
-    #requirements { padding: 56px 0 !important; }
-    .req-top-title  { font-size: clamp(2.2rem,11vw,3.5rem); }
-    .req-wrap { padding: 56px 0; }
-    .req-quick-stats { grid-template-columns: 1fr; }
-    .req-qstat { flex-direction: row; text-align: left; border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
-    .req-qstat:last-child { border-bottom: none !important; }
-    .req-cols { gap: 0; }
-    .req-col:first-child { padding-right: 0 !important; }
-    .req-col:last-child  { padding-left: 0 !important; }
-  }
-
-  /* pricing */
-  @media (max-width:600px) {
-    .price-col { padding: 40px 20px !important; }
-    .price-amount-big { font-size: clamp(3rem,14vw,5rem); }
-    .price-tier-label { margin-top: 0 !important; }
-  }
-
-  /* faq */
-  @media (max-width:600px) {
-    #faq { padding: 56px 0; }
-    .faq-title { font-size: clamp(2rem,10vw,3rem); }
-    .faq-btn   { font-size: .9rem; padding: 18px 0; }
-  }
-
-  /* reviews */
-  @media (max-width:600px) {
-    .reviews-wrap { padding: 56px 0; }
-    .reviews-top { flex-direction: column; align-items: flex-start; gap: 20px; }
-    .review-cta-btn { width: 100%; justify-content: center; }
-    .dev-unlock-btn { width: 100%; justify-content: center; }
-    #rating-bar { flex-wrap: wrap; }
-  }
-
-  /* contact */
-  @media (max-width:600px) {
-    .contact-left  { padding: 56px 20px 32px !important; }
-    .contact-right { padding: 32px 20px 56px !important; }
-    .contact-title { font-size: clamp(2rem,10vw,3rem); }
-    .channels { grid-template-columns: repeat(2,1fr); gap: 8px; }
-  }
-
-  /* download */
-  @media (max-width:600px) {
-    .dl-inner { padding: 64px 0; }
-    .dl-title { font-size: clamp(2.2rem,11vw,3.5rem); }
-    .dl-cta-col { width: 100%; }
-    .btn-amber { width: 100%; justify-content: center; }
-  }
-
-  /* footer */
-  @media (max-width:600px) {
-    .footer-col { padding: 32px 20px; }
-    .footer-bottom { padding: 20px; flex-direction: column; text-align: center; gap: 8px; }
-  }
-
-  /* nav — tighter on small phones */
-  @media (max-width:380px) {
-    .nav-brand { font-size: 13px; gap: 8px; }
-    .nav-brand img { height: 24px; }
-    #mob-menu a { padding: 14px 20px; }
-  }
-
-  /* hero vertical label off on small screens */
-  @media (max-width:860px) { .hero-vert-label { display: none; } }
-
-  /* general wrap padding on small phones */
-  @media (max-width:380px) {
-    .wrap { padding: 0 16px; }
-    .hero-left, .contact-left, .contact-right { padding-left: 16px !important; padding-right: 16px !important; }
-  }
-
-  a { color: inherit; text-decoration: none; }
-  img { display: block; max-width: 100%; }
-  button { cursor: pointer; font-family: var(--mono); border: none; background: none; }
-
-  /* ═══════════════════════════════════════════════════════
-     CURSOR
-  ═══════════════════════════════════════════════════════ */
-  #cur {
-    position: fixed; top: 0; left: 0; z-index: 99999;
-    pointer-events: none;
-    width: 20px; height: 20px;
-    transform: translate(-50%,-50%);
-    transition: transform .1s, width .2s var(--ease), height .2s var(--ease);
-  }
-  #cur::before {
-    content: '';
-    position: absolute; inset: 0;
-    border: 1.5px solid var(--amber);
-    transform: rotate(45deg);
-    transition: all .2s var(--ease);
-  }
-  #cur.big::before {
-    width: 36px; height: 36px;
-    top: -8px; left: -8px;
-    background: var(--amber-lt);
-  }
-  @media (max-width:768px) { #cur { display: none; } }
-
-  /* ═══════════════════════════════════════════════════════
-     SCROLLBAR
-  ═══════════════════════════════════════════════════════ */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--paper2); }
-  ::-webkit-scrollbar-thumb { background: var(--amber); }
-
-  /* ═══════════════════════════════════════════════════════
-     SCROLL PROGRESS BAR
-  ═══════════════════════════════════════════════════════ */
-  #prog {
-    position: fixed; top: 0; left: 0; height: 3px;
-    background: var(--amber); z-index: 9999;
-    width: 0%; transition: width .1s linear;
-  }
-
-  /* ═══════════════════════════════════════════════════════
-     UTILITY
-  ═══════════════════════════════════════════════════════ */
-  .wrap { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 40px; }
-  @media (max-width:640px) { .wrap { padding: 0 20px; } }
-
-  .mono { font-family: var(--mono); }
-  .disp { font-family: var(--disp); }
-
-  /* ruled line decoration */
-  .h-rule { height: 1px; background: var(--rule); }
-  .h-rule-amber { height: 2px; background: var(--amber); }
-
-  /* section numbering */
-  .sec-num {
-    font-family: var(--mono); font-size: 10px; font-weight: 600;
-    letter-spacing: .2em; text-transform: uppercase;
-    color: var(--amber); display: flex; align-items: center; gap: 10px;
-  }
-  .sec-num::after { content: ''; flex: 0 0 32px; height: 1px; background: var(--amber); }
-
-  /* REVEAL */
-  .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
-  .rv.rl { transform: translateX(-24px); }
-  .rv.rr { transform: translateX(24px); }
-  .rv.rs { transform: scale(.97); }
-  .rv.vis { opacity: 1; transform: none; }
-  .rv.d1 { transition-delay: .08s; }
-  .rv.d2 { transition-delay: .16s; }
-  .rv.d3 { transition-delay: .24s; }
-  .rv.d4 { transition-delay: .32s; }
-
-  /* ═══════════════════════════════════════════════════════
-     NAV
-  ═══════════════════════════════════════════════════════ */
-  #nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
-    transition: box-shadow .3s;
-  }
-  #nav.shadow { box-shadow: 0 4px 40px rgba(15,14,11,0.12); }
-  .nav-inner {
-    display: flex; align-items: stretch;
-    height: 64px;
-  }
-  .nav-brand {
-    display: flex; align-items: center; gap: 12px;
-    padding: 0 32px 0 0;
-    border-right: 1px solid var(--rule);
-    font-family: var(--mono); font-weight: 600; font-size: 14px;
-    letter-spacing: .04em; color: var(--ink);
-    flex-shrink: 0;
-  }
-  .nav-brand img { height: 28px; width: auto; }
-  .nav-links {
-    display: flex; align-items: stretch; margin-left: auto;
-  }
-  .nav-links a {
-    display: flex; align-items: center;
-    padding: 0 22px;
-    font-family: var(--mono); font-size: 11px; font-weight: 500;
-    letter-spacing: .1em; text-transform: uppercase;
-    color: var(--muted); border-left: 1px solid var(--rule);
-    transition: color .2s, background .2s;
-    white-space: nowrap;
-  }
-  .nav-links a:hover { color: var(--ink); background: var(--paper2); }
-  .nav-badge {
-    display: inline-block; font-size: 8px; font-weight: 600;
-    letter-spacing: .1em; text-transform: uppercase;
-    background: var(--amber); color: #fff;
-    padding: 2px 5px; margin-left: 6px; border-radius: 2px;
-  }
-  .nav-cta {
-    display: flex; align-items: center; gap: 8px;
-    padding: 0 28px;
-    font-family: var(--mono); font-size: 11px; font-weight: 700;
-    letter-spacing: .1em; text-transform: uppercase;
-    background: var(--amber); color: #fff;
-    border-left: none;
-    transition: background .2s;
-  }
-  .nav-cta:hover { background: #c4520a; color: #fff; }
-  .nav-cta svg { flex-shrink: 0; }
-
-  #mob-btn {
-    display: none; align-items: center; justify-content: center;
-    padding: 0 20px; margin-left: auto;
-    color: var(--ink); border-left: 1px solid var(--rule);
-  }
-  @media (max-width: 1024px) {
-    .nav-links { display: none; }
-    .nav-cta   { display: none; }
-    #mob-btn   { display: flex; }
-  }
-  #mob-menu {
-    display: none; flex-direction: column;
-    border-top: 1px solid var(--rule);
-    background: var(--paper);
-  }
-  #mob-menu.open { display: flex; }
-  #mob-menu a {
-    padding: 16px 40px;
-    font-family: var(--mono); font-size: 12px; font-weight: 500;
-    letter-spacing: .1em; text-transform: uppercase;
-    color: var(--muted); border-bottom: 1px solid var(--rule);
-    transition: color .2s, background .2s;
-  }
-  #mob-menu a:hover { color: var(--ink); background: var(--paper2); }
-  #mob-menu .mob-cta {
-    background: var(--amber); color: #fff; text-align: center;
-    font-weight: 700; padding: 20px 40px; min-height: 56px;
-  }
-  #mob-menu .mob-cta:hover { background: var(--amber); }
-
-  /* ═══════════════════════════════════════════════════════
-     HERO — ASYMMETRIC SPLIT
-  ═══════════════════════════════════════════════════════ */
-  #hero {
-    margin-top: 64px;
-    min-height: calc(100vh - 64px);
-    display: grid;
-    grid-template-columns: 1fr 480px;
-    grid-template-rows: auto 1fr auto;
-    border-bottom: 2px solid var(--ink);
-  }
-  @media (max-width: 1100px) { #hero { grid-template-columns: 1fr; } }
-
-  .hero-left {
-    grid-column: 1; grid-row: 1 / 4;
-    padding: 56px 64px 56px 0;
-    border-right: 1px solid var(--rule);
-    display: flex; flex-direction: column; justify-content: space-between;
-  }
-  @media (max-width: 1100px) {
-    .hero-left { grid-column: 1; grid-row: 1; border-right: none; padding: 48px 0 32px; }
-  }
-
-  .hero-eyebrow {
-    display: flex; align-items: center; gap: 16px;
-    margin-bottom: 32px;
-  }
-  .eyebrow-tag {
-    font-family: var(--mono); font-size: 10px; font-weight: 600;
-    letter-spacing: .2em; text-transform: uppercase; color: var(--amber);
-  }
-  .eyebrow-line { flex: 1; height: 1px; background: var(--rule); max-width: 120px; }
-
-  .hero-title {
-    font-family: var(--disp);
-    font-size: clamp(5rem, 11vw, 10rem);
-    line-height: .92; letter-spacing: .01em;
-    color: var(--ink);
-    margin-bottom: 0;
-  }
-  .hero-title .accent { color: var(--amber); display: block; }
-
-  .hero-meta {
-    display: flex; align-items: flex-start; gap: 48px;
-    margin-top: 48px;
-    padding-top: 32px;
-    border-top: 1px solid var(--rule);
-  }
-  @media (max-width: 640px) { .hero-meta { flex-direction: column; gap: 24px; } }
-
-  .hero-stat-n {
-    font-family: var(--disp); font-size: 2.8rem; color: var(--ink); line-height: 1;
-  }
-  .hero-stat-l {
-    font-family: var(--mono); font-size: 10px; font-weight: 500;
-    letter-spacing: .15em; text-transform: uppercase; color: var(--muted);
-    margin-top: 6px;
-  }
-
-  .hero-right {
-    grid-column: 2; grid-row: 1 / 4;
-    display: flex; flex-direction: column;
-    border-left: 1px solid var(--rule);
-  }
-  @media (max-width: 1100px) {
-    .hero-right { grid-column: 1; grid-row: 2; border-left: none; border-top: 1px solid var(--rule); }
-  }
-
-  .hero-desc-block {
-    padding: 40px 40px 32px;
-    border-bottom: 1px solid var(--rule);
-    flex-shrink: 0;
-  }
-  .hero-desc-label {
-    font-family: var(--mono); font-size: 9px; font-weight: 600;
-    letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
-    margin-bottom: 12px;
-  }
-  .hero-desc {
-    font-size: 1rem; line-height: 1.85; color: var(--ink2);
-    font-style: normal;
-  }
-
-  .hero-spec-block {
-    padding: 36px 40px;
-    border-bottom: 1px solid var(--rule);
-    flex-shrink: 0;
-  }
-  .spec-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 10px 0; border-bottom: 1px solid var(--rule);
-    font-family: var(--mono); font-size: 11px;
-  }
-  .spec-row:last-child { border-bottom: none; }
-  .spec-k { color: var(--muted); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
-  .spec-v { color: var(--ink); font-weight: 600; }
-  .spec-v.amber { color: var(--amber); }
-
-  .hero-cta-block {
-    padding: 36px 40px 40px;
-    display: flex; flex-direction: column; gap: 16px;
-    flex-shrink: 0;
-  }
-  .btn-primary {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    background: var(--amber); color: #fff;
-    font-family: var(--mono); font-size: 13px; font-weight: 700;
-    letter-spacing: .1em; text-transform: uppercase;
-    padding: 18px 28px; min-height: 56px;
-    box-shadow: 0 4px 24px rgba(232,101,10,0.38);
-    transition: background .2s, transform .2s var(--ease), box-shadow .2s;
-  }
-  .btn-primary:hover { background: #c4520a; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(232,101,10,0.48); }
-  .btn-ghost {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    border: 2px solid var(--ink); color: var(--ink);
-    font-family: var(--mono); font-size: 12px; font-weight: 600;
-    letter-spacing: .12em; text-transform: uppercase;
-    padding: 16px 24px; min-height: 52px;
-    transition: border-color .2s, background .2s, color .2s, transform .2s var(--ease);
-  }
-  .btn-ghost:hover { border-color: var(--amber); background: var(--amber-lt); color: var(--amber); transform: translateY(-2px); }
-
-  /* decoration: rotated label on hero */
-  .hero-vert-label {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-family: var(--mono); font-size: 9px; font-weight: 600;
-    letter-spacing: .22em; text-transform: uppercase; color: var(--paper3);
-    padding: 24px 16px;
-    border-right: 1px solid var(--rule);
-    align-self: flex-start;
-    display: flex; align-items: center; gap: 12px;
-    flex-shrink: 0;
-  }
-  @media (max-width: 640px) { .hero-vert-label { display: none; } }
-
-  /* ═══════════════════════════════════════════════════════
-     MARQUEE TICKER
-  ═══════════════════════════════════════════════════════ */
-  .ticker-wrap {
-    overflow: hidden;
-    border-bottom: 1px solid var(--rule);
-    background: var(--ink);
-    padding: 14px 0;
-  }
-  .ticker-track {
-    display: flex; width: max-content;
-    animation: ticker 22s linear infinite;
-    gap: 0;
-  }
-  .ticker-item {
-    display: flex; align-items: center; gap: 28px; padding: 0 28px;
-    font-family: var(--mono); font-size: 10px; font-weight: 600;
-    letter-spacing: .18em; text-transform: uppercase; color: rgba(242,237,228,.7);
-    border-right: 1px solid rgba(242,237,228,.08);
-    white-space: nowrap;
-  }
-  .ticker-item .t-dot {
-    width: 4px; height: 4px; border-radius: 50%; background: var(--amber); flex-shrink: 0;
-  }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-  /* ═══════════════════════════════════════════════════════
-     WORKFLOW — TABBED SHOWCASE
-  ═══════════════════════════════════════════════════════ */
-  #workflow {
-    padding: 100px 0 0;
-    border-bottom: 2px solid var(--ink);
-  }
-  .wf-header {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 0; border-bottom: 1px solid var(--rule);
-    margin-bottom: 0;
-  }
-  @media (max-width:860px) { .wf-header { grid-template-columns: 1fr; } }
-  .wf-header-left { padding: 0 64px 48px 0; border-right: 1px solid var(--rule); }
-  @media (max-width:860px) { .wf-header-left { border-right: none; padding-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 32px; } }
-  .wf-header-right { padding: 0 0 48px 64px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; }
-  @media (max-width:860px) { .wf-header-right { padding: 32px 0 32px; } }
-
-  /* step pills row */
-  .wf-step-pills { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-  .wf-step-pill {
-    display: flex; align-items: center; gap: 8px;
-    border: 1px solid var(--rule-hv); padding: 8px 14px;
-    background: var(--paper2);
-  }
-  .wf-pill-num {
-    font-family: var(--disp); font-size: 1.1rem; color: var(--amber); line-height: 1;
-  }
-  .wf-pill-label {
-    font-family: var(--mono); font-size: 10px; font-weight: 600;
-    letter-spacing: .06em; text-transform: uppercase; color: var(--ink);
-    white-space: nowrap;
-  }
-  .wf-step-arrow {
-    font-family: var(--mono); font-size: 14px; color: var(--paper3); flex-shrink: 0;
-  }
-  @media (max-width:480px) { .wf-step-arrow { display: none; } .wf-step-pills { gap: 8px; } }
-
-  /* wf header stats */
-  .wf-header-stats {
-    display: flex; align-items: center; gap: 0;
-    border: 1px solid var(--rule); margin-top: 4px;
-  }
-  .wf-hstat { flex: 1; padding: 16px 20px; text-align: center; }
-  .wf-hstat-n {
-    font-family: var(--disp); font-size: 1.8rem; color: var(--ink); line-height: 1; margin-bottom: 4px;
-  }
-  .wf-hstat-l {
-    font-family: var(--mono); font-size: 9px; font-weight: 600;
-    letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
-  }
-  .wf-hstat-div { width: 1px; background: var(--rule); align-self: stretch; flex-shrink: 0; }
-
-  /* requirements top right */
-  .req-top { align-items: flex-start; }
-  .req-top-right { display: flex; flex-direction: column; gap: 20px; }
-  .req-quick-stats { display: grid; grid-template-columns: 1fr; gap: 0; border: 1px solid var(--rule); }
-  .req-qstat {
-    display: flex; align-items: center; gap: 14px;
-    padding: 16px 20px; border-bottom: 1px solid var(--rule);
-    transition: background .2s;
-  }
-  .req-qstat:last-child { border-bottom: none; }
-  .req-qstat:hover { background: var(--paper2); }
-  .req-qstat-icon {
-    width: 36px; height: 36px; flex-shrink: 0;
-    border: 1px solid var(--rule-hv);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--amber);
-  }
-  .req-qstat-val {
-    font-family: var(--mono); font-size: 13px; font-weight: 700;
-    color: var(--ink); letter-spacing: .02em;
-  }
-  .req-qstat-label {
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
-    letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 2px;
-  }
-
-  .section-title-huge {
-    font-family: var(--disp);
-    font-size: clamp(3.5rem, 7vw, 6.5rem);
-    line-height: .9; letter-spacing: .01em;
-    color: var(--ink);
-  }
-  .section-title-huge .accent { color: var(--amber); }
-
-  .wf-body-text {
-    font-size: 1rem; line-height: 1.85; color: var(--ink2);
-    max-width: 400px;
-  }
-
-  /* step tabs */
-  .wf-tabs {
-    display: grid; grid-template-columns: repeat(4,1fr);
-    border-bottom: 1px solid var(--rule);
-  }
-  @media (max-width:700px) { .wf-tabs { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width:380px) { .wf-tabs { grid-template-columns: 1fr; } }
-  .wf-tab {
-    padding: 24px 32px; min-height: 72px;
-    border-right: 1px solid var(--rule);
-    cursor: pointer;
-    transition: background .2s;
-    position: relative;
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  .wf-tab:last-child { border-right: none; }
-  .wf-tab::after {
-    content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
-    height: 3px; background: var(--amber);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform .3s var(--ease);
-  }
-  .wf-tab.active::after { transform: scaleX(1); }
-  .wf-tab.active { background: var(--paper2); }
-  .wf-tab:hover:not(.active) { background: var(--paper2); }
-  .wf-tab-num {
-    font-family: var(--mono); font-size: 9px; font-weight: 600;
-    letter-spacing: .2em; color: var(--amber); margin-bottom: 8px;
-  }
-  .wf-tab-title {
-    font-family: var(--mono); font-size: 12px; font-weight: 600;
-    letter-spacing: .06em; text-transform: uppercase; color: var(--ink);
-  }
-
-  /* step panels */
-  .wf-panels { }
-  .wf-panel { display: none; }
-  .wf-panel.active { display: grid; grid-template-columns: 1fr 1.1fr; }
-  @media (max-width:860px) { .wf-panel.active { grid-template-columns: 1fr; } }
-
-  .wf-panel-text {
-    padding: 56px 56px 56px 0;
-    border-right: 1px solid var(--rule);
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  @media (max-width:860px) { .wf-panel-text { border-right: none; padding: 40px 0 32px; border-bottom: 1px solid var(--rule); } }
-
-  .wf-panel-num {
-    font-family: var(--disp); font-size: 8rem; line-height: 1;
-    color: var(--paper3); letter-spacing: .02em;
-    margin-bottom: -16px; margin-left: -4px;
-  }
-  .wf-panel-title {
-    font-family: var(--disp); font-size: 2.6rem; letter-spacing: .02em;
-    color: var(--ink); margin-bottom: 20px; line-height: 1;
-  }
-  .wf-panel-body { font-size: .97rem; line-height: 1.8; color: var(--muted); }
-
-  .wf-panel-vid {
-    padding: 40px 0 40px 56px;
-  }
-  @media (max-width:860px) { .wf-panel-vid { padding: 32px 0 0; } }
-
-  .vid-frame {
-    border: 1px solid var(--rule);
-    overflow: hidden;
-    position: relative;
-  }
-  .vid-chrome-bar {
-    display: flex; align-items: center; gap: 6px;
-    padding: 10px 14px;
-    background: var(--paper2); border-bottom: 1px solid var(--rule);
-  }
-  .vdot { width: 9px; height: 9px; border-radius: 50%; }
-  .vid-aspect {
-    position: relative; aspect-ratio: 16/9; background: var(--ink2);
-    overflow: hidden;
-  }
-  .vid-thumb {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; transition: opacity .35s;
-  }
-  .vid-overlay {
-    position: absolute; inset: 0; display: flex;
-    align-items: center; justify-content: center;
-    background: rgba(15,14,11,0.35); cursor: pointer;
-    transition: background .2s;
-  }
-  .vid-overlay:hover { background: rgba(15,14,11,0.15); }
-  .play-ring {
-    width: 56px; height: 56px;
-    border: 2px solid var(--amber);
-    display: flex; align-items: center; justify-content: center;
-    transition: transform .2s var(--ease), background .2s;
-  }
-  .vid-overlay:hover .play-ring { transform: scale(1.1); background: var(--amber); }
-  .play-ring svg { width: 18px; height: 18px; color: var(--paper); margin-left: 3px; }
-  .vid-overlay:hover .play-ring svg { color: var(--ink); }
-  .vid-aspect iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-
-  /* ═══════════════════════════════════════════════════════
-     FEATURES — DENSE GRID WITH LARGE NUMBERS
-  ═══════════════════════════════════════════════════════ */
-  #features {
-    border-bottom: 2px solid var(--ink);
-  }
-  .feat-header {
-    padding: 100px 0 0;
-    display: flex; align-items: flex-end; gap: 40px;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 56px; margin-bottom: 0;
-  }
-  @media (max-width:768px) { .feat-header { flex-direction: column; align-items: flex-start; gap: 16px; } }
-  .feat-header-title { font-family: var(--disp); font-size: clamp(3rem,6vw,5.5rem); line-height: .9; letter-spacing: .01em; flex-shrink: 0; }
-  .feat-header-sub { font-size: .95rem; color: var(--ink2); line-height: 1.75; max-width: 380px; margin-left: auto; }
-  @media (max-width:768px) { .feat-header-sub { margin-left: 0; } }
-
-  .feat-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-  }
-  @media (max-width:900px)  { .feat-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width:540px)  { .feat-grid { grid-template-columns: 1fr; } }
-
-  .feat-item {
-    padding: 48px 40px;
-    border-right: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    transition: background .2s;
-    position: relative; overflow: hidden;
-  }
-  .feat-item::before {
-    content: ''; position: absolute; inset: 0;
-    background: var(--amber-lt);
-    transform: scaleY(0); transform-origin: bottom;
-    transition: transform .35s var(--ease);
-    z-index: 0;
-  }
-  .feat-item:hover::before { transform: scaleY(1); }
-  .feat-item > * { position: relative; z-index: 1; }
-  .feat-item:nth-child(3n) { border-right: none; }
-  @media (max-width:900px) { .feat-item:nth-child(3n) { border-right: 1px solid var(--rule); } .feat-item:nth-child(2n) { border-right: none; } }
-  @media (max-width:540px) { .feat-item { border-right: none !important; } }
-
-  .feat-big-num {
-    font-family: var(--disp); font-size: 5rem; line-height: 1;
-    color: var(--paper3); letter-spacing: .02em; margin-bottom: 16px;
-  }
-  .feat-icon-wrap {
-    width: 40px; height: 40px;
-    border: 1px solid var(--rule-hv);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 20px; transition: border-color .2s, background .2s;
-  }
-  .feat-item:hover .feat-icon-wrap { border-color: var(--amber); background: var(--amber-lt); }
-  .feat-icon-wrap svg { width: 18px; height: 18px; color: var(--ink); }
-  .feat-name {
-    font-family: var(--mono); font-size: 12px; font-weight: 600;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--ink);
-    margin-bottom: 12px;
-  }
-  .feat-desc { font-size: .9rem; line-height: 1.8; color: var(--ink2); }
-
-  /* ═══════════════════════════════════════════════════════
-     REQUIREMENTS — TWO COLUMN TABLE STYLE
-  ═══════════════════════════════════════════════════════ */
-  #requirements {
-    border-bottom: 2px solid var(--ink);
-  }
-  .req-wrap {
-    padding: 96px 0;
-  }
-  .req-top {
-    display: flex; align-items: baseline; justify-content: space-between;
-    border-bottom: 1px solid var(--rule); padding-bottom: 32px; margin-bottom: 48px;
-    gap: 24px; flex-wrap: wrap;
-  }
-  .req-top-title { font-family: var(--disp); font-size: clamp(2.4rem,5vw,4rem); line-height: .95; }
-  .req-top-note {
-    font-family: var(--mono); font-size: 10px; font-weight: 500;
-    letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
-    max-width: 260px; line-height: 1.6;
-  }
-
-  .req-cols {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-  }
-  @media (max-width:640px) { .req-cols { grid-template-columns: 1fr; } }
-
-  .req-col { }
-  .req-col:first-child { border-right: 1px solid var(--rule); padding-right: 48px; }
-  .req-col:last-child  { padding-left: 48px; }
-  @media (max-width:640px) { .req-col:first-child { border-right: none; padding-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 32px; margin-bottom: 32px; } .req-col:last-child { padding-left: 0; } }
-
-  .req-col-head {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 28px;
-  }
-  .req-col-badge {
-    font-family: var(--mono); font-size: 9px; font-weight: 700;
-    letter-spacing: .16em; text-transform: uppercase;
-    padding: 5px 12px;
-    border: 1.5px solid;
-  }
-  .req-col-badge.min  { border-color: var(--rule-hv); color: var(--muted); }
-  .req-col-badge.rec  { border-color: var(--amber); color: var(--amber); background: var(--amber-lt); }
-  .req-col-label { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
-
-  .req-table { width: 100%; border-collapse: collapse; }
-  .req-table tr { border-bottom: 1px solid var(--rule); }
-  .req-table tr:last-child { border-bottom: none; }
-  .req-table td { padding: 13px 0; font-size: .88rem; vertical-align: top; }
-  .req-table .rk { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink2); width: 90px; padding-right: 16px; padding-top: 15px; }
-  .req-table .rv2 { color: var(--ink); line-height: 1.5; }
-  .req-table .rv2.amber { color: var(--amber); font-family: var(--mono); font-size: .85rem; }
-
-  /* ═══════════════════════════════════════════════════════
-     PRICING — BOLD SPLIT PANEL
-  ═══════════════════════════════════════════════════════ */
-  #pricing {
-    border-bottom: 2px solid var(--ink);
-  }
-  .price-wrap {
-    display: grid; grid-template-columns: 1fr 1fr; min-height: 600px;
-  }
-  @media (max-width:860px) { .price-wrap { grid-template-columns: 1fr; } }
-
-  .price-col {
-    padding: 72px 64px;
-  }
-  @media (max-width:640px) { .price-col { padding: 48px 0; } }
-  .price-col:first-child { border-right: 1px solid var(--rule); }
-  @media (max-width:860px) { .price-col:first-child { border-right: none; border-bottom: 1px solid var(--rule); } }
-
-  .price-tier-label {
-    font-family: var(--mono); font-size: 10px; font-weight: 700;
-    letter-spacing: .2em; text-transform: uppercase;
-    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
-  }
-  .tier-dot { width: 6px; height: 6px; flex-shrink: 0; }
-  .price-amount-big {
-    font-family: var(--disp); font-size: clamp(4rem,9vw,7rem);
-    line-height: .9; letter-spacing: .01em;
-    margin-bottom: 12px;
-  }
-  .price-amount-big sub { font-size: 2rem; vertical-align: baseline; }
-  .price-sub-line {
-    font-family: var(--mono); font-size: 11px; font-weight: 500;
-    letter-spacing: .1em; color: var(--muted); text-transform: uppercase;
-    margin-bottom: 40px; display: flex; align-items: center; gap: 12px;
-  }
-  .price-old-tag {
-    text-decoration: line-through; color: var(--muted);
-    font-size: 1rem; font-family: var(--disp);
-  }
-  .price-save-tag {
-    background: var(--amber); color: #fff;
-    font-size: 9px; font-weight: 700; letter-spacing: .1em;
-    text-transform: uppercase; padding: 3px 8px;
-  }
-
-  .price-rule { height: 1px; background: var(--rule); margin-bottom: 32px; }
-
-  .price-list { list-style: none; display: flex; flex-direction: column; }
-  .price-list li {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 12px 0; border-bottom: 1px solid var(--rule);
-    font-size: .88rem; color: var(--ink);
-  }
-  .price-list li:last-child { border-bottom: none; }
-  .price-list li.off { color: var(--muted); }
-  .price-check { flex-shrink: 0; margin-top: 2px; }
-  .price-check svg { width: 14px; height: 14px; }
-  .price-check.on  svg { color: var(--amber); }
-  .price-check.off svg { color: var(--paper3); }
-
-  .price-cta { margin-top: 40px; }
-
-  /* featured col */
-  .price-col.featured {
-    background: var(--ink);
-    color: var(--paper);
-  }
-  .price-col.featured .price-rule { background: rgba(242,237,228,.12); }
-  .price-col.featured .price-list li { border-color: rgba(242,237,228,.1); color: var(--paper); }
-  .price-col.featured .price-list li.off { color: rgba(242,237,228,.55); }
-  .price-col.featured .price-check.on svg { color: var(--amber); }
-  .price-col.featured .price-check.off svg { color: rgba(242,237,228,.2); }
-  .price-col.featured .price-sub-line { color: rgba(242,237,228,.65); }
-
-  .btn-amber {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    background: var(--amber); color: #fff;
-    font-family: var(--mono); font-size: 12px; font-weight: 600;
-    letter-spacing: .12em; text-transform: uppercase;
-    padding: 18px 28px; width: 100%;
-    transition: filter .2s, transform .2s var(--ease);
-  }
-  .btn-amber:hover { filter: brightness(1.12); transform: translateY(-2px); }
-
-  .btn-ink {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    border: 1.5px solid rgba(242,237,228,.25); color: var(--paper);
-    font-family: var(--mono); font-size: 12px; font-weight: 600;
-    letter-spacing: .12em; text-transform: uppercase;
-    padding: 16px 28px; width: 100%;
-    transition: border-color .2s, background .2s, transform .2s var(--ease);
-  }
-  .btn-ink:hover { border-color: var(--amber); background: var(--amber-md); transform: translateY(-2px); }
-
-  .price-note { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: rgba(242,237,228,.55); text-align: center; margin-top: 14px; }
-
-  /* ═══════════════════════════════════════════════════════
-     FAQ — NEWSPAPER STYLE
-  ═══════════════════════════════════════════════════════ */
-  #faq {
-    padding: 100px 0;
-    border-bottom: 2px solid var(--ink);
-  }
-  .faq-top {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    border-bottom: 2px solid var(--ink); padding-bottom: 24px; margin-bottom: 0;
-    gap: 24px; flex-wrap: wrap;
-  }
-  .faq-title { font-family: var(--disp); font-size: clamp(2.5rem,5vw,4.5rem); line-height: .95; }
-  .faq-meta { font-family: var(--mono); font-size: 10px; color: var(--ink2); letter-spacing: .1em; text-transform: uppercase; }
-
-  .faq-list { }
-  .faq-item { border-bottom: 1px solid var(--rule); }
-  .faq-btn {
-    width: 100%; text-align: left; padding: 28px 0; min-height: 56px;
-    display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
-    font-size: 1.05rem; font-family: var(--body); font-weight: 600; color: var(--ink);
-    cursor: pointer;
-  }
-  .faq-btn-icon {
-    width: 28px; height: 28px; flex-shrink: 0;
-    border: 1.5px solid var(--rule-hv);
-    display: flex; align-items: center; justify-content: center;
-    margin-top: 2px; transition: background .2s, border-color .2s;
-  }
-  .faq-btn-icon svg { width: 12px; height: 12px; transition: transform .35s var(--ease); }
-  .faq-item.open .faq-btn-icon { background: var(--amber); border-color: var(--amber); }
-  .faq-item.open .faq-btn-icon svg { color: #fff; transform: rotate(45deg); }
-  .faq-body { max-height: 0; overflow: hidden; transition: max-height .4s var(--ease); }
-  .faq-item.open .faq-body { max-height: 240px; }
-  .faq-body-inner { padding: 0 0 28px; font-size: .95rem; line-height: 1.9; color: var(--ink2); max-width: 700px; font-style: normal; }
-
-  /* ═══════════════════════════════════════════════════════
-     CONTACT — SPLIT COLUMN
-  ═══════════════════════════════════════════════════════ */
-  #contact {
-    border-bottom: 2px solid var(--ink);
-  }
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1.2fr;
-  }
-  @media (max-width:900px) { .contact-grid { grid-template-columns: 1fr; } }
-
-  .contact-left {
-    padding: 96px 64px 96px 0;
-    border-right: 1px solid var(--rule);
-  }
-  @media (max-width:900px) { .contact-left { border-right: none; padding: 64px 0 32px; border-bottom: 1px solid var(--rule); } }
-
-  .contact-title { font-family: var(--disp); font-size: clamp(2.5rem,5vw,4rem); line-height: .95; margin-bottom: 20px; }
-  .contact-sub { font-size: .95rem; line-height: 1.85; color: var(--ink2); margin-bottom: 40px; font-style: normal; }
-
-  .channels { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .channel {
-    border: 1px solid var(--rule);
-    padding: 20px 16px; min-height: 80px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-    transition: border-color .2s, background .2s, transform .2s var(--ease);
-    text-align: center;
-  }
-  .channel:hover { border-color: var(--amber); background: var(--amber-lt); transform: translateY(-3px); }
-  .channel-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
-  .channel-icon svg { width: 20px; height: 20px; }
-  .channel-name { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-
-  .contact-right {
-    padding: 96px 0 96px 64px;
-  }
-  @media (max-width:900px) { .contact-right { padding: 48px 0 64px; } }
-
-  .form-label {
-    display: block; font-family: var(--mono); font-size: 9px; font-weight: 700;
-    letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .form-field {
-    width: 100%; padding: 13px 16px;
-    background: transparent;
-    border: 1px solid var(--rule-hv);
-    color: var(--ink); font-family: var(--body); font-size: .92rem;
-    outline: none; transition: border-color .2s;
-    -webkit-appearance: none; appearance: none;
-  }
-  .form-field::placeholder { color: var(--paper3); }
-  .form-field:focus { border-color: var(--amber); }
-  .form-textarea { resize: none; height: 120px; }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-  @media (max-width:560px) { .form-grid { grid-template-columns: 1fr; } }
-  .form-row { margin-bottom: 16px; }
-  .form-submit {
-    width: 100%; padding: 16px;
-    background: var(--ink); color: var(--paper);
-    font-family: var(--mono); font-size: 12px; font-weight: 700;
-    letter-spacing: .16em; text-transform: uppercase;
-    transition: background .2s, transform .2s var(--ease);
-    margin-top: 8px;
-  }
-  .form-submit:hover { background: var(--amber); transform: translateY(-2px); }
-
-  /* ═══════════════════════════════════════════════════════
-     DOWNLOAD CTA — FULL BLEED INK
-  ═══════════════════════════════════════════════════════ */
-  #download {
-    background: var(--ink);
-    border-bottom: 2px solid var(--ink);
-  }
-  .dl-inner {
-    padding: 96px 0;
-    display: grid; grid-template-columns: 1fr auto;
-    align-items: center; gap: 48px;
-  }
-  @media (max-width:860px) { .dl-inner { grid-template-columns: 1fr; gap: 40px; } }
-
-  .dl-title {
-    font-family: var(--disp); font-size: clamp(2.8rem,6vw,5.5rem);
-    line-height: .92; letter-spacing: .01em; color: var(--paper);
-  }
-  .dl-title .accent { color: var(--amber); }
-  .dl-sub {
-    font-size: .95rem; color: rgba(242,237,228,.78);
-    max-width: 480px; line-height: 1.85; margin-top: 20px;
-  }
-  .dl-cta-col { display: flex; flex-direction: column; gap: 14px; min-width: 260px; }
-  .dl-note { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: rgba(242,237,228,.5); text-align: center; }
-
-  /* ═══════════════════════════════════════════════════════
-     FOOTER
-  ═══════════════════════════════════════════════════════ */
-  footer {
-    background: var(--ink2);
-    border-top: 1px solid rgba(242,237,228,.08);
-  }
-  .footer-top {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 0; border-bottom: 1px solid rgba(242,237,228,.08);
-  }
-  @media (max-width:860px) { .footer-top { grid-template-columns: 1fr 1fr; } }
-  @media (max-width:480px) { .footer-top { grid-template-columns: 1fr; } }
-  .footer-col {
-    padding: 48px 40px;
-    border-right: 1px solid rgba(242,237,228,.06);
-  }
-  .footer-col:last-child { border-right: none; }
-  .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-  .footer-brand img { height: 26px; }
-  .footer-brand-name { font-family: var(--mono); font-weight: 600; font-size: 13px; letter-spacing: .06em; color: var(--paper); }
-  .footer-brand-desc { font-size: .85rem; color: rgba(242,237,228,.65); line-height: 1.7; max-width: 260px; }
-  .footer-col-title {
-    font-family: var(--mono); font-size: 9px; font-weight: 700;
-    letter-spacing: .2em; text-transform: uppercase;
-    color: rgba(242,237,228,.55); margin-bottom: 20px;
-  }
-  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
-  .footer-links a {
-    font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .06em;
-    color: rgba(242,237,228,.7); transition: color .2s;
-  }
-  .footer-links a:hover { color: var(--amber); }
-  .footer-bottom {
-    padding: 24px 40px;
-    display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
-  }
-  .footer-bottom p { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: rgba(242,237,228,.5); }
-  /* ═══════════════════════════════════════════════════════
-     REVIEWS — REAL USER REVIEWS + SUBMIT FORM
-  ═══════════════════════════════════════════════════════ */
-  #reviews {
-    border-bottom: 2px solid var(--ink);
-  }
-  .reviews-wrap { padding: 80px 0; }
-
-  .reviews-top {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    border-bottom: 1px solid var(--rule); padding-bottom: 32px; margin-bottom: 48px;
-    gap: 24px; flex-wrap: wrap;
-  }
-  .reviews-top-left {}
-  .reviews-top-title { font-family: var(--disp); font-size: clamp(2.5rem,5vw,4.5rem); line-height: .95; }
-  .reviews-rating-bar {
-    display: flex; align-items: center; gap: 12px; margin-top: 14px;
-  }
-  .stars-big { display: flex; gap: 3px; }
-  .stars-big svg { width: 20px; height: 20px; color: var(--amber); }
-  .rating-num { font-family: var(--disp); font-size: 2rem; line-height: 1; }
-  .rating-count { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-
-  .review-cta-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--mono); font-size: 11px; font-weight: 700;
-    letter-spacing: .12em; text-transform: uppercase;
-    border: 2px solid var(--amber); color: var(--amber);
-    padding: 14px 24px; min-height: 48px; flex-shrink: 0;
-    transition: background .2s, color .2s, transform .2s var(--ease);
-    cursor: pointer; background: none;
-  }
-  .review-cta-btn:hover { background: var(--amber); color: #fff; transform: translateY(-2px); }
-  .review-cta-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
-
-  /* review cards grid */
-  .reviews-grid {
-    display: grid; grid-template-columns: repeat(3,1fr);
-    gap: 0;
-    border: 1px solid var(--rule);
-    margin-bottom: 0;
-  }
-  @media (max-width:900px) { .reviews-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width:560px) { .reviews-grid { grid-template-columns: 1fr; } }
-
-  .review-card {
-    padding: 40px 32px;
-    border-right: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    transition: background .25s;
-    position: relative;
-  }
-  .review-card:hover { background: var(--paper2); }
-  .review-card:nth-child(3n) { border-right: none; }
-  @media (max-width:900px) { .review-card:nth-child(3n) { border-right: 1px solid var(--rule); } .review-card:nth-child(2n) { border-right: none; } }
-  @media (max-width:560px) { .review-card { border-right: none !important; } }
-
-  .review-meta {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
-  }
-  .review-avatar {
-    width: 36px; height: 36px; border-radius: 0;
-    background: var(--ink); color: var(--paper);
-    font-family: var(--disp); font-size: 1.1rem;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; letter-spacing: .02em;
-  }
-  .review-meta-info {}
-  .review-name {
-    font-family: var(--mono); font-size: 11px; font-weight: 700;
-    letter-spacing: .06em; color: var(--ink);
-  }
-  .review-role {
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
-    letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 2px;
-  }
-  .review-stars { display: flex; gap: 2px; margin-bottom: 12px; }
-  .review-stars svg { width: 13px; height: 13px; color: var(--amber); }
-  .review-text { font-size: .9rem; line-height: 1.8; color: var(--ink); font-style: normal; }
-  .review-date {
-    margin-top: 14px;
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
-    letter-spacing: .1em; text-transform: uppercase; color: var(--paper3);
-  }
-  .review-verified {
-    position: absolute; top: 16px; right: 20px;
-    font-family: var(--mono); font-size: 8px; font-weight: 700;
-    letter-spacing: .12em; text-transform: uppercase;
-    color: var(--amber); display: flex; align-items: center; gap: 4px;
-  }
-  .review-verified svg { width: 10px; height: 10px; }
-
-  /* empty state */
-  .reviews-empty {
-    grid-column: 1 / -1; padding: 64px 32px; text-align: center;
-    font-family: var(--mono); font-size: 12px; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--muted);
-  }
-
-  /* submit review modal */
-  #review-modal {
-    position: fixed; inset: 0; z-index: 2000;
-    background: rgba(15,14,11,0.75);
-    display: flex; align-items: center; justify-content: center;
-    padding: 24px;
-    opacity: 0; pointer-events: none;
-    transition: opacity .3s;
-  }
-  #review-modal.open { opacity: 1; pointer-events: auto; }
-  .modal-box {
-    background: var(--paper); max-width: 560px; width: 100%;
-    border: 2px solid var(--ink);
-    padding: 40px;
-    transform: translateY(20px); transition: transform .35s var(--ease);
-    max-height: 90vh; overflow-y: auto;
-  }
-  #review-modal.open .modal-box { transform: translateY(0); }
-  .modal-header {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    margin-bottom: 28px; gap: 16px;
-  }
-  .modal-title { font-family: var(--disp); font-size: 2rem; line-height: 1; }
-  .modal-close {
-    width: 36px; height: 36px; flex-shrink: 0;
-    border: 1.5px solid var(--rule-hv); background: none;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; color: var(--ink); transition: background .2s, border-color .2s;
-  }
-  .modal-close:hover { background: var(--amber); border-color: var(--amber); color: #fff; }
-  .modal-close svg { width: 14px; height: 14px; }
-
-  /* star rating input */
-  .star-input { display: flex; gap: 6px; margin-bottom: 20px; flex-direction: row-reverse; justify-content: flex-end; }
-  .star-input input { display: none; }
-  .star-input label {
-    cursor: pointer; width: 28px; height: 28px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .star-input label svg { width: 24px; height: 24px; color: var(--paper3); transition: color .15s; }
-  .star-input label:hover svg,
-  .star-input label:hover ~ label svg,
-  .star-input input:checked ~ label svg { color: var(--amber); }
-  /* correct forward sibling check: reverse order so checked highlights forward */
-  .star-input input:checked + label svg,
-  .star-input input:checked + label ~ label svg { color: var(--amber); }
-
-  .modal-note { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
-  .modal-success {
-    display: none; text-align: center; padding: 32px 0;
-  }
-  .modal-success .tick {
-    width: 56px; height: 56px; border: 2px solid var(--amber);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px;
-  }
-  .modal-success .tick svg { width: 24px; height: 24px; color: var(--amber); }
-  .modal-success-title { font-family: var(--disp); font-size: 1.8rem; margin-bottom: 8px; }
-  .modal-success-sub { font-size: .9rem; color: var(--ink2); font-style: normal; }
-
-  /* ── DEV MODE / DELETE ── */
-  .dev-unlock-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-family: var(--mono); font-size: 9px; font-weight: 700;
-    letter-spacing: .14em; text-transform: uppercase;
-    color: var(--muted); border: 1px solid var(--rule);
-    padding: 7px 12px; background: none; cursor: pointer;
-    transition: color .2s, border-color .2s; flex-shrink: 0;
-  }
-  .dev-unlock-btn:hover { color: var(--ink); border-color: var(--rule-hv); }
-  .dev-unlock-btn.active { color: var(--amber); border-color: var(--amber); background: var(--amber-lt); }
-  .dev-unlock-btn svg { width: 11px; height: 11px; }
-
-  .review-delete-btn {
-    display: none; position: absolute; top: 10px; right: 10px;
-    width: 26px; height: 26px; align-items: center; justify-content: center;
-    background: none; border: 1px solid rgba(200,60,60,0.3);
-    color: rgba(200,60,60,0.55); cursor: pointer;
-    transition: background .2s, color .2s, border-color .2s;
-  }
-  .review-delete-btn:hover { background: rgba(200,60,60,0.1); color: rgb(200,60,60); border-color: rgb(200,60,60); }
-  .review-delete-btn svg { width: 11px; height: 11px; pointer-events: none; }
-  body.dev-mode .review-delete-btn { display: flex; }
-  body.dev-mode .review-card { padding-top: 38px; }
-
-  /* dev password modal */
-  #dev-modal {
-    position: fixed; inset: 0; z-index: 3000;
-    background: rgba(15,14,11,0.8);
-    display: flex; align-items: center; justify-content: center;
-    padding: 24px; opacity: 0; pointer-events: none; transition: opacity .25s;
-  }
-  #dev-modal.open { opacity: 1; pointer-events: auto; }
-  .dev-modal-box {
-    background: var(--paper); border: 2px solid var(--ink);
-    padding: 36px; max-width: 380px; width: 100%;
-    transform: translateY(16px); transition: transform .3s var(--ease);
-  }
-  #dev-modal.open .dev-modal-box { transform: translateY(0); }
-  .dev-modal-title { font-family: var(--disp); font-size: 1.8rem; margin-bottom: 6px; }
-  .dev-modal-sub { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
-  .dev-modal-err { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: rgb(200,60,60); margin-top: 10px; min-height: 14px; }
-  .dev-modal-actions { display: flex; gap: 10px; margin-top: 16px; }
-  .dev-modal-cancel {
-    flex: 1; padding: 12px; font-family: var(--mono); font-size: 11px; font-weight: 600;
-    letter-spacing: .1em; text-transform: uppercase; border: 1.5px solid var(--rule-hv);
-    color: var(--muted); background: none; cursor: pointer; transition: border-color .2s, color .2s;
-  }
-  .dev-modal-cancel:hover { border-color: var(--ink); color: var(--ink); }
-  .dev-modal-ok {
-    flex: 2; padding: 12px; font-family: var(--mono); font-size: 11px; font-weight: 700;
-    letter-spacing: .1em; text-transform: uppercase; background: var(--ink); color: var(--paper);
-    cursor: pointer; border: none; transition: background .2s;
-  }
-  .dev-modal-ok:hover { background: var(--amber); }
-
-  /* ═══════════════════════════════════════════════════════
-     MOBILE OPTIMISATION — phones ≤ 600 px
-     All rules are inside @media so the desktop is untouched.
-  ═══════════════════════════════════════════════════════ */
-
-  /* ── Global touch targets & readability ── */
-  @media (max-width:600px) {
-    /* Larger base font so small text stays legible */
-    body { font-size: 16px; }
-
-    /* Let long URLs / mono strings wrap instead of blowing the layout */
-    .mono, .spec-k, .spec-v,
-    .req-table td, .price-list li,
-    .footer-links a { word-break: break-word; }
-
-    /* Give every anchor / button a comfortable tap target */
-    a, button { min-height: 44px; }
-    .nav-links a, #mob-menu a { min-height: 48px; }
-  }
-
-  /* ── Nav ── */
-  @media (max-width:600px) {
-    .nav-inner { height: 56px; }
-    .nav-brand  { padding: 0 16px 0 0; font-size: 13px; }
-    .nav-brand img { height: 24px; }
-    #mob-btn    { padding: 0 16px; }
-    #mob-menu a { padding: 16px 20px; font-size: 13px; }
-  }
-
-  /* ── Hero ── */
-  @media (max-width:600px) {
-    #hero {
-      margin-top: 56px;                /* matches shrunken nav */
-      min-height: unset;
-      grid-template-columns: 1fr !important;
-    }
-    .hero-left {
-      padding: 36px 20px 28px !important;
-      border-right: none !important;
-    }
-    .hero-title { font-size: clamp(3.2rem, 14vw, 5rem) !important; }
-
-    /* hero stats: 2×2 grid so all four sit flush */
-    .hero-meta {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 !important;
-      margin-top: 28px;
-      padding-top: 0 !important;
-      border-top: none !important;
-    }
-    /* hide the 1-px vertical divider <div>s on mobile */
-    .hero-meta > div[style*="width:1px"] { display: none !important; }
-    .hero-meta > div:not([style*="width:1px"]) {
-      padding: 16px 14px;
-      border: 1px solid var(--rule);
-      margin: -1px 0 0 -1px;   /* collapsed border trick */
-    }
-
-    .hero-right {
-      border-left: none !important;
-      border-top: 1px solid var(--rule);
-    }
-    .hero-desc-block { padding: 24px 20px !important; }
-    .hero-spec-block { padding: 20px 20px !important; }
-    .hero-cta-block  { padding: 20px 20px 32px !important; }
-
-    /* spec table: wrap long values */
-    .spec-row { flex-wrap: wrap; gap: 4px; }
-    .spec-k   { flex: 0 0 100%; }
-
-    .btn-primary, .btn-ghost {
-      font-size: 11px !important;
-      padding: 15px 16px !important;
-      min-height: 48px;
-    }
-  }
-
-  /* ── Workflow ── */
-  @media (max-width:600px) {
-    #workflow { padding: 48px 0 0 !important; }
-
-    .wf-header-left {
-      padding: 0 0 24px !important;
-      border-right: none !important;
-      border-bottom: 1px solid var(--rule);
-    }
-    .wf-header-right { padding: 20px 0 24px !important; gap: 20px !important; }
-
-    .section-title-huge { font-size: clamp(2.8rem, 13vw, 4.5rem) !important; }
-
-    /* step pills: wrap & shrink */
-    .wf-step-pills { flex-wrap: wrap; gap: 8px !important; }
-    .wf-step-pill  { padding: 8px 10px !important; }
-    .wf-pill-label { font-size: 9px !important; }
-    .wf-step-arrow { display: none; }
-
-    /* stats row: equal-width cells, no overflow */
-    .wf-header-stats { flex-wrap: nowrap; overflow: hidden; }
-    .wf-hstat { padding: 12px 8px !important; }
-    .wf-hstat-n { font-size: 1.3rem !important; }
-    .wf-hstat-l { font-size: 8px !important; }
-
-    /* workflow tabs: 2-up then 1-up at 380px */
-    .wf-tabs { grid-template-columns: repeat(2,1fr) !important; }
-    .wf-tab  { padding: 14px 12px !important; }
-    .wf-tab-title { font-size: 10px !important; }
-
-    /* active panel */
-    .wf-panel.active { grid-template-columns: 1fr !important; }
-    .wf-panel-text { padding: 28px 0 20px !important; border-right: none !important; border-bottom: 1px solid var(--rule); }
-    .wf-panel-vid  { padding: 20px 0 28px !important; }
-    .wf-panel-num  { font-size: 4.5rem !important; }
-    .wf-panel-title { font-size: 1.8rem !important; }
-  }
-  @media (max-width:380px) {
-    .wf-tabs { grid-template-columns: 1fr !important; }
-  }
-
-  /* ── Features ── */
-  @media (max-width:600px) {
-    #features { padding: 48px 0 0 !important; }
-    .feat-header { padding: 48px 0 32px !important; flex-direction: column; gap: 12px; }
-    .feat-header-title { font-size: clamp(2.2rem, 11vw, 3.5rem) !important; }
-    .feat-header-sub { margin-left: 0 !important; }
-    .feat-grid { grid-template-columns: 1fr !important; }
-    .feat-item { padding: 28px 20px !important; border-right: none !important; }
-    .feat-big-num { font-size: 3.2rem !important; }
-  }
-
-  /* ── Requirements ── */
-  @media (max-width:600px) {
-    #requirements { padding: 0 !important; }
-    .req-wrap { padding: 48px 0 !important; }
-
-    .req-top {
-      flex-direction: column !important;
-      gap: 16px !important;
-      padding-bottom: 24px !important;
-      margin-bottom: 32px !important;
-    }
-    .req-top-title  { font-size: clamp(2rem, 10vw, 3rem) !important; }
-    .req-top-right  { width: 100% !important; }
-
-    .req-quick-stats { grid-template-columns: 1fr !important; }
-    .req-qstat {
-      flex-direction: row !important;
-      text-align: left !important;
-      border-right: none !important;
-      border-bottom: 1px solid var(--rule) !important;
-      padding: 14px 16px !important;
-    }
-    .req-qstat:last-child { border-bottom: none !important; }
-
-    .req-cols { grid-template-columns: 1fr !important; gap: 0 !important; }
-    .req-col:first-child {
-      border-right: none !important;
-      padding-right: 0 !important;
-      border-bottom: 1px solid var(--rule) !important;
-      padding-bottom: 28px !important;
-      margin-bottom: 28px !important;
-    }
-    .req-col:last-child { padding-left: 0 !important; }
-
-    /* make the req table cells wrap nicely */
-    .req-table .rk { width: 70px !important; font-size: 9px !important; }
-    .req-table .rv2 { font-size: .83rem !important; }
-  }
-
-  /* ── Pricing ── */
-  @media (max-width:600px) {
-    .price-wrap { grid-template-columns: 1fr !important; }
-    .price-col { padding: 40px 20px !important; }
-    .price-col:first-child { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
-    .price-amount-big { font-size: clamp(3rem, 13vw, 5rem) !important; }
-    .price-tier-label { margin-top: 0 !important; flex-wrap: wrap; }
-    .price-sub-line   { flex-wrap: wrap; gap: 8px !important; }
-    .btn-amber, .btn-ink { min-height: 52px; font-size: 11px !important; }
-  }
-
-  /* ── FAQ ── */
-  @media (max-width:600px) {
-    #faq { padding: 48px 0 !important; }
-    .faq-top { flex-direction: column; align-items: flex-start; gap: 12px; }
-    .faq-title { font-size: clamp(2rem, 10vw, 3rem) !important; }
-    .faq-btn   { font-size: .9rem !important; padding: 18px 0 !important; gap: 16px; }
-    .faq-btn-icon { flex-shrink: 0; }
-    /* ensure long questions wrap */
-    .faq-btn span:first-child { flex: 1; }
-    .faq-item.open .faq-body { max-height: 400px; } /* taller for wrapped text */
-  }
-
-  /* ── Reviews ── */
-  @media (max-width:600px) {
-    .reviews-wrap { padding: 48px 0 !important; }
-    .reviews-top  { flex-direction: column; align-items: flex-start !important; gap: 20px !important; }
-    .reviews-top-title { font-size: clamp(2.2rem, 11vw, 3.5rem) !important; }
-    .review-cta-btn  { width: 100% !important; justify-content: center !important; }
-    .dev-unlock-btn  { width: 100% !important; justify-content: center !important; }
-    #rating-bar      { flex-wrap: wrap !important; }
-    .reviews-grid    { grid-template-columns: 1fr !important; }
-    .review-card     { border-right: none !important; padding: 24px 16px !important; }
-    .review-verified { font-size: 7px !important; top: 12px; right: 12px; }
-  }
-
-  /* ── Review modal ── */
-  @media (max-width:600px) {
-    .modal-box { padding: 24px 20px !important; }
-    .modal-title { font-size: 1.6rem !important; }
-    .form-grid { grid-template-columns: 1fr !important; }
-    /* star rating stays accessible on touch */
-    .star-input label { width: 36px; height: 36px; }
-    .star-input label svg { width: 28px; height: 28px; }
-  }
-
-  /* ── Contact ── */
-  @media (max-width:600px) {
-    .contact-grid { grid-template-columns: 1fr !important; }
-    .contact-left  { padding: 48px 20px 28px !important; border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
-    .contact-right { padding: 28px 20px 48px !important; }
-    .contact-title { font-size: clamp(1.9rem, 10vw, 3rem) !important; }
-    .channels { grid-template-columns: repeat(2,1fr) !important; gap: 8px !important; }
-    .channel  { padding: 14px 10px !important; }
-    .form-submit { min-height: 52px; }
-  }
-
-  /* ── Download CTA ── */
-  @media (max-width:600px) {
-    .dl-inner { padding: 56px 0 !important; grid-template-columns: 1fr !important; gap: 32px !important; }
-    .dl-title { font-size: clamp(2rem, 10vw, 3.5rem) !important; }
-    .dl-cta-col { width: 100% !important; min-width: unset !important; }
-    .btn-amber { justify-content: center !important; min-height: 52px; }
-  }
-
-  /* ── Footer ── */
-  @media (max-width:600px) {
-    .footer-top    { grid-template-columns: 1fr 1fr !important; }
-    .footer-col    { padding: 28px 20px !important; }
-    .footer-bottom { padding: 20px !important; flex-direction: column !important; text-align: center !important; gap: 8px !important; }
-  }
-  @media (max-width:380px) {
-    .footer-top { grid-template-columns: 1fr !important; }
-  }
-
-  /* ── Extra-small phones (≤ 380 px) ── */
-  @media (max-width:380px) {
-    .wrap { padding: 0 14px !important; }
-    .hero-left  { padding-left: 14px !important; padding-right: 14px !important; }
-    .hero-desc-block, .hero-spec-block, .hero-cta-block { padding-left: 14px !important; padding-right: 14px !important; }
-    .contact-left, .contact-right { padding-left: 14px !important; padding-right: 14px !important; }
-    .hero-title { font-size: clamp(2.8rem, 13vw, 4rem) !important; }
-    .nav-brand  { font-size: 12px; gap: 8px; }
-    .nav-brand img { height: 22px; }
-    #mob-menu a { padding: 14px 14px; }
-    .wf-tabs    { grid-template-columns: 1fr !important; }
-    .feat-item  { padding: 22px 14px !important; }
-    .price-col  { padding: 32px 14px !important; }
-    .modal-box  { padding: 20px 14px !important; }
-  }
-
-  /* ── Prevent horizontal overflow on all screens ── */
-  @media (max-width:768px) {
-    img, video, iframe, svg { max-width: 100%; }
-    .vid-frame, .vid-aspect { max-width: 100%; }
-    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    /* spec rows shouldn't force a min-width */
-    .spec-row .spec-v { text-align: right; max-width: 55%; word-break: break-word; }
-  }
-
-
-  /* ═══════════════════════════════════════════════════════
-     UX IMPROVEMENTS — targeting 90%+ audit score
-     Fixes: Visual Hierarchy, Color Contrast, Typography,
-     Consistency, Responsiveness, Task Clarity, Navigation
-     Depth, Friction Points, Accessibility, Conversion Clarity
-  ═══════════════════════════════════════════════════════ */
-
-  /* ── 1. SKIP LINK (Accessibility) ── */
-  .skip-link {
-    position: fixed; top: -100%; left: 0; z-index: 99999;
-    background: var(--amber); color: #fff;
-    font-family: var(--mono); font-size: 13px; font-weight: 700;
-    letter-spacing: .1em; text-transform: uppercase;
-    padding: 14px 28px;
-    transition: top .2s;
-  }
-  .skip-link:focus { top: 0; outline: 3px solid var(--ink); outline-offset: 2px; }
-
-  /* ── 2. GLOBAL FOCUS STYLES (Accessibility) ── */
-  *:focus-visible {
-    outline: 2px solid var(--amber);
-    outline-offset: 3px;
-  }
-  button:focus-visible, a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
-
-  /* ── 3. COLOR CONTRAST — lift muted text (WCAG AA needs 4.5:1) ── */
-  /* #7A6E5F on #F2EDE4 = ~3.7:1 — too low. We darken to pass. */
-  /* --muted override removed — fixed at source above */
-
-  /* muted on dark backgrounds (footer, ticker) already fine — keep paper vars */
-  footer .footer-brand-desc { color: rgba(242,237,228,.55); }  /* boosted from .4 */
-  footer .footer-col-title   { color: rgba(242,237,228,.5);  } /* boosted from .3 */
-  footer .footer-links a     { color: rgba(242,237,228,.65); } /* boosted from .45 */
-  footer .footer-bottom p    { color: rgba(242,237,228,.45); } /* boosted from .25 */
-  /* dl-sub override removed — fixed at source */
-  .ticker-item { color: rgba(242,237,228,.65); }               /* boosted from .4  */
-  .price-col.featured .price-sub-line { color: rgba(242,237,228,.65); }
-  .price-col.featured .price-list li.off { color: rgba(242,237,228,.5); }
-  .price-note { color: rgba(242,237,228,.5); }
-
-  /* ── 4. VISUAL HIERARCHY — hero CTA prominence ── */
-  /* btn-primary and btn-ghost overrides removed — fixed at source */
-
-  /* ── 5. NAV ACTIVE STATE (Consistency) ── */
-  .nav-links a[aria-current="page"],
-  .nav-links a.nav-active { color: var(--amber); border-bottom: 2px solid var(--amber); }
-
-  /* Underline nav links on hover for clearer affordance */
-  .nav-links a:hover { color: var(--ink); background: var(--paper2); }
-
-  /* Download CTA button in nav — make it visually primary */
-  .nav-cta {
-    background: var(--amber);
-    color: #fff;
-    border-left: none;
-    font-size: 12px;
-    letter-spacing: .08em;
-  }
-  .nav-cta:hover { background: #c4520a; color: #fff; }
-
-  /* ── 6. TASK CLARITY — hero CTA label tweak ── */
-  /* "Download for Windows — Free Trial" → already good; 
-     add a subtext micro-note beneath buttons for reassurance */
-  .cta-trust-note {
-    font-family: var(--mono); font-size: 9px; font-weight: 600;
-    letter-spacing: .14em; text-transform: uppercase;
-    color: var(--muted); text-align: center; margin-top: 4px;
-  }
-
-  /* ── 7. PRICING — reduce friction on "Purchase in Software" ── */
-  /* The alert-based purchase button hurts conversion; style it as primary
-     and add a micro note for clarity */
-  .price-purchase-note {
-    font-family: var(--mono); font-size: 9px; letter-spacing: .1em;
-    text-transform: uppercase; color: rgba(242,237,228,.5);
-    text-align: center; margin-top: 10px; line-height: 1.6;
-  }
-
-  /* ── 8. NAVIGATION DEPTH — sticky section breadcrumb ── */
-  #section-breadcrumb {
-    position: fixed; bottom: 24px; right: 24px; z-index: 400;
-    background: var(--ink); color: var(--paper);
-    font-family: var(--mono); font-size: 9px; font-weight: 700;
-    letter-spacing: .16em; text-transform: uppercase;
-    padding: 8px 14px;
-    border: 1px solid rgba(242,237,228,.12);
-    opacity: 0; pointer-events: none;
-    transition: opacity .3s, transform .3s var(--ease);
-    transform: translateY(8px);
-    display: flex; align-items: center; gap: 8px;
-  }
-  #section-breadcrumb.vis { opacity: 1; transform: translateY(0); pointer-events: auto; }
-  #section-breadcrumb .sb-dot { width: 5px; height: 5px; background: var(--amber); flex-shrink: 0; }
-  @media (max-width:600px) { #section-breadcrumb { bottom: 16px; right: 16px; } }
-
-  /* ── 9. CONVERSION CLARITY — social proof strip ── */
-  .proof-strip {
-    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--rule);
-  }
-  .proof-item {
-    display: flex; align-items: center; gap: 7px;
-    font-family: var(--mono); font-size: 9px; font-weight: 600;
-    letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
-  }
-  .proof-item svg { width: 12px; height: 12px; color: var(--amber); flex-shrink: 0; }
-
-  /* ── 10. TYPOGRAPHY — improve line-height consistency ── */
-  .hero-desc { font-size: 1rem; line-height: 1.75; font-style: normal; color: var(--ink2); }
-  .feat-desc { font-size: .9rem; line-height: 1.75; color: var(--muted); }
-  .wf-body-text { font-size: 1rem; line-height: 1.75; color: var(--muted); }
-  .faq-body-inner { font-style: normal; font-size: .95rem; line-height: 1.9; }
-
-  /* ── 11. RESPONSIVENESS — mobile CTA always visible ── */
-  @media (max-width:600px) {
-    /* Floating download pill on mobile */
-    #mobile-cta-float {
-      display: flex;
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
-      background: var(--amber); color: #fff;
-      font-family: var(--mono); font-size: 12px; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase;
-      padding: 16px 24px; align-items: center; justify-content: center; gap: 10px;
-      box-shadow: 0 -4px 24px rgba(232,101,10,0.4);
-      text-decoration: none;
-    }
-    #mobile-cta-float svg { width: 16px; height: 16px; flex-shrink: 0; }
-    /* Ensure footer doesn't get hidden behind float bar */
-    footer { padding-bottom: 64px; }
-  }
-  @media (min-width:601px) { #mobile-cta-float { display: none; } }
-
-  /* ── 12. FAQ — open first item by default for scannability ── */
-  /* (done in JS below) */
-
-  /* ── 13. CONTACT FORM — label prominence ── */
-  .form-label { font-size: 10px; color: var(--ink); font-weight: 700; }
-  .form-field { font-size: .95rem; }
-  .form-field:focus { border-color: var(--amber); box-shadow: 0 0 0 3px var(--amber-lt); }
-
-  /* ── 14. FEATURE GRID — hover state more obvious ── */
-  .feat-item:hover .feat-name { color: var(--amber); }
-  .feat-item:hover .feat-big-num { color: var(--paper2); }
-
-  /* ── 15. SECTION LABELS visibility ── */
-  .sec-num { font-size: 11px; color: var(--amber); font-weight: 700; }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDCraft Pro — Bulk ID Card Generator for Windows</title>
+<meta name="description" content="Generate thousands of employee, student and event ID cards in minutes. Import Excel, auto-create QR codes, export print-ready PDFs — 100% offline Windows app.">
+<meta property="og:title" content="IDCraft Pro — Bulk ID Card Generator">
+<meta property="og:image" content="N4.png">
+<link rel="icon" type="image/png" href="N4.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- Skip to content — accessibility -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-
-  <!-- Progress bar -->
-  <div id="prog" role="progressbar" aria-label="Page scroll progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-
-  <!-- Custom cursor -->
-  <div id="cur" aria-hidden="true"></div>
-
-  <!-- ══ NAV ══════════════════════════════════════════ -->
-  <header id="nav" role="banner">
-    <div class="wrap">
-      <div class="nav-inner">
-        <a href="#" class="nav-brand" aria-label="IDCraft Pro home">
-          <img src="N4.png" alt="IDCraft Pro logo" width="28" height="28">
-          IDCraft Pro
-        </a>
-        <nav class="nav-links" aria-label="Main navigation">
-          <a href="#features">Features</a>
-          <a href="#workflow">Workflow</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#pricing">Licensing</a>
-          <a href="transmorph.html" target="_blank">
-            Free Tools <span class="nav-badge">New</span>
-          </a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe"
-           class="nav-cta" title="Download Free Trial">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-          Download Trial
-        </a>
-        <button id="mob-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mob-menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="wrap" style="padding-top:0; padding-bottom:0;">
-      <nav id="mob-menu" aria-label="Mobile navigation">
-        <a href="#features" class="ml">Features</a>
-        <a href="#workflow" class="ml">Workflow</a>
-        <a href="#reviews" class="ml">Reviews</a>
-        <a href="#pricing" class="ml">Licensing</a>
-        <a href="transmorph.html" target="_blank" class="ml">Free Tools</a>
-        <a href="#contact" class="ml">Contact</a>
-        <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="ml mob-cta">Download Trial</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main-content">
-    <!-- ══ HERO ══════════════════════════════════════════ -->
-    <section id="hero" aria-label="Hero">
-      <div class="wrap" style="padding:0; display:contents;">
-
-        <div class="hero-left wrap" style="padding-top:0; padding-bottom:0; display:flex; flex-direction:column; justify-content:space-between; padding: 56px 64px 56px 40px; border-right: 1px solid var(--rule);">
-          <div>
-            <div class="hero-eyebrow rv">
-              <span class="eyebrow-tag">Enterprise-Grade Suite</span>
-              <span class="eyebrow-line"></span>
-              <span class="eyebrow-tag" style="color:var(--muted);">IDCraft Pro</span>
-            </div>
-            <h1 class="hero-title rv d1">
-              Bulk
-              <span class="accent">ID Card</span>
-              Generator
-            </h1>
-          </div>
-          <div class="hero-meta rv d2">
-            <div>
-              <div class="hero-stat-n">&lt;2<span style="font-size:1.6rem;color:var(--muted);">min</span></div>
-              <div class="hero-stat-l">2000+ cards generated</div>
-            </div>
-            <div style="width:1px; background:var(--rule); align-self:stretch;"></div>
-            <div>
-              <div class="hero-stat-n">4</div>
-              <div class="hero-stat-l">Export formats</div>
-            </div>
-            <div style="width:1px; background:var(--rule); align-self:stretch;"></div>
-            <div>
-              <div class="hero-stat-n">100<span style="font-size:1.4rem;color:var(--muted);">%</span></div>
-              <div class="hero-stat-l">Offline — no cloud</div>
-            </div>
-            <div style="width:1px; background:var(--rule); align-self:stretch;"></div>
-            <div>
-              <div class="hero-stat-n" style="color:var(--amber);">&#8377;999</div>
-              <div class="hero-stat-l">Lifetime licence</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <div class="hero-desc-block rv d1">
-            <div class="hero-desc-label">Product Description</div>
-            <p class="hero-desc">
-              The ultimate Windows software to generate thousands of custom employee, student, and event badges. Import Excel data, auto-generate QR codes, and export print-ready A4 grids — all completely offline.
-            </p>
-          </div>
-          <div class="hero-spec-block rv d2">
-            <div class="spec-row"><span class="spec-k">Platform</span><span class="spec-v">Windows 10 / 11 (64-bit)</span></div>
-            <div class="spec-row"><span class="spec-k">JPEG Output</span><span class="spec-v amber">2000+ cards / &lt;2 min</span></div>
-            <div class="spec-row"><span class="spec-k">PNG Output</span><span class="spec-v">2000+ cards / &lt;6 min</span></div>
-            <div class="spec-row"><span class="spec-k">Data Source</span><span class="spec-v">.xlsx / Excel binding</span></div>
-            <div class="spec-row"><span class="spec-k">Trial</span><span class="spec-v">7 days · 20 cards/day free</span></div>
-          </div>
-          <div class="hero-cta-block rv d3">
-            <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe"
-               class="btn-primary" title="Download IDCraft Pro for Windows — Free Trial"
-               aria-label="Download IDCraft Pro for Windows — Free 7-day trial, no credit card required">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-              Download for Windows — Free Trial
-            </a>
-            <a href="#pricing" class="btn-ghost" aria-label="View IDCraft Pro licensing and pricing plans">View Licensing Plans</a>
-            <div class="proof-strip" role="list">
-              <div class="proof-item" role="listitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                No credit card
-              </div>
-              <div class="proof-item" role="listitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                7-day free trial
-              </div>
-              <div class="proof-item" role="listitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                Windows 10/11 · ~40 MB
-              </div>
-              <div class="proof-item" role="listitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                100% offline
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ══ TICKER ═════════════════════════════════════════ -->
-    <div class="ticker-wrap" aria-hidden="true">
-      <div class="ticker-track">
-        <div class="ticker-item"><span class="t-dot"></span>Corporate IT</div>
-        <div class="ticker-item"><span class="t-dot"></span>Event Management</div>
-        <div class="ticker-item"><span class="t-dot"></span>Educational Institutions</div>
-        <div class="ticker-item"><span class="t-dot"></span>Healthcare Facilities</div>
-        <div class="ticker-item"><span class="t-dot"></span>Print Shops</div>
-        <div class="ticker-item"><span class="t-dot"></span>Government Offices</div>
-        <div class="ticker-item"><span class="t-dot"></span>Corporate IT</div>
-        <div class="ticker-item"><span class="t-dot"></span>Event Management</div>
-        <div class="ticker-item"><span class="t-dot"></span>Educational Institutions</div>
-        <div class="ticker-item"><span class="t-dot"></span>Healthcare Facilities</div>
-        <div class="ticker-item"><span class="t-dot"></span>Print Shops</div>
-        <div class="ticker-item"><span class="t-dot"></span>Government Offices</div>
-      </div>
-    </div>
-
-    <!-- ══ WORKFLOW ═══════════════════════════════════════ -->
-    <section id="workflow">
-      <div class="wrap">
-        <div class="wf-header">
-          <div class="wf-header-left">
-            <div class="sec-num rv" style="margin-bottom:24px;">02 — Workflow</div>
-            <h2 class="section-title-huge rv d1">The<br><span class="accent">Workspace</span></h2>
-          </div>
-          <div class="wf-header-right">
-            <p class="wf-body-text rv d2" style="margin-bottom:32px;">A premium liquid-glass aesthetic so your staff can master the ID maker in minutes. Four steps from install to batch output.</p>
-            <div class="wf-step-pills rv d3">
-              <div class="wf-step-pill">
-                <span class="wf-pill-num">01</span>
-                <span class="wf-pill-label">Install the .exe</span>
-              </div>
-              <div class="wf-step-arrow">→</div>
-              <div class="wf-step-pill">
-                <span class="wf-pill-num">02</span>
-                <span class="wf-pill-label">Open Project Hub</span>
-              </div>
-              <div class="wf-step-arrow">→</div>
-              <div class="wf-step-pill">
-                <span class="wf-pill-num">03</span>
-                <span class="wf-pill-label">Design Canvas</span>
-              </div>
-              <div class="wf-step-arrow">→</div>
-              <div class="wf-step-pill">
-                <span class="wf-pill-num">04</span>
-                <span class="wf-pill-label">Batch Export</span>
-              </div>
-            </div>
-            <div class="wf-header-stats rv d4">
-              <div class="wf-hstat">
-                <div class="wf-hstat-n">&lt;2<span style="font-size:1rem;">min</span></div>
-                <div class="wf-hstat-l">2000+ JPEG cards</div>
-              </div>
-              <div class="wf-hstat-div"></div>
-              <div class="wf-hstat">
-                <div class="wf-hstat-n">4</div>
-                <div class="wf-hstat-l">Export formats</div>
-              </div>
-              <div class="wf-hstat-div"></div>
-              <div class="wf-hstat">
-                <div class="wf-hstat-n">100<span style="font-size:1rem;">%</span></div>
-                <div class="wf-hstat-l">Offline — no cloud</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="wf-tabs" role="tablist" aria-label="Workflow steps">
-          <div class="wf-tab active" role="tab" aria-selected="true" aria-controls="panel-0" data-tab="0" tabindex="0">
-            <div class="wf-tab-num">Step 01</div>
-            <div class="wf-tab-title">Installation</div>
-          </div>
-          <div class="wf-tab" role="tab" aria-selected="false" aria-controls="panel-1" data-tab="1" tabindex="-1">
-            <div class="wf-tab-num">Step 02</div>
-            <div class="wf-tab-title">Project Hub</div>
-          </div>
-          <div class="wf-tab" role="tab" aria-selected="false" aria-controls="panel-2" data-tab="2" tabindex="-1">
-            <div class="wf-tab-num">Step 03</div>
-            <div class="wf-tab-title">Canvas Editor</div>
-          </div>
-          <div class="wf-tab" role="tab" aria-selected="false" aria-controls="panel-3" data-tab="3" tabindex="-1">
-            <div class="wf-tab-num">Step 04</div>
-            <div class="wf-tab-title">Batch Output</div>
-          </div>
-        </div>
-
-        <div class="wf-panels">
-          <!-- Panel 0 -->
-          <div class="wf-panel active" id="panel-0" role="tabpanel">
-            <div class="wf-panel-text">
-              <div class="wf-panel-num">01</div>
-              <h3 class="wf-panel-title">Seamless Installation</h3>
-              <p class="wf-panel-body">Packaged as a standalone Windows executable — no complex dependencies, no cloud configuration. Download, install, launch. Your first batch is minutes away.</p>
-            </div>
-            <div class="wf-panel-vid">
-              <div class="vid-frame">
-                <div class="vid-chrome-bar">
-                  <div class="vdot" style="background:#FF5F56"></div>
-                  <div class="vdot" style="background:#FFBD2E"></div>
-                  <div class="vdot" style="background:#27C93F"></div>
-                </div>
-                <div class="vid-aspect">
-                  <img class="vid-thumb" src="https://img.youtube.com/vi/VZtyCRwYfeI/maxresdefault.jpg" alt="Installation demo" loading="lazy">
-                  <div class="vid-overlay" data-vid="VZtyCRwYfeI" role="button" tabindex="0" aria-label="Play installation demo">
-                    <div class="play-ring"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Panel 1 -->
-          <div class="wf-panel" id="panel-1" role="tabpanel">
-            <div class="wf-panel-text">
-              <div class="wf-panel-num">02</div>
-              <h3 class="wf-panel-title">Project Hub</h3>
-              <p class="wf-panel-body">Launch recent .bip projects, manage templates, configure card dimensions and DPI resolution. Everything organised before you touch the canvas.</p>
-            </div>
-            <div class="wf-panel-vid">
-              <div class="vid-frame">
-                <div class="vid-chrome-bar">
-                  <div class="vdot" style="background:#FF5F56"></div>
-                  <div class="vdot" style="background:#FFBD2E"></div>
-                  <div class="vdot" style="background:#27C93F"></div>
-                </div>
-                <div class="vid-aspect">
-                  <img class="vid-thumb" src="https://img.youtube.com/vi/7xnkAFmcr6U/maxresdefault.jpg" alt="Project hub demo" loading="lazy">
-                  <div class="vid-overlay" data-vid="7xnkAFmcr6U" role="button" tabindex="0" aria-label="Play project hub demo">
-                    <div class="play-ring"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Panel 2 -->
-          <div class="wf-panel" id="panel-2" role="tabpanel">
-            <div class="wf-panel-text">
-              <div class="wf-panel-num">03</div>
-              <h3 class="wf-panel-title">Visual Canvas Editor</h3>
-              <p class="wf-panel-body">Drag and drop fields, photos, logos, QR codes, and decorative elements. Pixel-perfect positioning with real-time preview. Design once, generate thousands.</p>
-            </div>
-            <div class="wf-panel-vid">
-              <div class="vid-frame">
-                <div class="vid-chrome-bar">
-                  <div class="vdot" style="background:#FF5F56"></div>
-                  <div class="vdot" style="background:#FFBD2E"></div>
-                  <div class="vdot" style="background:#27C93F"></div>
-                </div>
-                <div class="vid-aspect">
-                  <img class="vid-thumb" src="https://img.youtube.com/vi/6L5XMfBFAos/maxresdefault.jpg" alt="Canvas editor demo" loading="lazy">
-                  <div class="vid-overlay" data-vid="6L5XMfBFAos" role="button" tabindex="0" aria-label="Play canvas editor demo">
-                    <div class="play-ring"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Panel 3 -->
-          <div class="wf-panel" id="panel-3" role="tabpanel">
-            <div class="wf-panel-text">
-              <div class="wf-panel-num">04</div>
-              <h3 class="wf-panel-title">Batch Output</h3>
-              <p class="wf-panel-body">Hit Generate and watch IDCraft Pro bind every Excel row to your template — photos matched, QR codes computed, A4 print sheets assembled. Export as JPEG, PNG, PDF, or SVG in one pass. 2,000+ cards in under 2 minutes.</p>
-            </div>
-            <div class="wf-panel-vid">
-              <div class="vid-frame">
-                <div class="vid-chrome-bar">
-                  <div class="vdot" style="background:#FF5F56"></div>
-                  <div class="vdot" style="background:#FFBD2E"></div>
-                  <div class="vdot" style="background:#27C93F"></div>
-                </div>
-                <div class="vid-aspect" style="background:var(--ink2); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px; padding:40px;">
-                  <!-- Output spec card shown when no dedicated video exists -->
-                  <div style="width:100%; display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule);">
-                    <div style="background:var(--ink); padding:20px 24px;">
-                      <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Format</div>
-                      <div style="font-family:var(--disp);font-size:1.6rem;color:var(--paper);line-height:1;">JPEG</div>
-                      <div style="font-family:var(--mono);font-size:10px;color:var(--amber);margin-top:6px;">2000+ cards &lt;2 min</div>
-                    </div>
-                    <div style="background:var(--ink); padding:20px 24px;">
-                      <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Format</div>
-                      <div style="font-family:var(--disp);font-size:1.6rem;color:var(--paper);line-height:1;">PNG</div>
-                      <div style="font-family:var(--mono);font-size:10px;color:rgba(242,237,228,.45);margin-top:6px;">Lossless · &lt;6 min</div>
-                    </div>
-                    <div style="background:var(--ink); padding:20px 24px;">
-                      <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Format</div>
-                      <div style="font-family:var(--disp);font-size:1.6rem;color:var(--paper);line-height:1;">PDF</div>
-                      <div style="font-family:var(--mono);font-size:10px;color:rgba(242,237,228,.45);margin-top:6px;">Print-ready A4 sheets</div>
-                    </div>
-                    <div style="background:var(--ink); padding:20px 24px;">
-                      <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Format</div>
-                      <div style="font-family:var(--disp);font-size:1.6rem;color:var(--paper);line-height:1;">SVG</div>
-                      <div style="font-family:var(--mono);font-size:10px;color:rgba(242,237,228,.45);margin-top:6px;">Vector · scalable</div>
-                    </div>
-                  </div>
-                  <div style="font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:center;">All formats export in a single batch run</div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </section>
-
-    <!-- ══ FEATURES ═══════════════════════════════════════ -->
-    <section id="features">
-      <div class="wrap">
-        <div class="feat-header">
-          <div>
-            <div class="sec-num rv" style="margin-bottom:16px;">03 — Capabilities</div>
-            <h2 class="feat-header-title rv d1">What It <span style="color:var(--amber);">Does</span></h2>
-          </div>
-          <p class="feat-header-sub rv d2">A complete toolkit for enterprise-scale ID generation. No cloud. No subscriptions. No complexity.</p>
-        </div>
-        <div class="feat-grid">
-          <div class="feat-item rv d1">
-            <div class="feat-big-num">01</div>
-            <div class="feat-icon-wrap"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
-            <div class="feat-name">Excel Data Binding</div>
-            <div class="feat-desc">Import any .xlsx sheet and map columns to template fields. Hundreds of records processed in a single click.</div>
-          </div>
-          <div class="feat-item rv d2">
-            <div class="feat-big-num">02</div>
-            <div class="feat-icon-wrap"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8H3m2 8H3m18-8h.01M5 16H3"/></svg></div>
-            <div class="feat-name">Auto QR & Barcode</div>
-            <div class="feat-desc">Dynamically bind any Excel column to generate unique QR codes and Data Matrix codes per card, automatically.</div>
-          </div>
-          <div class="feat-item rv d3">
-            <div class="feat-big-num">03</div>
-            <div class="feat-icon-wrap"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
-            <div class="feat-name">Photo Auto-Match</div>
-            <div class="feat-desc">Name-match photo folders to Excel rows automatically. Bind 500+ employee photos with zero manual assignment.</div>
-          </div>
-          <div class="feat-item rv d1">
-            <div class="feat-big-num">04</div>
-            <div class="feat-icon-wrap"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg></div>
-            <div class="feat-name">Dual-Sided Printing</div>
-            <div class="feat-desc">Design front and back faces independently. Merge into print-ready A4 grids with custom spacing and rotation.</div>
-          </div>
-          <div class="feat-item rv d2">
-            <div class="feat-big-num">05</div>
-            <div class="feat-icon-wrap"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div>
-            <div class="feat-name">Multi-Format Export</div>
-            <div class="feat-desc">Export in JPEG, lossless PNG, high-res PDF, or vector SVG. All formats print-ready at your configured DPI.</div>
-          </div>
-          <div class="feat-item rv d3">
-            <div class="feat-big-num">06</div>
-            <div class="feat-icon-wrap"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
-            <div class="feat-name">Fully Offline</div>
-            <div class="feat-desc">Zero cloud upload. All sensitive employee data, photos, and templates remain on your local Windows machine.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ REQUIREMENTS ═══════════════════════════════════ -->
-    <section id="requirements">
-      <div class="wrap">
-        <div class="req-wrap">
-          <div class="req-top">
-            <div>
-              <div class="sec-num rv" style="margin-bottom:16px;">05 — System Requirements</div>
-              <h2 class="req-top-title rv d1">Built for<br><span style="color:var(--amber);">Windows</span></h2>
-            </div>
-            <div class="req-top-right rv d2">
-              <div class="req-top-note">Standalone installer. No runtime dependencies. No .NET or VC++ redistribution required.</div>
-              <div class="req-quick-stats">
-                <div class="req-qstat">
-                  <div class="req-qstat-icon">
-                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                  </div>
-                  <div>
-                    <div class="req-qstat-val">100% Offline</div>
-                    <div class="req-qstat-label">No internet needed</div>
-                  </div>
-                </div>
-                <div class="req-qstat">
-                  <div class="req-qstat-icon">
-                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                  </div>
-                  <div>
-                    <div class="req-qstat-val">~85 MB</div>
-                    <div class="req-qstat-label">Installer size</div>
-                  </div>
-                </div>
-                <div class="req-qstat">
-                  <div class="req-qstat-icon">
-                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                  </div>
-                  <div>
-                    <div class="req-qstat-val">&lt;30 sec</div>
-                    <div class="req-qstat-label">Install time</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="req-cols">
-            <div class="req-col rv rl">
-              <div class="req-col-head">
-                <span class="req-col-badge min">Minimum</span>
-                <span class="req-col-label">Basic Operation</span>
-              </div>
-              <table class="req-table">
-                <tr><td class="rk">OS</td><td class="rv2">Windows 10 (64-bit)</td></tr>
-                <tr><td class="rk">CPU</td><td class="rv2">Intel Core i3 / AMD Ryzen 3</td></tr>
-                <tr><td class="rk">RAM</td><td class="rv2">4 GB</td></tr>
-                <tr><td class="rk">Storage</td><td class="rv2">500 MB free space</td></tr>
-                <tr><td class="rk">Display</td><td class="rv2">1280 × 720</td></tr>
-              </table>
-            </div>
-            <div class="req-col rv rr d1">
-              <div class="req-col-head">
-                <span class="req-col-badge rec">Recommended</span>
-                <span class="req-col-label">Optimal Performance</span>
-              </div>
-              <table class="req-table">
-                <tr><td class="rk">OS</td><td class="rv2 amber">Windows 11 (64-bit)</td></tr>
-                <tr><td class="rk">CPU</td><td class="rv2">Intel Core i5 / AMD Ryzen 5+</td></tr>
-                <tr><td class="rk">RAM</td><td class="rv2">8 GB or higher</td></tr>
-                <tr><td class="rk">Storage</td><td class="rv2">SSD — rapid image batching</td></tr>
-                <tr><td class="rk">Display</td><td class="rv2">1920 × 1080</td></tr>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ PRICING ═════════════════════════════════════════ -->
-    <section id="pricing">
-      <div class="wrap" style="padding:0; display:contents;">
-        <div class="price-wrap">
-          <!-- Trial -->
-          <div class="price-col">
-            <div style="padding: 0 0 0 40px;">
-              <div class="sec-num rv" style="margin-bottom:32px;">06 — Licensing</div>
-              <div class="price-tier-label rv d1" style="color:var(--muted);">
-                <span class="tier-dot" style="background:var(--muted);"></span>
-                7-Day Trial
-              </div>
-              <div class="price-amount-big rv d1">Free</div>
-              <div class="price-sub-line rv d1">No credit card required</div>
-              <div class="price-rule rv d1"></div>
-              <ul class="price-list rv d2">
-                <li class="on"><span class="price-check on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Visual Canvas Editor</li>
-                <li class="on"><span class="price-check on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Basic JPEG Exports</li>
-                <li class="off"><span class="price-check off"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></span>Limited to 20 cards / day</li>
-                <li class="off"><span class="price-check off"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></span>No QR / Data Codes</li>
-                <li class="off"><span class="price-check off"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></span>Single-Sided Only</li>
-              </ul>
-              <div class="price-cta rv d3">
-                <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe"
-                   class="btn-ghost" style="width:100%;">Start Trial Now</a>
-              </div>
-            </div>
-          </div>
-          <!-- Full Licence -->
-          <div class="price-col featured">
-            <div style="padding: 0 40px 0 0;">
-              <div class="price-tier-label rv d1" style="color:var(--amber); margin-top:64px;">
-                <span class="tier-dot" style="background:var(--amber);"></span>
-                Full Licence — Premium
-              </div>
-              <div class="price-amount-big rv d1" style="color:var(--paper);">
-                ₹<span>999</span>
-                <span class="price-old-tag" style="color:rgba(242,237,228,0.3);">₹4999</span>
-              </div>
-              <div class="price-sub-line rv d1">
-                One-time payment · Lifetime key
-                <span class="price-save-tag">Save 80%</span>
-              </div>
-              <div class="price-rule rv d1"></div>
-              <ul class="price-list rv d2">
-                <li class="on"><span class="price-check on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span><strong>Unlimited daily generations</strong></li>
-                <li class="on"><span class="price-check on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Dual-Sided Printing Modes</li>
-                <li class="on"><span class="price-check on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Dynamic QR &amp; Data Codes</li>
-                <li class="on"><span class="price-check on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>High-Res PDF, PNG &amp; Vector SVG</li>
-                <li class="on"><span class="price-check on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Grid Rotation &amp; Mirroring</li>
-              </ul>
-              <div class="price-cta rv d3">
-                <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe"
-                   class="btn-amber" style="display:flex;align-items:center;gap:10px;justify-content:center;text-decoration:none;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                  Download &amp; Purchase In-App
-                </a>
-                <div class="price-purchase-note">
-                  Download the trial → click "Buy Full Version" inside the app<br>
-                  Secure UPI / card payment · Instant licence key
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ FAQ ════════════════════════════════════════════ -->
-    <section id="faq">
-      <div class="wrap">
-        <div class="faq-top">
-          <h2 class="faq-title rv">Frequently Asked<br>Questions</h2>
-          <div class="faq-meta rv d2">Section 07 / 09</div>
-        </div>
-        <div class="faq-list">
-          <div class="faq-item rv d1">
-            <button class="faq-btn" aria-expanded="false">
-              Is this a free ID generator?
-              <span class="faq-btn-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-            </button>
-            <div class="faq-body"><div class="faq-body-inner">IDCraft Pro offers a free 7-day trial that acts as a free ID generator for up to 20 cards per day. For unlimited bulk generation, you can upgrade to our premium lifetime license.</div></div>
-          </div>
-          <div class="faq-item rv d2">
-            <button class="faq-btn" aria-expanded="false">
-              What makes this the best bulk ID card generator?
-              <span class="faq-btn-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-            </button>
-            <div class="faq-body"><div class="faq-body-inner">Unlike web-based ID card software, IDCraft Pro runs securely on your Windows desktop. It instantly binds hundreds of photos and Excel records into print-ready A4 grids without uploading sensitive data to the cloud.</div></div>
-          </div>
-          <div class="faq-item rv d3">
-            <button class="faq-btn" aria-expanded="false">
-              How fast is the generation process?
-              <span class="faq-btn-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-            </button>
-            <div class="faq-body"><div class="faq-body-inner">The software is highly optimized for performance. It takes less than 2 minutes to generate more than 2,000 cards in JPEG, and less than 6 minutes in lossless PNG format.</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ REVIEWS ════════════════════════════════════════ -->
-    <section id="reviews">
-      <div class="wrap">
-        <div class="reviews-wrap">
-          <div class="reviews-top">
-            <div class="reviews-top-left">
-              <div class="sec-num rv" style="margin-bottom:16px;">07 — Reviews</div>
-              <h2 class="reviews-top-title rv d1">What Users<br><span style="color:var(--amber);">Actually Say</span></h2>
-              <div class="reviews-rating-bar rv d2" id="rating-bar" style="display:none;">
-                <div class="stars-big" id="live-stars"></div>
-                <div class="rating-num" id="live-rating"></div>
-                <div class="rating-count" id="live-count"></div>
-              </div>
-            </div>
-            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-              <button class="dev-unlock-btn rv d3" id="dev-unlock-btn" title="Developer login" aria-label="Developer mode">
-                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                Dev
-              </button>
-              <button class="review-cta-btn rv d3" id="open-review-modal" aria-haspopup="dialog">
-                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-                Write a Review
-              </button>
-            </div>
-          </div>
-
-          <div class="reviews-grid" id="reviews-grid">
-            <!-- Reviews rendered by JS from localStorage -->
-          </div>
-
-          <div id="reviews-load-more" style="display:none; text-align:center; padding:28px 0; border-top:1px solid var(--rule);">
-            <button id="load-more-btn" class="review-cta-btn" style="border-color:var(--rule-hv);color:var(--muted);">
-              Load More Reviews
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Review Submit Modal -->
-    <div id="review-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-box">
-        <div id="modal-form-wrap">
-          <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">Leave a Review</h3>
-            <button class="modal-close" id="close-review-modal" aria-label="Close">
-              <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-          </div>
-
-          <div class="form-row" style="margin-bottom:6px;">
-            <label class="form-label">Your Rating</label>
-            <!-- reversed for CSS sibling trick -->
-            <div class="star-input" id="star-input" role="radiogroup" aria-label="Rating">
-              <input type="radio" name="rating" id="s5" value="5"><label for="s5" aria-label="5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></label>
-              <input type="radio" name="rating" id="s4" value="4"><label for="s4" aria-label="4 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></label>
-              <input type="radio" name="rating" id="s3" value="3"><label for="s3" aria-label="3 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></label>
-              <input type="radio" name="rating" id="s2" value="2"><label for="s2" aria-label="2 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></label>
-              <input type="radio" name="rating" id="s1" value="1"><label for="s1" aria-label="1 star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></label>
-            </div>
-          </div>
-
-          <div class="form-grid" style="margin-bottom:16px;">
-            <div>
-              <label for="rv-name" class="form-label">Your Name</label>
-              <input id="rv-name" type="text" placeholder="e.g. Ananya S." required class="form-field">
-            </div>
-            <div>
-              <label for="rv-role" class="form-label">Role / Organisation</label>
-              <input id="rv-role" type="text" placeholder="e.g. HR Manager, ABC Corp" class="form-field">
-            </div>
-          </div>
-          <div class="form-row">
-            <label for="rv-text" class="form-label">Your Review</label>
-            <textarea id="rv-text" placeholder="Tell others what you think about IDCraft Pro…" required class="form-field form-textarea" style="height:130px;"></textarea>
-          </div>
-          <button id="submit-review" class="form-submit" style="margin-top:4px;">Submit Review →</button>
-          <div class="modal-note">Thank you for your feedback!</div>
-        </div>
-        <div class="modal-success" id="modal-success">
-          <div class="tick"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
-          <div class="modal-success-title">Review Submitted!</div>
-          <div class="modal-success-sub">Your review has been saved and is now visible on the page.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ CONTACT ════════════════════════════════════════ -->
-    <section id="contact">
-      <div class="wrap" style="padding:0; display:contents;">
-        <div class="contact-grid">
-          <div class="contact-left wrap" style="display:flex; flex-direction:column; justify-content:center; padding:80px 64px 80px 40px; border-right:1px solid var(--rule);">
-            <div class="sec-num rv" style="margin-bottom:24px;">08 — Contact</div>
-            <h2 class="contact-title rv d1">Get in<br><span style="color:var(--amber);">Touch</span></h2>
-            <p class="contact-sub rv d2">IDCraft Pro is actively maintained. Have a pre-sale question or need technical support? Connect with us directly.</p>
-            <div class="channels rv d3">
-              <a href="https://wa.me/919433008808" target="_blank" title="WhatsApp" class="channel">
-                <div class="channel-icon"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.489-1.761-1.663-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51h-.57c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
-                <div class="channel-name">WhatsApp</div>
-              </a>
-              <a href="https://instagram.com" target="_blank" title="Instagram" class="channel">
-                <div class="channel-icon"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-                <div class="channel-name">Instagram</div>
-              </a>
-              <a href="mailto:identityforgestudio@gmail.com" title="Email" class="channel">
-                <div class="channel-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
-                <div class="channel-name">Email</div>
-              </a>
-              <a href="https://github.com/Piyush-2103" target="_blank" title="GitHub" class="channel">
-                <div class="channel-icon"><svg fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></div>
-                <div class="channel-name">GitHub</div>
-              </a>
-            </div>
-          </div>
-          <div class="contact-right wrap" style="display:flex; flex-direction:column; justify-content:center; padding:80px 40px 80px 64px;">
-            <form action="https://api.web3forms.com/submit" method="POST">
-              <input type="hidden" name="access_key" value="ca2e75d8-5edd-472f-9f5e-9e942d2ea4e6">
-              <div class="form-grid">
-                <div>
-                  <label for="fn" class="form-label">Name</label>
-                  <input id="fn" type="text" name="Name" placeholder="Your Name" required class="form-field">
-                </div>
-                <div>
-                  <label for="fe" class="form-label">Email</label>
-                  <input id="fe" type="email" name="Email" placeholder="you@company.com" required class="form-field">
-                </div>
-              </div>
-              <div class="form-row">
-                <label for="fs" class="form-label">Subject</label>
-                <input id="fs" type="text" name="Subject" placeholder="License inquiry / Technical support" required class="form-field">
-              </div>
-              <div class="form-row">
-                <label for="fm" class="form-label">Message</label>
-                <textarea id="fm" name="Message" placeholder="How can we help you?" required class="form-field form-textarea"></textarea>
-              </div>
-              <button type="submit" class="form-submit">Send Message →</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ DOWNLOAD CTA ═══════════════════════════════════ -->
-    <section id="download">
-      <div class="wrap">
-        <div class="dl-inner">
-          <div class="rv">
-            <div class="sec-num" style="margin-bottom:24px; color:rgba(242,237,228,0.4);">09 — Install</div>
-            <h2 class="dl-title">Install<br>the <span class="accent">Suite</span></h2>
-            <p class="dl-sub">Standalone Windows installer. Download the latest <code style="font-family:var(--mono);font-size:.85em;background:rgba(242,237,228,.08);padding:2px 7px;">.exe</code> release directly from GitHub to begin your trial.</p>
-          </div>
-          <div class="dl-cta-col rv d2">
-            <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe"
-               title="Download Setup EXE for Windows" class="btn-amber" style="font-size:13px;padding:20px 28px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-              Download Latest Release
-            </a>
-            <div class="dl-note">Requires Windows 10/11 (64-bit)</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ══ FOOTER ═════════════════════════════════════════ -->
-  <footer>
-    <div class="wrap" style="padding:0; display:contents;">
-      <div class="footer-top">
-        <div class="footer-col" style="padding-left:40px;">
-          <div class="footer-brand">
-            <img src="N5.png" alt="IDCraft Pro" width="32" height="28">
-            <span class="footer-brand-name">IDCraft Pro</span>
-          </div>
-          <p class="footer-brand-desc">Enterprise bulk ID card generation for Windows. Built for institutions, print bureaus, and businesses of all sizes.</p>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Product</div>
-          <ul class="footer-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#workflow">Workspace</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="transmorph.html" target="_blank">Free File Converter</a></li>
-            <li><a href="#">Changelog</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Support</div>
-          <ul class="footer-links">
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="https://github.com/Piyush-2103/IDCraft-Pro" target="_blank">GitHub</a></li>
-            <li><a href="https://github.com/Piyush-2103/IDCraft-Pro/issues" target="_blank">Report a Bug</a></li>
-          </ul>
-        </div>
-        <div class="footer-col" style="padding-right:40px;">
-          <div class="footer-col-title">Legal</div>
-          <ul class="footer-links">
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Use</a></li>
-            <li><a href="#">License Agreement</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Arham Studios. All rights reserved.</p>
-        <p>Designed &amp; developed by Piyush Kumar Dugar</p>
-      </div>
-    </div>
-  </footer>
-
-  <script defer>
-  document.addEventListener('DOMContentLoaded', () => {
-
-    /* ── SCROLL PROGRESS ──────────────────────────────── */
-    const prog = document.getElementById('prog');
-    const onScroll = () => {
-      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
-      prog.style.width = pct + '%';
-      document.getElementById('nav').classList.toggle('shadow', window.scrollY > 20);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    /* ── CUSTOM CURSOR ────────────────────────────────── */
-    if (window.innerWidth > 768) {
-      const cur = document.getElementById('cur');
-      window.addEventListener('mousemove', e => {
-        cur.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`;
-      }, { passive: true });
-      document.querySelectorAll('a,button,input,select,textarea,.channel,.feat-item,.wf-tab,.vid-overlay').forEach(el => {
-        el.addEventListener('mouseenter', () => cur.classList.add('big'));
-        el.addEventListener('mouseleave', () => cur.classList.remove('big'));
-      });
-    }
-
-    /* ── SCROLL REVEAL ────────────────────────────────── */
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
-    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-    document.querySelectorAll('.rv').forEach(el => io.observe(el));
-
-    /* ── MOBILE MENU ──────────────────────────────────── */
-    const mobBtn  = document.getElementById('mob-btn');
-    const mobMenu = document.getElementById('mob-menu');
-    mobBtn.addEventListener('click', () => {
-      const open = mobMenu.classList.toggle('open');
-      mobBtn.setAttribute('aria-expanded', open);
-    });
-    document.querySelectorAll('#mob-menu .ml').forEach(l =>
-      l.addEventListener('click', () => { mobMenu.classList.remove('open'); mobBtn.setAttribute('aria-expanded','false'); })
-    );
-
-    /* ── WORKFLOW TABS ────────────────────────────────── */
-    const tabs   = document.querySelectorAll('.wf-tab');
-    const panels = document.querySelectorAll('.wf-panel');
-    tabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); t.tabIndex = -1; });
-        panels.forEach(p => p.classList.remove('active'));
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected','true');
-        tab.tabIndex = 0;
-        panels[i].classList.add('active');
-      });
-      tab.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tab.click(); }
-        if (e.key === 'ArrowRight') { tabs[(i+1) % tabs.length].focus(); tabs[(i+1) % tabs.length].click(); }
-        if (e.key === 'ArrowLeft')  { tabs[(i-1+tabs.length) % tabs.length].focus(); tabs[(i-1+tabs.length) % tabs.length].click(); }
-      });
-    });
-
-    /* ── VIDEO FACADE ─────────────────────────────────── */
-    document.querySelectorAll('.vid-overlay').forEach(btn => {
-      const load = () => {
-        const vid  = btn.dataset.vid;
-        const wrap = btn.closest('.vid-aspect');
-        const thumb = wrap.querySelector('.vid-thumb');
-        const iframe = document.createElement('iframe');
-        iframe.src = `https://www.youtube.com/embed/${vid}?autoplay=1&mute=1&loop=1&playlist=${vid}&controls=0&modestbranding=1`;
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.allowFullscreen = true;
-        iframe.title = 'IDCraft Pro demo';
-        thumb.style.opacity = '0';
-        btn.style.opacity   = '0';
-        setTimeout(() => { wrap.appendChild(iframe); thumb.remove(); btn.remove(); }, 300);
-      };
-      btn.addEventListener('click', load);
-      btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') load(); });
-    });
-
-    /* ── FAQ ACCORDION ────────────────────────────────── */
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.querySelector('.faq-btn').addEventListener('click', function() {
-        const open = item.classList.toggle('open');
-        this.setAttribute('aria-expanded', open);
-      });
-    });
-
-    /* ═══════════════════════════════════════════════════════════════
-       REVIEWS — real shared storage via JSONBin.io
-       ───────────────────────────────────────────────────────────────
-       One-time setup (free, ~2 min):
-         1. Sign up at https://jsonbin.io
-         2. Create a new Bin → paste in:  []  → Save
-         3. Copy the Bin ID from the URL bar
-         4. Account → API Keys → copy your Master Key
-         5. Paste both values into the two constants below
-    ═══════════════════════════════════════════════════════════════ */
-    const BIN_ID  = '6a1136536610dd3ae88fa2a5';      // ← replace with your JSONBin Bin ID
-    const API_KEY = '$2a$10$adqIqeY6E7nSzRLMRca9qev7Tes3ITCjq6NzGt0qHnq5ZaF0zqk7y';     // ← replace with your JSONBin Master Key
-    const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-    const READY   = BIN_ID !== 'YOUR_BIN_ID_HERE';
-
-    /* ── helpers ── */
-    const starSVG = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
-
-    function esc(s) {
-      return String(s)
-        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    }
-    function fmtDate(d) {
-      try { return new Date(d).toLocaleDateString('en-IN',{year:'numeric',month:'short',day:'numeric'}); }
-      catch(e){ return d; }
-    }
-    function initials(name) {
-      return name.trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
-    }
-
-    /* ── remote read / write ── */
-    async function remoteGet() {
-      const r = await fetch(BIN_URL + '/latest', {
-        headers: { 'X-Master-Key': API_KEY }
-      });
-      if (!r.ok) throw new Error('read failed ' + r.status);
-      const data = await r.json();
-      // JSONBin wraps the array in { record: [...] }
-      const arr = (data && data.record !== undefined) ? data.record : data;
-      // filter out empty placeholder objects like the init [{}]
-      return Array.isArray(arr) ? arr.filter(x => x && x.name && x.text) : [];
-    }
-    async function remoteSave(arr) {
-      const r = await fetch(BIN_URL, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Master-Key': API_KEY,
-          'X-Bin-Versioning': 'false'
-        },
-        body: JSON.stringify(arr)
-      });
-      if (!r.ok) {
-        const msg = await r.text().catch(() => String(r.status));
-        throw new Error('write failed: ' + msg);
-      }
-    }
-
-    /* ── render ── */
-    let allReviews   = [];
-    let visibleCount = 6;
-
-    function renderCard(r, idx) {
-      const stars = Array.from({length:5},(_,i) =>
-        `<span style="color:${i<r.rating?'var(--amber)':'var(--paper3)'}">${starSVG}</span>`
-      ).join('');
-      return `<div class="review-card rv" data-idx="${idx}">
-        <button class="review-delete-btn" data-idx="${idx}" title="Delete review" aria-label="Delete review">
-          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-        <div class="review-meta">
-          <div class="review-avatar">${initials(r.name)}</div>
-          <div class="review-meta-info">
-            <div class="review-name">${esc(r.name)}</div>
-            ${r.role ? `<div class="review-role">${esc(r.role)}</div>` : ''}
-          </div>
-        </div>
-        <div class="review-stars">${stars}</div>
-        <div class="review-text">"${esc(r.text)}"</div>
-        <div class="review-date">${fmtDate(r.date)}</div>
-      </div>`;
-    }
-
-    function renderGrid() {
-      const grid     = document.getElementById('reviews-grid');
-      const loadMore = document.getElementById('reviews-load-more');
-
-      if (!allReviews.length) {
-        grid.innerHTML = `<div class="reviews-empty">
-          No reviews yet — download the trial and be the first to share your experience.
-        </div>`;
-        loadMore.style.display = 'none';
-        return;
-      }
-      grid.innerHTML = allReviews.slice(0, visibleCount).map((r,i) => renderCard(r,i)).join('');
-      grid.querySelectorAll('.rv:not(.vis)').forEach(el => io.observe(el));
-      loadMore.style.display = allReviews.length > visibleCount ? 'block' : 'none';
-    }
-
-    function updateRatingBar() {
-      const bar        = document.getElementById('rating-bar');
-      const liveStars  = document.getElementById('live-stars');
-      const liveRating = document.getElementById('live-rating');
-      const liveCount  = document.getElementById('live-count');
-      if (!allReviews.length || !bar) { if (bar) bar.style.display = 'none'; return; }
-      const avg = (allReviews.reduce((s,r)=>s+r.rating,0) / allReviews.length);
-      const rounded = Math.round(avg);
-      if (liveStars) liveStars.innerHTML = Array.from({length:5},(_,i) =>
-        `<svg viewBox="0 0 24 24" fill="${i<rounded?'currentColor':'none'}" stroke="currentColor" stroke-width="1.5" style="color:var(--amber)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`
-      ).join('');
-      if (liveRating) liveRating.textContent = avg.toFixed(1);
-      if (liveCount)  liveCount.textContent  = allReviews.length + (allReviews.length===1?' review':' reviews');
-      bar.style.display = 'flex';
-    }
-
-    /* ── initial load ── */
-    (async () => {
-      const grid = document.getElementById('reviews-grid');
-      if (!READY) {
-        /* JSONBin not yet configured — show setup prompt to the owner */
-        grid.innerHTML = `<div class="reviews-empty" style="grid-column:1/-1;padding:56px 32px;text-align:center;">
-          <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:12px;">Setup Required</div>
-          <div style="font-size:.9rem;color:var(--muted);line-height:1.8;max-width:480px;margin:0 auto;">
-            To enable shared reviews, create a free <a href="https://jsonbin.io" target="_blank" style="color:var(--amber);text-decoration:underline;">JSONBin.io</a> account,
-            create a bin with <code style="font-family:var(--mono);background:var(--paper2);padding:1px 5px;">[]</code>,
-            then paste your Bin ID and API Key into the two constants at the top of the reviews script.
-          </div>
-        </div>`;
-        return;
-      }
-      try {
-        allReviews = await remoteGet();
-      } catch(e) {
-        grid.innerHTML = `<div class="reviews-empty">Could not load reviews. Please try again later.</div>`;
-        return;
-      }
-      renderGrid();
-      updateRatingBar();
-    })();
-
-    document.getElementById('load-more-btn').addEventListener('click', () => {
-      visibleCount += 6; renderGrid();
-    });
-
-    /* ── modal open / close ── */
-    const modal    = document.getElementById('review-modal');
-    const openBtn  = document.getElementById('open-review-modal');
-    const closeBtn = document.getElementById('close-review-modal');
-
-    const openModal  = () => { modal.classList.add('open'); document.body.style.overflow='hidden'; document.getElementById('rv-name').focus(); };
-    const closeModal = () => { modal.classList.remove('open'); document.body.style.overflow=''; };
-
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target===modal) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key==='Escape' && modal.classList.contains('open')) closeModal(); });
-
-    /* ── submit ── */
-    document.getElementById('submit-review').addEventListener('click', async () => {
-      if (!READY) { alert('Reviews are not enabled yet. Owner needs to configure JSONBin.io.'); return; }
-
-      const name      = document.getElementById('rv-name').value.trim();
-      const role      = document.getElementById('rv-role').value.trim();
-      const text      = document.getElementById('rv-text').value.trim();
-      const ratingEl  = document.querySelector('input[name="rating"]:checked');
-      const rating    = ratingEl ? parseInt(ratingEl.value) : 0;
-      const submitBtn = document.getElementById('submit-review');
-
-      if (!name)         { document.getElementById('rv-name').focus(); return; }
-      if (!rating)       { document.getElementById('star-input').scrollIntoView({behavior:'smooth',block:'center'}); return; }
-      if (text.length<20){ document.getElementById('rv-text').focus(); return; }
-
-      submitBtn.textContent = 'Saving…';
-      submitBtn.disabled    = true;
-
-      const newReview = { name, role, rating, text, date: new Date().toISOString().split('T')[0] };
-
-      try {
-        const latest  = await remoteGet();
-        const updated = [newReview, ...latest];
-        await remoteSave(updated);
-        allReviews   = updated;
-        visibleCount = Math.max(visibleCount, 1);
-        renderGrid();
-        updateRatingBar();
-
-        document.getElementById('modal-form-wrap').style.display = 'none';
-        document.getElementById('modal-success').style.display   = 'block';
-
-        setTimeout(() => {
-          closeModal();
-          setTimeout(() => {
-            document.getElementById('modal-form-wrap').style.display = 'block';
-            document.getElementById('modal-success').style.display   = 'none';
-            document.getElementById('rv-name').value = '';
-            document.getElementById('rv-role').value = '';
-            document.getElementById('rv-text').value = '';
-            if (ratingEl) ratingEl.checked = false;
-            submitBtn.textContent = 'Submit Review →';
-            submitBtn.disabled    = false;
-          }, 400);
-        }, 2400);
-
-      } catch(err) {
-        submitBtn.textContent = 'Submit Review →';
-        submitBtn.disabled    = false;
-        alert('Could not save your review. Please try again.');
-      }
-    });
-
-  /* ── DEVELOPER MODE ────────────────────────────────── */
-    /*
-     * Set DEV_PASSWORD below to your chosen password.
-     * This is the only credential needed to unlock delete mode.
-     * Once unlocked, a red × appears on every review card.
-     * Deleting removes the review from JSONBin immediately.
-     */
-    const DEV_PASSWORD = 'idcraft-dev-2024';  // ← change this to your own password
-
-    let devMode = false;
-    const devModal    = document.getElementById('dev-modal');
-    const devUnlockBtn= document.getElementById('dev-unlock-btn');
-    const devOkBtn    = document.getElementById('dev-modal-ok');
-    const devCancelBtn= document.getElementById('dev-modal-cancel');
-    const devPwInput  = document.getElementById('dev-pw-input');
-    const devErr      = document.getElementById('dev-modal-err');
-
-    function openDevModal()  { devModal.classList.add('open'); devPwInput.value=''; devErr.textContent=''; setTimeout(()=>devPwInput.focus(),100); }
-    function closeDevModal() { devModal.classList.remove('open'); }
-
-    devUnlockBtn.addEventListener('click', () => {
-      if (devMode) {
-        // already unlocked — clicking again locks
-        devMode = false;
-        document.body.classList.remove('dev-mode');
-        devUnlockBtn.classList.remove('active');
-        devUnlockBtn.title = 'Developer login';
-      } else {
-        openDevModal();
-      }
-    });
-
-    devCancelBtn.addEventListener('click', closeDevModal);
-    devModal.addEventListener('click', e => { if (e.target === devModal) closeDevModal(); });
-    document.addEventListener('keydown', e => { if (e.key==='Escape' && devModal.classList.contains('open')) closeDevModal(); });
-
-    devPwInput.addEventListener('keydown', e => { if (e.key==='Enter') devOkBtn.click(); });
-
-    devOkBtn.addEventListener('click', () => {
-      if (devPwInput.value === DEV_PASSWORD) {
-        devMode = true;
-        document.body.classList.add('dev-mode');
-        devUnlockBtn.classList.add('active');
-        devUnlockBtn.title = 'Click to lock dev mode';
-        closeDevModal();
-      } else {
-        devErr.textContent = 'Incorrect password. Try again.';
-        devPwInput.value = '';
-        devPwInput.focus();
-      }
-    });
-
-    /* delete handler — delegated on the grid */
-    document.getElementById('reviews-grid').addEventListener('click', async e => {
-      const btn = e.target.closest('.review-delete-btn');
-      if (!btn || !devMode) return;
-      const idx = parseInt(btn.dataset.idx, 10);
-      const review = allReviews[idx];
-      if (!review) return;
-      const confirmed = confirm(`Delete review by "${review.name}"?
-
-"${review.text.slice(0,80)}…"
-
-This cannot be undone.`);
-      if (!confirmed) return;
-
-      btn.textContent = '…';
-      btn.disabled = true;
-
-      try {
-        allReviews.splice(idx, 1);
-        await remoteSave(allReviews);
-        renderGrid();
-        updateRatingBar();
-      } catch(err) {
-        allReviews.splice(idx, 0, review); // restore on failure
-        btn.innerHTML = '<svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>';
-        btn.disabled = false;
-        alert('Could not delete review. Please try again.');
-      }
-    });
-
-  });
-  </script>
-  <!-- Developer password modal -->
-  <div id="dev-modal" role="dialog" aria-modal="true" aria-labelledby="dev-modal-title">
-    <div class="dev-modal-box">
-      <div class="dev-modal-title" id="dev-modal-title">Developer Access</div>
-      <div class="dev-modal-sub">Enter your developer password to manage reviews</div>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div id="prog" role="progressbar" aria-label="Page scroll progress"></div>
+<header id="nav" role="banner">
+  <div class="nav-inner">
+    <div class="nav-brand"><img src="N4.png" alt="IDCraft Pro logo" width="26" height="22"><span class="nav-brand-name">IDCraft Pro</span></div>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#workflow">Workflow</a><a href="#features">Features</a><a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+    </nav>
+    <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="nav-cta" aria-label="Download IDCraft Pro free trial">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Download
+    </a>
+    <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+    <button id="mob-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mob-menu"><span></span><span></span><span></span></button>
+  </div>
+  <nav id="mob-menu" aria-label="Mobile navigation">
+    <a href="#workflow" class="ml">Workflow</a><a href="#features" class="ml">Features</a>
+    <a href="#pricing" class="ml">Pricing</a><a href="#faq" class="ml">FAQ</a>
+    <a href="#reviews" class="ml">Reviews</a><a href="#contact" class="ml">Contact</a>
+    <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="ml mob-cta">&#11015; Download Free Trial</a>
+  </nav>
+</header>
+<main id="main-content">
+
+<section id="hero" aria-label="Hero">
+  <div class="wrap">
+    <div class="hero-wrap">
       <div>
-        <label class="form-label" for="dev-pw-input">Password</label>
-        <input id="dev-pw-input" type="password" class="form-field" placeholder="••••••••" autocomplete="off">
+        <div class="hero-badge rv"><span class="badge-pulse"></span>Enterprise Windows Software</div>
+        <h1 class="hero-h1 rv d1">Bulk <span class="accent">ID Card</span><br>Generator</h1>
+        <p class="hero-desc rv d2">Generate thousands of employee, student and event badges in minutes. Import Excel, auto-create QR codes, export print-ready PDFs &mdash; 100% offline.</p>
+        <div class="hero-ctas rv d3">
+          <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="btn btn-primary" aria-label="Download IDCraft Pro free 7-day trial for Windows">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Download Free Trial
+          </a>
+          <a href="#pricing" class="btn btn-ghost">View Pricing</a>
+        </div>
+        <div class="hero-trust rv d4">
+          <div class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>No credit card</div>
+          <div class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>7-day free trial</div>
+          <div class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Windows 10/11</div>
+          <div class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>100% offline</div>
+        </div>
       </div>
-      <div class="dev-modal-err" id="dev-modal-err"></div>
-      <div class="dev-modal-actions">
-        <button class="dev-modal-cancel" id="dev-modal-cancel">Cancel</button>
-        <button class="dev-modal-ok" id="dev-modal-ok">Unlock →</button>
+      <div class="rv d2">
+        <div class="hero-card">
+          <div class="hcard-top"><span class="hcard-label">IDCraft Pro &mdash; v2.x</span><span class="hcard-pill">Live Stats</span></div>
+          <div class="hero-stats">
+            <div class="hero-stat"><div class="hstat-n">2000<span class="a">+</span></div><div class="hstat-l">Cards per batch</div></div>
+            <div class="hero-stat"><div class="hstat-n">&lt;2<span style="font-size:1.5rem;color:var(--ink3)">min</span></div><div class="hstat-l">JPEG generation</div></div>
+            <div class="hero-stat"><div class="hstat-n">4</div><div class="hstat-l">Export formats</div></div>
+            <div class="hero-stat"><div class="hstat-n" style="color:var(--amber)">&#8377;999</div><div class="hstat-l">Lifetime licence</div></div>
+          </div>
+          <div class="hero-specs">
+            <div class="spec-row"><span class="spec-k">Platform</span><span class="spec-v">Windows 10/11 (64-bit)</span></div>
+            <div class="spec-row"><span class="spec-k">JPEG Output</span><span class="spec-v a">2000+ / &lt;2 min</span></div>
+            <div class="spec-row"><span class="spec-k">PNG Output</span><span class="spec-v">2000+ / &lt;6 min</span></div>
+            <div class="spec-row"><span class="spec-k">Data Import</span><span class="spec-v">.xlsx / Excel</span></div>
+            <div class="spec-row"><span class="spec-k">Trial</span><span class="spec-v">7 days &middot; 20 cards/day</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Section breadcrumb — navigation depth indicator -->
-  <div id="section-breadcrumb" aria-live="polite" aria-label="Current section">
-    <div class="sb-dot"></div>
-    <span id="sb-label"></span>
+<div class="wrap" aria-hidden="true">
+  <div class="ticker-wrap rv">
+    <div class="ticker-track">
+      <div class="ticker-item"><span class="t-dot"></span>Corporate IT</div>
+      <div class="ticker-item"><span class="t-dot"></span>Event Management</div>
+      <div class="ticker-item"><span class="t-dot"></span>Educational Institutions</div>
+      <div class="ticker-item"><span class="t-dot"></span>Healthcare Facilities</div>
+      <div class="ticker-item"><span class="t-dot"></span>Print Shops</div>
+      <div class="ticker-item"><span class="t-dot"></span>Government Offices</div>
+      <div class="ticker-item"><span class="t-dot"></span>Corporate IT</div>
+      <div class="ticker-item"><span class="t-dot"></span>Event Management</div>
+      <div class="ticker-item"><span class="t-dot"></span>Educational Institutions</div>
+      <div class="ticker-item"><span class="t-dot"></span>Healthcare Facilities</div>
+      <div class="ticker-item"><span class="t-dot"></span>Print Shops</div>
+      <div class="ticker-item"><span class="t-dot"></span>Government Offices</div>
+    </div>
   </div>
+</div>
 
-  <!-- Mobile sticky CTA — always visible on small screens -->
-  <a id="mobile-cta-float"
-     href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe"
-     aria-label="Download IDCraft Pro free trial for Windows">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-    Download Free Trial
-  </a>
+<section id="workflow">
+  <div class="wrap">
+    <div class="wf-top">
+      <div>
+        <span class="sec-label rv">02 &mdash; Workflow</span>
+        <h2 class="sec-title rv d1">The <span class="accent">Workspace</span></h2>
+        <div class="wf-pills rv d2">
+          <div class="wf-pill"><span class="wf-pill-n">01</span>Install .exe</div>
+          <div class="wf-pill"><span class="wf-pill-n">02</span>Open Project</div>
+          <div class="wf-pill"><span class="wf-pill-n">03</span>Design Canvas</div>
+          <div class="wf-pill"><span class="wf-pill-n">04</span>Batch Export</div>
+        </div>
+      </div>
+      <p class="sec-sub rv d2" style="max-width:360px;">A premium interface so your staff can master ID generation in minutes. Four steps from install to batch output.</p>
+    </div>
+    <div class="rv d2">
+      <div class="wf-tabs" role="tablist"><div class="wf-tab active" role="tab" aria-selected="true" tabindex="0" aria-controls="wfp0"><div class="wf-tab-n">Step 01</div><div class="wf-tab-title">Installation</div></div><div class="wf-tab" role="tab" aria-selected="false" tabindex="-1" aria-controls="wfp1"><div class="wf-tab-n">Step 02</div><div class="wf-tab-title">Project Hub</div></div><div class="wf-tab" role="tab" aria-selected="false" tabindex="-1" aria-controls="wfp2"><div class="wf-tab-n">Step 03</div><div class="wf-tab-title">Canvas Editor</div></div><div class="wf-tab" role="tab" aria-selected="false" tabindex="-1" aria-controls="wfp3"><div class="wf-tab-n">Step 04</div><div class="wf-tab-title">Batch Export</div></div></div>
+      <div class="wf-panels"><div class="wf-panel active" id="wfp0" role="tabpanel">
+      <div class="wf-panel-text"><div class="wf-big-n">01</div><div class="wf-title">Installation</div><p class="wf-body">Download the lightweight ~40 MB Windows installer from GitHub. One-click setup — no dependencies, no runtime. Works on any Windows 10/11 (64-bit) machine.</p></div>
+      <div class="wf-vid">
+        <div class="vid-chrome"><div class="vdot" style="background:#ff5f56"></div><div class="vdot" style="background:#ffbd2e"></div><div class="vdot" style="background:#27c93f"></div></div>
+        <div class="vid-area">
+          <img class="vid-thumb" src="https://img.youtube.com/vi/VZtyCRwYfeI/maxresdefault.jpg" alt="Installation demo" loading="lazy">
+          <div class="vid-overlay" data-vid="VZtyCRwYfeI" role="button" tabindex="0" aria-label="Play Installation demo"><div class="play-btn"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/></svg></div></div>
+        </div>
+      </div>
+    </div><div class="wf-panel" id="wfp1" role="tabpanel">
+      <div class="wf-panel-text"><div class="wf-big-n">02</div><div class="wf-title">Project Hub</div><p class="wf-body">Manage multiple card projects from a clean dashboard. Create new projects, load templates, or resume previous batches — all in one workspace.</p></div>
+      <div class="wf-vid">
+        <div class="vid-chrome"><div class="vdot" style="background:#ff5f56"></div><div class="vdot" style="background:#ffbd2e"></div><div class="vdot" style="background:#27c93f"></div></div>
+        <div class="vid-area">
+          <img class="vid-thumb" src="https://img.youtube.com/vi/7xnkAFmcr6U/maxresdefault.jpg" alt="Project Hub demo" loading="lazy">
+          <div class="vid-overlay" data-vid="7xnkAFmcr6U" role="button" tabindex="0" aria-label="Play Project Hub demo"><div class="play-btn"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/></svg></div></div>
+        </div>
+      </div>
+    </div><div class="wf-panel" id="wfp2" role="tabpanel">
+      <div class="wf-panel-text"><div class="wf-big-n">03</div><div class="wf-title">Canvas Editor</div><p class="wf-body">Drag-and-drop visual designer with live preview. Position photos, text fields, QR codes and logos with pixel precision. What you see is exactly what prints.</p></div>
+      <div class="wf-vid">
+        <div class="vid-chrome"><div class="vdot" style="background:#ff5f56"></div><div class="vdot" style="background:#ffbd2e"></div><div class="vdot" style="background:#27c93f"></div></div>
+        <div class="vid-area">
+          <img class="vid-thumb" src="https://img.youtube.com/vi/6L5XMfBFAos/maxresdefault.jpg" alt="Canvas editor demo" loading="lazy">
+          <div class="vid-overlay" data-vid="6L5XMfBFAos" role="button" tabindex="0" aria-label="Play Canvas editor demo"><div class="play-btn"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/></svg></div></div>
+        </div>
+      </div>
+    </div><div class="wf-panel" id="wfp3" role="tabpanel">
+      <div class="wf-panel-text"><div class="wf-big-n">04</div><div class="wf-title">Batch Export</div><p class="wf-body">One click generates all cards simultaneously. Export 2000+ JPEG cards in under 2 minutes, or high-res PNG, PDF and SVG — all in a single run.</p></div>
+      <div class="wf-vid">
+        <div class="vid-chrome"><div class="vdot" style="background:#ff5f56"></div><div class="vdot" style="background:#ffbd2e"></div><div class="vdot" style="background:#27c93f"></div></div>
+        <div class="vid-area">
+          <img class="vid-thumb" src="https://img.youtube.com/vi/VZtyCRwYfeI/maxresdefault.jpg" alt="Batch export demo" loading="lazy">
+          <div class="vid-overlay" data-vid="VZtyCRwYfeI" role="button" tabindex="0" aria-label="Play Batch export demo"><div class="play-btn"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/></svg></div></div>
+        </div>
+      </div>
+    </div></div>
+    </div>
+  </div>
+</section>
 
-  <script>
-  /* ═══════════════════════════════════════════════
-     UX IMPROVEMENT SCRIPTS
-  ═══════════════════════════════════════════════ */
+<section id="features">
+  <div class="wrap">
+    <div class="feat-head">
+      <div><span class="sec-label rv">03 &mdash; Features</span><h2 class="sec-title rv d1"><span class="accent">Core</span> Capabilities</h2></div>
+      <p class="sec-sub rv d2" style="max-width:360px;">Everything your ID card workflow demands — distilled into one offline-first Windows app.</p>
+    </div>
+    <div class="feat-grid"><div class="feat-card rv"><div class="feat-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><div class="feat-name">Canvas Editor</div><p class="feat-desc">Drag-and-drop visual designer with live preview. Pixel-perfect placement of photos, text, QR codes and logos.</p><div class="feat-num">01</div></div><div class="feat-card rv d2"><div class="feat-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><div class="feat-name">Excel Import</div><p class="feat-desc">Bind any .xlsx column to any field. Names, photos, departments — auto-mapped in seconds.</p><div class="feat-num">02</div></div><div class="feat-card rv d3"><div class="feat-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 3.5a.5.5 0 11-1 0 .5.5 0 011 0z"/></svg></div><div class="feat-name">QR &amp; Barcodes</div><p class="feat-desc">Auto-generate QR codes and barcodes from any data field. Perfect for access control and attendance.</p><div class="feat-num">03</div></div><div class="feat-card rv d1"><div class="feat-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div><div class="feat-name">Batch Export</div><p class="feat-desc">2000+ JPEG cards in under 2 minutes. Or PNG, print-ready PDF and SVG — all in one run.</p><div class="feat-num">04</div></div><div class="feat-card rv d2"><div class="feat-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><div class="feat-name">100% Offline</div><p class="feat-desc">No internet, no cloud. Your sensitive employee data never leaves your machine.</p><div class="feat-num">05</div></div><div class="feat-card rv d3"><div class="feat-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg></div><div class="feat-name">Dual-Sided</div><p class="feat-desc">Design front and back independently. Auto A4 grid layouts with crop marks for easy cutting.</p><div class="feat-num">06</div></div></div>
+  </div>
+</section>
 
-  (function() {
+<section id="requirements">
+  <div class="wrap">
+    <div class="req-head"><span class="sec-label rv">04 &mdash; Requirements</span><h2 class="sec-title rv d1">Runs on <span class="accent">Your Hardware</span></h2></div>
+    <div class="req-grid">
+      <div class="req-card rv">
+        <div class="req-card-head"><span class="req-badge min">Minimum</span><span class="req-label">Basic usage &middot; trial</span></div>
+        <table class="req-table">
+          <tr><td class="rk">OS</td><td class="rv2">Windows 10 (64-bit)</td></tr>
+          <tr><td class="rk">CPU</td><td class="rv2">Core i3 / Ryzen 3</td></tr>
+          <tr><td class="rk">RAM</td><td class="rv2">4 GB</td></tr>
+          <tr><td class="rk">Storage</td><td class="rv2">200 MB free</td></tr>
+          <tr><td class="rk">Display</td><td class="rv2">1280 &times; 720</td></tr>
+          <tr><td class="rk">Runtime</td><td class="rv2">None required</td></tr>
+        </table>
+      </div>
+      <div class="req-card featured rv d1">
+        <div class="req-card-head"><span class="req-badge rec">Recommended</span><span class="req-label">Full performance &middot; production</span></div>
+        <table class="req-table">
+          <tr><td class="rk">OS</td><td class="rv2 a">Windows 11 (64-bit)</td></tr>
+          <tr><td class="rk">CPU</td><td class="rv2 a">Core i5 / Ryzen 5</td></tr>
+          <tr><td class="rk">RAM</td><td class="rv2 a">8 GB+</td></tr>
+          <tr><td class="rk">Storage</td><td class="rv2 a">1 GB+ SSD</td></tr>
+          <tr><td class="rk">Display</td><td class="rv2 a">1920 &times; 1080</td></tr>
+          <tr><td class="rk">Runtime</td><td class="rv2 a">None required</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* 1. ACTIVE NAV HIGHLIGHT on scroll */
-    const sections = document.querySelectorAll('section[id], div[id="pricing"]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const sectionMap = {
-      'hero': 'hero', 'workflow': 'workflow', 'features': 'features',
-      'requirements': 'requirements', 'pricing': 'pricing',
-      'faq': 'faq', 'reviews': 'reviews', 'contact': 'contact'
-    };
-    const sectionNames = {
-      'hero': 'Home', 'workflow': 'Workflow', 'features': 'Features',
-      'requirements': 'Requirements', 'pricing': 'Licensing',
-      'faq': 'FAQ', 'reviews': 'Reviews', 'contact': 'Contact'
-    };
+<section id="pricing">
+  <div class="wrap">
+    <div class="pricing-blob rv">
+      <div class="pricing-top">
+        <span class="sec-label">05 &mdash; Licensing</span>
+        <h2 class="sec-title">Choose Your <span class="accent">Licence</span></h2>
+        <p class="sec-sub">One-time payment. No subscriptions. No renewals. Yours forever.</p>
+      </div>
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="price-tier"><span class="tier-dot"></span>7-Day Trial</div>
+          <div class="price-amount">Free</div>
+          <div class="price-meta">No credit card required</div>
+          <div class="price-divider"></div>
+          <ul class="price-list">
+            <li><span class="pcheck on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Visual Canvas Editor</li>
+            <li><span class="pcheck on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Basic JPEG Exports</li>
+            <li class="off"><span class="pcheck off"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></span>Limited to 20 cards / day</li>
+            <li class="off"><span class="pcheck off"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></span>No QR / Data Codes</li>
+            <li class="off"><span class="pcheck off"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></span>Single-Sided Only</li>
+          </ul>
+          <div class="price-cta"><a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="btn-wout">Start Free Trial</a></div>
+        </div>
+        <div class="price-card featured">
+          <div class="price-tier" style="color:var(--amber)"><span class="tier-dot" style="background:var(--amber)"></span>Full Licence &mdash; Premium</div>
+          <div class="price-amount">&#8377;999 <span class="price-old">&#8377;4999</span></div>
+          <div class="price-meta">One-time &middot; Lifetime key <span class="price-save">Save 80%</span></div>
+          <div class="price-divider"></div>
+          <ul class="price-list">
+            <li><span class="pcheck on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span><strong>Unlimited daily generations</strong></li>
+            <li><span class="pcheck on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Dual-Sided Printing Modes</li>
+            <li><span class="pcheck on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Dynamic QR &amp; Data Codes</li>
+            <li><span class="pcheck on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>High-Res PDF, PNG &amp; SVG</li>
+            <li><span class="pcheck on"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Grid Rotation &amp; Mirroring</li>
+          </ul>
+          <div class="price-cta">
+            <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="btn btn-primary" style="justify-content:center;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Download &amp; Purchase In-App
+            </a>
+            <p class="price-note">Download trial &rarr; tap "Buy Full Version" inside app &middot; Secure UPI / card</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const breadcrumb = document.getElementById('section-breadcrumb');
-    const sbLabel    = document.getElementById('sb-label');
+<section id="faq">
+  <div class="wrap">
+    <div class="faq-wrap">
+      <div class="faq-head"><span class="sec-label rv">06 &mdash; FAQ</span><h2 class="sec-title rv d1">Common <span class="accent">Questions</span></h2></div>
+      <div class="faq-list"><div class="faq-item open rv"><button class="faq-btn" aria-expanded="true">Is this a free ID card generator?<span class="faq-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></button><div class="faq-body"><div class="faq-body-inner">IDCraft Pro offers a 7-day free trial with 20 cards per day — no credit card needed. The full version is a one-time purchase of ₹999 (lifetime licence, no subscriptions).</div></div></div><div class="faq-item rv d1"><button class="faq-btn" aria-expanded="false">Does it work without internet?<span class="faq-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></button><div class="faq-body"><div class="faq-body-inner">Yes — 100% offline after the initial download. Your employee photos and Excel data never leave your machine. No cloud sync, no telemetry, no background connections.</div></div></div><div class="faq-item rv d2"><button class="faq-btn" aria-expanded="false">What file formats can I import?<span class="faq-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></button><div class="faq-body"><div class="faq-body-inner">Data import supports .xlsx and .xls (Excel). Photo imports accept JPEG and PNG. The software auto-maps your Excel columns to card fields.</div></div></div><div class="faq-item rv d3"><button class="faq-btn" aria-expanded="false">How fast is the generation process?<span class="faq-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></button><div class="faq-body"><div class="faq-body-inner">Highly optimised for performance. 2000+ JPEG cards generate in under 2 minutes. High-res PNG takes under 6 minutes for the same batch size.</div></div></div></div>
+    </div>
+  </div>
+</section>
 
-    function updateActiveNav() {
-      let current = '';
-      sections.forEach(s => {
-        const rect = s.getBoundingClientRect();
-        if (rect.top <= 120) current = s.id;
-      });
-      navLinks.forEach(a => {
-        const href = a.getAttribute('href');
-        if (href === '#' + current) {
-          a.classList.add('nav-active');
-          a.setAttribute('aria-current', 'page');
-        } else {
-          a.classList.remove('nav-active');
-          a.removeAttribute('aria-current');
-        }
-      });
-      // breadcrumb
-      if (current && current !== 'hero') {
-        sbLabel.textContent = sectionNames[current] || current;
-        breadcrumb.classList.add('vis');
-      } else {
-        breadcrumb.classList.remove('vis');
-      }
-    }
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
-    updateActiveNav();
+<section id="reviews">
+  <div class="wrap">
+    <div class="reviews-head">
+      <div><span class="sec-label rv">07 &mdash; Reviews</span><h2 class="sec-title rv d1">What Users <span class="accent">Actually Say</span></h2></div>
+      <div class="reviews-head-right rv d2">
+        <div id="rating-bar">
+          <div class="live-stars" id="live-stars"></div>
+          <div id="live-rating"></div>
+          <div id="live-count"></div>
+        </div>
+        <button id="open-review-modal" aria-haspopup="dialog">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>Write a Review
+        </button>
+      </div>
+    </div>
+    <div id="reviews-grid"></div>
+    <div id="reviews-load-more" style="display:none;text-align:center;padding:8px 0;">
+      <button id="load-more-btn">Load More Reviews</button>
+    </div>
+  </div>
+</section>
+<div id="review-modal" role="dialog" aria-modal="true" aria-labelledby="rv-modal-title">
+  <div class="rv-box">
+    <button class="rv-close" id="close-review-modal" aria-label="Close"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    <div id="rv-form-wrap">
+      <div class="rv-title" id="rv-modal-title">Leave a Review</div>
+      <p class="rv-sub">Share your experience with IDCraft Pro</p>
+      <div class="rv-field">
+        <label class="rv-label">Your Rating</label>
+        <div class="rv-star-row" id="star-input" role="radiogroup" aria-label="Rating">
+          <input type="radio" name="rating" id="s1" value="1" style="display:none"><label for="s1" class="rv-star" data-val="1" aria-label="1 star">&#9733;</label>
+          <input type="radio" name="rating" id="s2" value="2" style="display:none"><label for="s2" class="rv-star" data-val="2" aria-label="2 stars">&#9733;</label>
+          <input type="radio" name="rating" id="s3" value="3" style="display:none"><label for="s3" class="rv-star" data-val="3" aria-label="3 stars">&#9733;</label>
+          <input type="radio" name="rating" id="s4" value="4" style="display:none"><label for="s4" class="rv-star" data-val="4" aria-label="4 stars">&#9733;</label>
+          <input type="radio" name="rating" id="s5" value="5" style="display:none"><label for="s5" class="rv-star" data-val="5" aria-label="5 stars">&#9733;</label>
+        </div>
+      </div>
+      <div class="rv-2col">
+        <div><label for="rv-name" class="rv-label">Your Name</label><input id="rv-name" type="text" placeholder="e.g. Ananya S." required class="rv-input"></div>
+        <div><label for="rv-role" class="rv-label">Role / Organisation</label><input id="rv-role" type="text" placeholder="e.g. HR Manager" class="rv-input"></div>
+      </div>
+      <div class="rv-field">
+        <label for="rv-text" class="rv-label">Your Review</label>
+        <textarea id="rv-text" placeholder="Tell others what you think about IDCraft Pro..." required class="rv-input form-textarea" style="min-height:120px;resize:vertical;"></textarea>
+      </div>
+      <button id="submit-review" class="btn btn-primary">Submit Review &rarr;</button>
+    </div>
+    <div class="rv-success" id="rv-success">
+      <div class="rv-success-icon">&#127881;</div>
+      <div class="rv-success-title">Review Submitted!</div>
+      <p class="rv-success-sub">Your review is now live. Thank you!</p>
+    </div>
+  </div>
+</div>
 
-    /* 2. OPEN FIRST FAQ ITEM by default */
-    const firstFaq = document.querySelector('.faq-item');
-    if (firstFaq) {
-      firstFaq.classList.add('open');
-      const body = firstFaq.querySelector('.faq-body');
-      const btn  = firstFaq.querySelector('.faq-btn');
-      if (body) body.style.maxHeight = body.scrollHeight + 'px';
-      if (btn)  btn.setAttribute('aria-expanded', 'true');
-    }
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <span class="sec-label rv">08 &mdash; Contact</span>
+        <h2 class="sec-title rv d1">Get in <span class="accent">Touch</span></h2>
+        <p class="sec-sub rv d2" style="margin-bottom:32px;">Have a question, need help with your licence, or a bulk order? We respond within 24 hours.</p>
+        <div class="contact-channels rv d3">
+          <a href="https://wa.me/919433008808" target="_blank" rel="noopener" class="channel" aria-label="Chat on WhatsApp">
+            <div class="ch-icon" style="background:rgba(37,211,102,.15);border-color:rgba(37,211,102,.3);color:#25D366;box-shadow:2px 2px 0 rgba(37,211,102,.2)"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.489-1.761-1.663-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51h-.57c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+            <div><div class="ch-name">WhatsApp</div><div class="ch-sub">+91 94330 08808</div></div>
+          </a>
+          <a href="https://instagram.com/arhamstudios.in" target="_blank" rel="noopener" class="channel" aria-label="Follow on Instagram">
+            <div class="ch-icon" style="background:rgba(225,48,108,.12);border-color:rgba(225,48,108,.25);color:#E1306C;box-shadow:2px 2px 0 rgba(225,48,108,.15)"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+            <div><div class="ch-name">Instagram</div><div class="ch-sub">@arhamstudios.in</div></div>
+          </a>
+          <a href="mailto:arhamstudios.in@gmail.com" class="channel" aria-label="Send an email">
+            <div class="ch-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+            <div><div class="ch-name">Email</div><div class="ch-sub">arhamstudios.in@gmail.com</div></div>
+          </a>
+          <a href="https://github.com/Piyush-2103" target="_blank" rel="noopener" class="channel" aria-label="View GitHub profile">
+            <div class="ch-icon" style="background:rgba(36,41,47,.1);border-color:rgba(36,41,47,.18);color:#24292F;box-shadow:2px 2px 0 rgba(36,41,47,.1)"><svg fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></div>
+            <div><div class="ch-name">GitHub</div><div class="ch-sub">Piyush-2103</div></div>
+          </a>
+        </div>
+      </div>
+      <div class="cf-card rv d2">
+        <form class="contact-form" action="https://formsubmit.co/arhamstudios.in@gmail.com" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="IDCraft Pro — Website Contact">
+          <input type="hidden" name="_captcha" value="false">
+          <div class="form-2col">
+            <div><label for="fn" class="form-label">Name</label><input id="fn" type="text" name="Name" placeholder="Your Name" required class="form-field"></div>
+            <div><label for="fe" class="form-label">Email</label><input id="fe" type="email" name="Email" placeholder="you@company.com" required class="form-field"></div>
+          </div>
+          <div class="form-row"><label for="fs" class="form-label">Subject</label><input id="fs" type="text" name="Subject" placeholder="Licence inquiry / Technical support" required class="form-field"></div>
+          <div class="form-row"><label for="fm" class="form-label">Message</label><textarea id="fm" name="Message" placeholder="How can we help you?" required class="form-field form-textarea"></textarea></div>
+          <button type="submit" class="btn btn-primary">Send Message &rarr;</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* 3. SMOOTH-SCROLL for all anchor links (belt-and-suspenders) */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if (el) {
-          e.preventDefault();
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // move focus for keyboard / screen-reader users
-          el.setAttribute('tabindex', '-1');
-          el.focus({ preventScroll: true });
-        }
-      });
-    });
+<section id="download">
+  <div class="wrap">
+    <div class="dl-blob rv">
+      <div>
+        <h2 class="dl-title">Install the <span class="accent">Suite</span></h2>
+        <p class="dl-sub">Standalone Windows installer. Download the latest <code style="font-family:var(--mono);font-size:.85em;background:rgba(255,255,255,.1);padding:2px 8px;border-radius:4px;">.exe</code> release directly from GitHub to begin your free trial.</p>
+      </div>
+      <div class="dl-cta">
+        <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Download Latest Release
+        </a>
+        <span class="dl-note">Requires Windows 10 / 11 (64-bit)</span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-row"><img src="N5.png" alt="IDCraft Pro" width="26" height="22"><span class="footer-brand-name">IDCraft Pro</span></div>
+      <p class="footer-brand-desc">Enterprise bulk ID card generation for Windows. Built for institutions, print bureaus, and businesses of all sizes.</p>
+    </div>
+    <div><div class="footer-col-title">Product</div><ul class="footer-links"><li><a href="#features">Features</a></li><li><a href="#workflow">Workspace</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
+    <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="#contact">Contact</a></li><li><a href="https://github.com/Piyush-2103/IDCraft-Pro" target="_blank">GitHub</a></li><li><a href="https://github.com/Piyush-2103/IDCraft-Pro/issues" target="_blank">Report a Bug</a></li></ul></div>
+    <div><div class="footer-col-title">Legal</div><ul class="footer-links"><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Use</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+  <p>&copy; 2026 Arham Studios. All rights reserved.</p>
+  <p style="display:flex;align-items:center;gap:14px;">
+    Designed &amp; developed by Piyush Kumar Dugar
+    <button id="dev-unlock-btn" type="button" aria-label="Developer access">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    </button>
+  </p>
+</div>
+</footer>
+<div id="section-breadcrumb" aria-live="polite"><span class="sb-dot"></span><span id="sb-label"></span></div>
+<a id="mobile-cta-float" href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" aria-label="Download IDCraft Pro free trial">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Download Free Trial
+</a>
+<div id="dev-modal" role="dialog" aria-modal="true" aria-labelledby="dev-modal-title">
+  <div class="dev-box">
+    <div class="dev-title" id="dev-modal-title">Developer Access</div>
+    <p class="dev-sub">Enter password to manage reviews</p>
+    <label class="rv-label" for="dev-pw">Password</label>
+    <input id="dev-pw" type="password" class="dev-input" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="off">
+    <div class="dev-err" id="dev-err"></div>
+    <div class="dev-actions">
+      <button class="dev-cancel" id="dev-cancel">Cancel</button>
+      <button class="dev-ok" id="dev-ok">Unlock &rarr;</button>
+    </div>
+  </div>
+</div>
 
-    /* 4. HIDE MOBILE FLOAT CTA after user scrolls past pricing */
-    const pricingSection = document.getElementById('pricing');
-    const mobileFloat    = document.getElementById('mobile-cta-float');
-    if (pricingSection && mobileFloat) {
-      const obs = new IntersectionObserver(entries => {
-        // hide once pricing is visible — user has seen it
-        mobileFloat.style.display = entries[0].isIntersecting ? 'none' : '';
-      }, { threshold: 0.3 });
-      obs.observe(pricingSection);
-    }
-
-    /* 5. FORM VALIDATION FEEDBACK — contact form */
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-        let valid = true;
-        contactForm.querySelectorAll('[required]').forEach(field => {
-          if (!field.value.trim()) {
-            valid = false;
-            field.classList.add('field-error');
-            field.setAttribute('aria-invalid', 'true');
-          } else {
-            field.classList.remove('field-error');
-            field.removeAttribute('aria-invalid');
-          }
-        });
-        if (!valid) {
-          e.preventDefault();
-          const firstErr = contactForm.querySelector('.field-error');
-          if (firstErr) firstErr.focus();
-        }
-      });
-      contactForm.querySelectorAll('[required]').forEach(field => {
-        field.addEventListener('input', () => {
-          if (field.value.trim()) {
-            field.classList.remove('field-error');
-            field.removeAttribute('aria-invalid');
-          }
-        });
-      });
-    }
-
-    /* 6. ANNOUNCE page region to screen readers on nav click */
-    document.querySelectorAll('.nav-links a, .mob-cta').forEach(a => {
-      a.addEventListener('click', () => {
-        const region = document.querySelector(a.getAttribute('href'));
-        if (region) region.setAttribute('tabindex', '-1');
-      });
-    });
-
-  })();
-  </script>
-
-  <style>
-    /* Field error state */
-    .field-error { border-color: #c0392b !important; box-shadow: 0 0 0 3px rgba(192,57,43,.15) !important; }
-  </style>
-
+<script defer src="script.js"></script>
 </body>
 </html>
