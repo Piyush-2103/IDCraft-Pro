@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use — IDCraft Pro</title>
+<meta name="description" content="IDCraft Pro Terms of Use — licence agreement, restrictions, refund policy and legal terms.">
+<link rel="icon" type="image/png" href="N4.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Legal page overrides */
+.legal-hero{
+  padding:60px 0 40px;
+  border-bottom:1px solid var(--rule);
+}
+.legal-hero-label{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--peach);color:var(--amber);
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:6px 14px;border-radius:100px;
+  border:1.5px solid var(--amber-md);
+  box-shadow:2px 2px 0 var(--amber-md);
+  margin-bottom:16px;
+}
+.legal-hero-title{
+  font-family:var(--disp);
+  font-size:clamp(2.8rem,6vw,4.4rem);
+  line-height:1;color:var(--ink);margin-bottom:12px;
+}
+.legal-hero-meta{
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);
+}
+.legal-body{
+  padding:60px 0 96px;
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:56px;
+  align-items:start;
+}
+/* Sticky table of contents */
+.legal-toc{
+  position:sticky;top:84px;
+  background:var(--white);
+  border-radius:var(--rlg);
+  border:3px solid rgba(255,255,255,.9);
+  box-shadow:var(--csm);
+  padding:24px;
+}
+.legal-toc-title{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:16px;
+}
+.legal-toc a{
+  display:block;font-family:var(--mono);font-size:10px;
+  font-weight:600;letter-spacing:.06em;
+  color:var(--ink2);padding:7px 10px;
+  border-radius:var(--rsm);text-decoration:none;
+  transition:background .15s,color .15s;
+  line-height:1.4;
+}
+.legal-toc a:hover{background:var(--amber-lt);color:var(--amber)}
+.legal-toc a.active{background:var(--amber-lt);color:var(--amber);}
+/* Content */
+.legal-content{display:flex;flex-direction:column;gap:40px;}
+.legal-section{
+  background:var(--white);
+  border-radius:var(--rlg);
+  border:3px solid rgba(255,255,255,.9);
+  box-shadow:var(--csm);
+  padding:36px 40px;
+}
+.legal-section-num{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:8px;
+}
+.legal-section h2{
+  font-family:var(--disp);font-size:1.9rem;
+  color:var(--ink);margin-bottom:18px;line-height:1.05;
+}
+.legal-section p{
+  font-size:.93rem;line-height:1.85;
+  color:var(--ink2);font-weight:500;margin-bottom:14px;
+}
+.legal-section p:last-child{margin-bottom:0}
+.legal-section ul{
+  display:flex;flex-direction:column;gap:10px;
+  margin:12px 0 14px 0;
+}
+.legal-section ul li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:.92rem;line-height:1.75;color:var(--ink2);font-weight:500;
+}
+.legal-section ul li::before{
+  content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--amber);flex-shrink:0;margin-top:7px;
+}
+.legal-section strong{color:var(--ink);font-weight:700;}
+.legal-section a{color:var(--amber);text-decoration:underline;}
+.legal-back{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink2);text-decoration:none;
+  padding:10px 16px;border-radius:var(--rsm);
+  background:var(--white);border:2px solid rgba(255,255,255,.9);
+  box-shadow:var(--csm);
+  transition:color .15s,background .15s,transform .18s var(--ease),box-shadow .18s;
+  margin-bottom:24px;
+}
+.legal-back:hover{color:var(--amber);background:var(--amber-lt);transform:translateY(-2px);box-shadow:var(--cmd)}
+.legal-back svg{width:14px;height:14px;}
+.legal-highlight{
+  background:var(--peach);border-radius:var(--rsm);
+  border-left:4px solid var(--amber);
+  padding:16px 20px;margin:14px 0;
+}
+.legal-highlight p{margin:0;color:var(--ink2);}
+/* Dark mode */
+[data-theme="dark"] .legal-toc,
+[data-theme="dark"] .legal-section,
+[data-theme="dark"] .legal-back{
+  background:var(--white);border-color:rgba(245,239,230,.08);
+}
+[data-theme="dark"] .legal-highlight{
+  background:rgba(232,101,10,.12);border-color:var(--amber);
+}
+/* Responsive */
+@media(max-width:860px){
+  .legal-body{grid-template-columns:1fr;gap:32px;}
+  .legal-toc{position:static;}
+}
+@media(max-width:600px){
+  .legal-hero{padding:40px 0 28px;}
+  .legal-section{padding:24px 20px;}
+  .legal-body{padding:40px 0 64px;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div id="prog" role="progressbar" aria-label="Page scroll progress"></div>
+<header id="nav" role="banner">
+  <div class="nav-inner">
+    <div class="nav-brand"><img src="N4.png" alt="IDCraft Pro logo" width="26" height="22"><span class="nav-brand-name">IDCraft Pro</span></div>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html#workflow">Workflow</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="transmorph.html" target="_blank" style="color:var(--amber);background:var(--amber-lt);border-radius:var(--rsm);padding:8px 12px;">Free Tools ↗</a>
+    </nav>
+    <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Download
+    </a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+    <button id="mob-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mob-menu"><span></span><span></span><span></span></button>
+  </div>
+  <nav id="mob-menu" aria-label="Mobile navigation">
+    <a href="index.html#workflow" class="ml">Workflow</a>
+    <a href="index.html#features" class="ml">Features</a>
+    <a href="index.html#pricing" class="ml">Pricing</a>
+    <a href="index.html#faq" class="ml">FAQ</a>
+    <a href="index.html#reviews" class="ml">Reviews</a>
+    <a href="index.html#contact" class="ml">Contact</a>
+    <a href="transmorph.html" target="_blank" class="ml" style="color:var(--amber);">Free Tools ↗</a>
+    <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="ml mob-cta">&#11015; Download Free Trial</a>
+  </nav>
+</header>
+<main id="main-content">
+<section class="legal-hero">
+  <div class="wrap">
+    <a href="index.html" class="legal-back">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      Back to Home
+    </a>
+    <div class="legal-hero-label">Legal Document</div>
+    <h1 class="legal-hero-title">Terms of Use</h1>
+    <p class="legal-hero-meta">Effective Date: 1 July 2026 &nbsp;&middot;&nbsp; Last Updated: 1 July 2026</p>
+  </div>
+</section>
+<div class="wrap">
+  <div class="legal-body">
+    <aside class="legal-toc" aria-label="Table of contents">
+  <div class="legal-toc-title">Contents</div>
+  <a href="#t1">1. Acceptance</a>
+  <a href="#t2">2. The Software</a>
+  <a href="#t3">3. Licence Grant</a>
+  <a href="#t4">4. Restrictions</a>
+  <a href="#t5">5. Trial Version</a>
+  <a href="#t6">6. Payment &amp; Refunds</a>
+  <a href="#t7">7. Intellectual Property</a>
+  <a href="#t8">8. Disclaimers</a>
+  <a href="#t9">9. Limitation of Liability</a>
+  <a href="#t10">10. User Reviews</a>
+  <a href="#t11">11. Website Use</a>
+  <a href="#t12">12. Governing Law</a>
+  <a href="#t13">13. Changes to Terms</a>
+  <a href="#t14">14. Contact</a>
+</aside>
+    <div class="legal-content">
+      
+<div class="legal-section rv" id="t1">
+  <div class="legal-section-num">Section 01</div>
+  <h2>Acceptance of Terms</h2>
+  <div class="legal-highlight"><p>By downloading, installing, or using IDCraft Pro (the "Software") or visiting this Website, you agree to be bound by these Terms of Use. If you do not agree to these terms, do not use the Software or Website.</p></div>
+  <p>These Terms of Use constitute a legally binding agreement between you ("User", "you") and Arham Studios, operated by Piyush Kumar Dugar ("we", "us", "our"). These terms apply to both the IDCraft Pro desktop application and the accompanying marketing website.</p>
+</div>
+
+<div class="legal-section rv" id="t2">
+  <div class="legal-section-num">Section 02</div>
+  <h2>The Software</h2>
+  <p>IDCraft Pro is a Windows desktop application for bulk ID card generation. It enables users to import data from Microsoft Excel files, design ID card templates using a visual canvas editor, and export high-resolution ID cards in JPEG, PNG, PDF, and SVG formats.</p>
+  <p>The Software operates <strong>entirely offline</strong>. It does not require an internet connection for core functionality and does not transmit any user data or generated content to external servers.</p>
+  <p>The Software is compatible with <strong>Windows 10 and Windows 11 (64-bit)</strong>. We make no guarantees regarding compatibility with other operating systems or configurations.</p>
+</div>
+
+<div class="legal-section rv" id="t3">
+  <div class="legal-section-num">Section 03</div>
+  <h2>Licence Grant</h2>
+  <p>Subject to these Terms and upon payment of the applicable licence fee, Arham Studios grants you a <strong>personal, non-exclusive, non-transferable, perpetual licence</strong> to install and use IDCraft Pro on a single Windows device that you own or control.</p>
+  <p>The Full Licence (₹999 one-time payment) entitles you to:</p>
+  <ul>
+    <li>Unlimited daily ID card generation with no batch size restrictions.</li>
+    <li>Access to all export formats: JPEG, PNG, PDF, and SVG.</li>
+    <li>All features including dual-sided printing, dynamic QR codes, barcodes, grid rotation, and mirroring.</li>
+    <li>All future minor version updates within the same major version (e.g., v2.x updates at no additional cost).</li>
+    <li>One active installation per licence key. Contact us if you need to transfer your licence to a new device.</li>
+  </ul>
+  <p>This licence is for personal or internal business use only. It does not grant rights to redistribute, resell, or sublicence the Software.</p>
+</div>
+
+<div class="legal-section rv" id="t4">
+  <div class="legal-section-num">Section 04</div>
+  <h2>Restrictions</h2>
+  <p>You may <strong>not</strong>:</p>
+  <ul>
+    <li>Copy, modify, adapt, translate, reverse-engineer, decompile, disassemble, or create derivative works based on the Software.</li>
+    <li>Remove, alter, or obscure any proprietary notices, labels, or marks on the Software.</li>
+    <li>Distribute, sublicence, rent, lease, loan, sell, or otherwise transfer the Software or your licence key to any third party.</li>
+    <li>Use the Software for any unlawful purpose, including but not limited to creating fraudulent identity documents.</li>
+    <li>Use the Software to generate identity documents intended to deceive, impersonate, or defraud any person, organisation, or government entity.</li>
+    <li>Share, publish, or disclose your licence key. You are responsible for maintaining the confidentiality of your licence key.</li>
+    <li>Use automated tools to attempt to bypass, circumvent, or defeat the licence verification system.</li>
+  </ul>
+  <p>Any violation of these restrictions will result in immediate termination of your licence without refund.</p>
+</div>
+
+<div class="legal-section rv" id="t5">
+  <div class="legal-section-num">Section 05</div>
+  <h2>Trial Version</h2>
+  <p>IDCraft Pro is available as a free 7-day trial with the following limitations:</p>
+  <ul>
+    <li>Maximum of <strong>20 cards per day</strong> across all export formats.</li>
+    <li>JPEG export only (PNG, PDF, SVG, QR codes, dual-sided printing not available in trial).</li>
+    <li>Trial period begins on the date of first launch and expires after 7 calendar days.</li>
+  </ul>
+  <p>Upon expiry of the trial period, the Software will cease functioning until a Full Licence is purchased. No data created during the trial period will be lost.</p>
+  <p>You may use the trial version for genuine evaluation purposes only. Creating multiple trial installations to extend access beyond 7 days constitutes a breach of these Terms.</p>
+</div>
+
+<div class="legal-section rv" id="t6">
+  <div class="legal-section-num">Section 06</div>
+  <h2>Payment &amp; Refunds</h2>
+  <p>The Full Licence is available at a one-time price of <strong>&#8377;999 (Indian Rupees)</strong>. This price is subject to change; the price displayed at the time of purchase is the price you pay.</p>
+  <p>Payment is processed securely via UPI or card within the Software. Arham Studios does not store your payment card details.</p>
+  <p><strong>Refund Policy:</strong></p>
+  <ul>
+    <li>We offer a <strong>7-day satisfaction guarantee</strong> from the date of licence purchase. If you are not satisfied with the Software, contact us within 7 days of purchase for a full refund.</li>
+    <li>Refund requests must be submitted via email to <a href="mailto:idcraftp@gmail.com">idcraftp@gmail.com</a> with your order details.</li>
+    <li>Refunds will not be issued after 7 days from the date of purchase, or if we determine the licence key has been shared or misused.</li>
+    <li>We reserve the right to deny refund requests that we reasonably believe are fraudulent or abusive.</li>
+  </ul>
+</div>
+
+<div class="legal-section rv" id="t7">
+  <div class="legal-section-num">Section 07</div>
+  <h2>Intellectual Property</h2>
+  <p>IDCraft Pro, including all source code, design, graphics, user interface, logos, and documentation, is the exclusive intellectual property of Arham Studios and Piyush Kumar Dugar, protected under applicable copyright, trademark, and intellectual property laws.</p>
+  <p>The IDCraft Pro name, logo, and "Arham Studios" brand are trademarks of Arham Studios. You may not use these marks without our prior written permission.</p>
+  <p><strong>Your content:</strong> You retain full ownership of all ID card designs, templates, data, and output files you create using the Software. We claim no ownership over content you create.</p>
+  <p><strong>Feedback:</strong> If you submit suggestions, ideas, or feedback about the Software, you grant us a perpetual, royalty-free licence to use and incorporate that feedback without obligation to you.</p>
+</div>
+
+<div class="legal-section rv" id="t8">
+  <div class="legal-section-num">Section 08</div>
+  <h2>Disclaimers</h2>
+  <p>The Software and Website are provided on an <strong>"as is" and "as available" basis</strong> without warranties of any kind, either express or implied.</p>
+  <p>To the fullest extent permitted by applicable law, Arham Studios disclaims all warranties including but not limited to:</p>
+  <ul>
+    <li>Warranties of merchantability, fitness for a particular purpose, and non-infringement.</li>
+    <li>Warranties that the Software will be uninterrupted, error-free, or free of viruses or other harmful components.</li>
+    <li>Warranties regarding the accuracy, reliability, or completeness of any output generated by the Software.</li>
+  </ul>
+  <p>You are solely responsible for verifying the accuracy of ID cards generated by the Software before printing or distributing them. Arham Studios accepts no liability for errors in generated output.</p>
+  <p>You are solely responsible for ensuring that your use of the Software complies with all applicable laws and regulations in your jurisdiction, including laws governing identity documents and personal data.</p>
+</div>
+
+<div class="legal-section rv" id="t9">
+  <div class="legal-section-num">Section 09</div>
+  <h2>Limitation of Liability</h2>
+  <p>To the maximum extent permitted by applicable law, in no event shall Arham Studios, its developer, or its affiliates be liable for any:</p>
+  <ul>
+    <li>Indirect, incidental, special, consequential, or punitive damages.</li>
+    <li>Loss of profits, revenue, data, business, or goodwill.</li>
+    <li>Damages arising from unauthorised access to or alteration of your data.</li>
+    <li>Damages arising from the use or inability to use the Software or Website.</li>
+  </ul>
+  <p>In any case, our total aggregate liability to you for all claims arising out of or relating to these Terms or the Software shall not exceed the amount you paid for your licence (&#8377;999), or &#8377;100 if you have not made any payment.</p>
+  <p>Some jurisdictions do not allow the exclusion or limitation of certain warranties or liability, so some of the above limitations may not apply to you.</p>
+</div>
+
+<div class="legal-section rv" id="t10">
+  <div class="legal-section-num">Section 10</div>
+  <h2>User Reviews</h2>
+  <p>The Website allows users to submit reviews of the Software. By submitting a review, you agree that:</p>
+  <ul>
+    <li>Your review is accurate, honest, and reflects your genuine experience with the Software.</li>
+    <li>Your review does not contain false, misleading, defamatory, or harmful statements.</li>
+    <li>Your review does not infringe any third-party intellectual property, privacy, or other rights.</li>
+    <li>Your review may be displayed publicly on the Website, including your name and role/organisation if provided.</li>
+    <li>You grant Arham Studios a perpetual, royalty-free licence to display your review on the Website and in marketing materials.</li>
+  </ul>
+  <p>We reserve the right to remove reviews that violate these terms, contain spam, or that we determine in good faith are fraudulent. We do not edit review content.</p>
+</div>
+
+<div class="legal-section rv" id="t11">
+  <div class="legal-section-num">Section 11</div>
+  <h2>Website Use</h2>
+  <p>You may use the IDCraft Pro Website for lawful purposes only. You agree not to:</p>
+  <ul>
+    <li>Attempt to gain unauthorised access to any part of the Website or its underlying systems.</li>
+    <li>Use automated tools, bots, or scrapers to access the Website without our permission.</li>
+    <li>Transmit any malicious code, viruses, or harmful data through the Website.</li>
+    <li>Interfere with or disrupt the integrity or performance of the Website.</li>
+    <li>Use the Website in any manner that could damage our reputation or business.</li>
+  </ul>
+  <p>The Website is hosted on GitHub Pages and is subject to GitHub's Terms of Service in addition to these Terms.</p>
+</div>
+
+<div class="legal-section rv" id="t12">
+  <div class="legal-section-num">Section 12</div>
+  <h2>Governing Law</h2>
+  <p>These Terms of Use shall be governed by and construed in accordance with the laws of <strong>India</strong>, without regard to its conflict of law provisions.</p>
+  <p>Any dispute arising out of or in connection with these Terms, including any question regarding their existence, validity, or termination, shall be subject to the exclusive jurisdiction of the courts located in <strong>Howrah, West Bengal, India</strong>.</p>
+  <p>If you are accessing the Software or Website from outside India, you are responsible for compliance with local laws to the extent they are applicable.</p>
+</div>
+
+<div class="legal-section rv" id="t13">
+  <div class="legal-section-num">Section 13</div>
+  <h2>Changes to Terms</h2>
+  <p>We reserve the right to modify these Terms of Use at any time. When we make changes, we will update the "Last Updated" date at the top of this page.</p>
+  <p>For existing licence holders, material changes that adversely affect your rights will be communicated via email (if we have your email address) and via a prominent notice on the Website at least 14 days before taking effect.</p>
+  <p>Your continued use of the Software or Website after any changes take effect constitutes your acceptance of the revised Terms. If you do not agree to the revised Terms, you must stop using the Software and Website.</p>
+</div>
+
+<div class="legal-section rv" id="t14">
+  <div class="legal-section-num">Section 14</div>
+  <h2>Contact</h2>
+  <p>For any questions, concerns, or notices relating to these Terms of Use, please contact us:</p>
+  <ul>
+    <li><strong>Email:</strong> <a href="mailto:idcraftp@gmail.com">idcraftp@gmail.com</a></li>
+    <li><strong>Instagram:</strong> <a href="https://instagram.com/earthlyshutter21" target="_blank" rel="noopener">@earthlyshutter21</a></li>
+    <li><strong>GitHub:</strong> <a href="https://github.com/Piyush-2103" target="_blank" rel="noopener">github.com/Piyush-2103</a></li>
+    <li><strong>Developer:</strong> Piyush Kumar Dugar, Arham Studios, Howrah, West Bengal, India</li>
+  </ul>
+  <p>We aim to respond to all legal enquiries within 5 business days.</p>
+</div>
+
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-row"><img src="N5.png" alt="IDCraft Pro" width="26" height="22"><span class="footer-brand-name">IDCraft Pro</span></div>
+      <p class="footer-brand-desc">Enterprise bulk ID card generation for Windows.</p>
+    </div>
+    <div><div class="footer-col-title">Product</div><ul class="footer-links"><li><a href="index.html#features">Features</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="transmorph.html" target="_blank">Free File Converter ↗</a></li></ul></div>
+    <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="index.html#contact">Contact</a></li><li><a href="https://github.com/Piyush-2103/IDCraft-Pro" target="_blank">GitHub</a></li></ul></div>
+    <div><div class="footer-col-title">Legal</div><ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Arham Studios. All rights reserved.</p>
+    <p>Designed &amp; developed by Piyush Kumar Dugar</p>
+  </div>
+</footer>
+<script defer src="script.js"></script>
+</body>
+</html>

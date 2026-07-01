@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — IDCraft Pro</title>
+<meta name="description" content="IDCraft Pro Privacy Policy — how we handle your data on our website and desktop application.">
+<link rel="icon" type="image/png" href="N4.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Legal page overrides */
+.legal-hero{
+  padding:60px 0 40px;
+  border-bottom:1px solid var(--rule);
+}
+.legal-hero-label{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--peach);color:var(--amber);
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:6px 14px;border-radius:100px;
+  border:1.5px solid var(--amber-md);
+  box-shadow:2px 2px 0 var(--amber-md);
+  margin-bottom:16px;
+}
+.legal-hero-title{
+  font-family:var(--disp);
+  font-size:clamp(2.8rem,6vw,4.4rem);
+  line-height:1;color:var(--ink);margin-bottom:12px;
+}
+.legal-hero-meta{
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);
+}
+.legal-body{
+  padding:60px 0 96px;
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:56px;
+  align-items:start;
+}
+/* Sticky table of contents */
+.legal-toc{
+  position:sticky;top:84px;
+  background:var(--white);
+  border-radius:var(--rlg);
+  border:3px solid rgba(255,255,255,.9);
+  box-shadow:var(--csm);
+  padding:24px;
+}
+.legal-toc-title{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:16px;
+}
+.legal-toc a{
+  display:block;font-family:var(--mono);font-size:10px;
+  font-weight:600;letter-spacing:.06em;
+  color:var(--ink2);padding:7px 10px;
+  border-radius:var(--rsm);text-decoration:none;
+  transition:background .15s,color .15s;
+  line-height:1.4;
+}
+.legal-toc a:hover{background:var(--amber-lt);color:var(--amber)}
+.legal-toc a.active{background:var(--amber-lt);color:var(--amber);}
+/* Content */
+.legal-content{display:flex;flex-direction:column;gap:40px;}
+.legal-section{
+  background:var(--white);
+  border-radius:var(--rlg);
+  border:3px solid rgba(255,255,255,.9);
+  box-shadow:var(--csm);
+  padding:36px 40px;
+}
+.legal-section-num{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:8px;
+}
+.legal-section h2{
+  font-family:var(--disp);font-size:1.9rem;
+  color:var(--ink);margin-bottom:18px;line-height:1.05;
+}
+.legal-section p{
+  font-size:.93rem;line-height:1.85;
+  color:var(--ink2);font-weight:500;margin-bottom:14px;
+}
+.legal-section p:last-child{margin-bottom:0}
+.legal-section ul{
+  display:flex;flex-direction:column;gap:10px;
+  margin:12px 0 14px 0;
+}
+.legal-section ul li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:.92rem;line-height:1.75;color:var(--ink2);font-weight:500;
+}
+.legal-section ul li::before{
+  content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--amber);flex-shrink:0;margin-top:7px;
+}
+.legal-section strong{color:var(--ink);font-weight:700;}
+.legal-section a{color:var(--amber);text-decoration:underline;}
+.legal-back{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink2);text-decoration:none;
+  padding:10px 16px;border-radius:var(--rsm);
+  background:var(--white);border:2px solid rgba(255,255,255,.9);
+  box-shadow:var(--csm);
+  transition:color .15s,background .15s,transform .18s var(--ease),box-shadow .18s;
+  margin-bottom:24px;
+}
+.legal-back:hover{color:var(--amber);background:var(--amber-lt);transform:translateY(-2px);box-shadow:var(--cmd)}
+.legal-back svg{width:14px;height:14px;}
+.legal-highlight{
+  background:var(--peach);border-radius:var(--rsm);
+  border-left:4px solid var(--amber);
+  padding:16px 20px;margin:14px 0;
+}
+.legal-highlight p{margin:0;color:var(--ink2);}
+/* Dark mode */
+[data-theme="dark"] .legal-toc,
+[data-theme="dark"] .legal-section,
+[data-theme="dark"] .legal-back{
+  background:var(--white);border-color:rgba(245,239,230,.08);
+}
+[data-theme="dark"] .legal-highlight{
+  background:rgba(232,101,10,.12);border-color:var(--amber);
+}
+/* Responsive */
+@media(max-width:860px){
+  .legal-body{grid-template-columns:1fr;gap:32px;}
+  .legal-toc{position:static;}
+}
+@media(max-width:600px){
+  .legal-hero{padding:40px 0 28px;}
+  .legal-section{padding:24px 20px;}
+  .legal-body{padding:40px 0 64px;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div id="prog" role="progressbar" aria-label="Page scroll progress"></div>
+<header id="nav" role="banner">
+  <div class="nav-inner">
+    <div class="nav-brand"><img src="N4.png" alt="IDCraft Pro logo" width="26" height="22"><span class="nav-brand-name">IDCraft Pro</span></div>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html#workflow">Workflow</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="transmorph.html" target="_blank" style="color:var(--amber);background:var(--amber-lt);border-radius:var(--rsm);padding:8px 12px;">Free Tools ↗</a>
+    </nav>
+    <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Download
+    </a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+    <button id="mob-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mob-menu"><span></span><span></span><span></span></button>
+  </div>
+  <nav id="mob-menu" aria-label="Mobile navigation">
+    <a href="index.html#workflow" class="ml">Workflow</a>
+    <a href="index.html#features" class="ml">Features</a>
+    <a href="index.html#pricing" class="ml">Pricing</a>
+    <a href="index.html#faq" class="ml">FAQ</a>
+    <a href="index.html#reviews" class="ml">Reviews</a>
+    <a href="index.html#contact" class="ml">Contact</a>
+    <a href="transmorph.html" target="_blank" class="ml" style="color:var(--amber);">Free Tools ↗</a>
+    <a href="https://github.com/Piyush-2103/IDCraft-Pro/releases/latest/download/IDCraft-Pro-Setup.exe" class="ml mob-cta">&#11015; Download Free Trial</a>
+  </nav>
+</header>
+<main id="main-content">
+<section class="legal-hero">
+  <div class="wrap">
+    <a href="index.html" class="legal-back">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      Back to Home
+    </a>
+    <div class="legal-hero-label">Legal Document</div>
+    <h1 class="legal-hero-title">Privacy Policy</h1>
+    <p class="legal-hero-meta">Effective Date: 1 July 2026 &nbsp;&middot;&nbsp; Last Updated: 1 July 2026</p>
+  </div>
+</section>
+<div class="wrap">
+  <div class="legal-body">
+    <aside class="legal-toc" aria-label="Table of contents">
+  <div class="legal-toc-title">Contents</div>
+  <a href="#p1">1. Overview</a>
+  <a href="#p2">2. Information We Collect</a>
+  <a href="#p3">3. How We Use Information</a>
+  <a href="#p4">4. Data Storage</a>
+  <a href="#p5">5. Third-Party Services</a>
+  <a href="#p6">6. Cookies</a>
+  <a href="#p7">7. Children's Privacy</a>
+  <a href="#p8">8. Data Security</a>
+  <a href="#p9">9. Your Rights</a>
+  <a href="#p10">10. Changes to Policy</a>
+  <a href="#p11">11. Contact Us</a>
+</aside>
+    <div class="legal-content">
+      
+<div class="legal-section rv" id="p1">
+  <div class="legal-section-num">Section 01</div>
+  <h2>Overview</h2>
+  <div class="legal-highlight"><p>IDCraft Pro is a <strong>100% offline Windows desktop application</strong>. It does not connect to the internet, does not transmit your data to any server, and does not require an account. Your employee data, photos, and generated ID cards never leave your device.</p></div>
+  <p>This Privacy Policy explains what limited information is collected through our marketing website (the "Website") at <strong>piyush-2103.github.io</strong>, and how it is handled. This policy does not apply to the desktop application itself, which collects no data whatsoever.</p>
+  <p>By using our Website, you agree to the practices described in this policy. If you do not agree, please discontinue use of the Website.</p>
+</div>
+
+<div class="legal-section rv" id="p2">
+  <div class="legal-section-num">Section 02</div>
+  <h2>Information We Collect</h2>
+  <p>We collect only the minimum information necessary to operate the Website and respond to enquiries.</p>
+  <p><strong>Information you provide voluntarily:</strong></p>
+  <ul>
+    <li>Contact form submissions — your name, email address, subject, and message content when you submit the contact form.</li>
+    <li>Review submissions — your name, optional role or organisation, star rating, and written review text when you choose to leave a review on the Website.</li>
+  </ul>
+  <p><strong>Information collected automatically:</strong></p>
+  <ul>
+    <li>Basic browser storage data (localStorage) used solely to remember your light/dark theme preference across visits. This is stored locally on your device and never transmitted to us.</li>
+    <li>Standard server access logs (IP address, browser type, page visited, timestamp) may be recorded by GitHub Pages, our hosting provider. We do not access or process these logs beyond what GitHub Pages retains as part of its standard operations.</li>
+  </ul>
+  <p><strong>We do not collect</strong> payment information, identity documents, biometric data, or any data entered into or generated by the IDCraft Pro desktop application.</p>
+</div>
+
+<div class="legal-section rv" id="p3">
+  <div class="legal-section-num">Section 03</div>
+  <h2>How We Use Information</h2>
+  <p>Information collected through the Website is used exclusively for:</p>
+  <ul>
+    <li><strong>Responding to enquiries</strong> — contact form submissions are used solely to reply to your message. We do not add you to any mailing list without explicit consent.</li>
+    <li><strong>Displaying reviews</strong> — review submissions are stored via JSONBin.io and displayed publicly on the Website. By submitting a review, you consent to your name, role, and review text being displayed publicly.</li>
+    <li><strong>Improving the Website</strong> — aggregate, anonymised usage patterns may be used to improve the Website's content and user experience.</li>
+    <li><strong>Licence management</strong> — if you purchase a licence, your email address is used to deliver your licence key. It is not used for marketing without your explicit consent.</li>
+  </ul>
+  <p>We do not sell, rent, trade, or share your personal information with third parties for their marketing purposes.</p>
+</div>
+
+<div class="legal-section rv" id="p4">
+  <div class="legal-section-num">Section 04</div>
+  <h2>Data Storage</h2>
+  <p><strong>Desktop application:</strong> All data processed by the IDCraft Pro desktop application — including employee names, photos, Excel files, and generated ID cards — is stored exclusively on your local Windows device. Arham Studios has no access to this data under any circumstances.</p>
+  <p><strong>Contact form submissions:</strong> Form submissions are handled by Web3Forms and/or FormSubmit.co and delivered to our email address. We retain this correspondence for up to 12 months for support purposes, after which it is deleted.</p>
+  <p><strong>Reviews:</strong> Review data (name, role, rating, review text, submission date) is stored on JSONBin.io, a third-party JSON storage service. Reviews are stored publicly and are accessible to anyone with the API endpoint. Do not include personal or sensitive information in your review.</p>
+  <p><strong>Theme preference:</strong> Your light/dark mode preference is stored in your browser's <code>localStorage</code> under the key <code>idcraft-theme</code>. This data never leaves your device and can be cleared at any time by clearing your browser's site data.</p>
+</div>
+
+<div class="legal-section rv" id="p5">
+  <div class="legal-section-num">Section 05</div>
+  <h2>Third-Party Services</h2>
+  <p>The Website uses a limited number of third-party services. Each operates under its own privacy policy:</p>
+  <ul>
+    <li><strong>GitHub Pages</strong> — Website hosting. May collect standard server access logs. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</li>
+    <li><strong>Google Fonts</strong> — Serves Nunito, IBM Plex Mono, and Bebas Neue typefaces. May log font requests including your IP address. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</li>
+    <li><strong>JSONBin.io</strong> — Stores and retrieves public review data. <a href="https://jsonbin.io/privacy-policy" target="_blank" rel="noopener">JSONBin Privacy Policy</a>.</li>
+    <li><strong>Web3Forms / FormSubmit.co</strong> — Processes contact form submissions. Your form data passes through their servers en route to our inbox.</li>
+    <li><strong>YouTube</strong> — Embedded video demos are loaded using YouTube's privacy-enhanced mode (<code>youtube-nocookie.com</code>). YouTube may still collect data when you interact with embedded videos.</li>
+  </ul>
+  <p>We are not responsible for the privacy practices of these third-party services.</p>
+</div>
+
+<div class="legal-section rv" id="p6">
+  <div class="legal-section-num">Section 06</div>
+  <h2>Cookies</h2>
+  <p>The IDCraft Pro Website does <strong>not</strong> use cookies for tracking, advertising, or analytics.</p>
+  <p>The only browser storage we use is <code>localStorage</code> to remember your theme preference (<code>idcraft-theme: "light"</code> or <code>"dark"</code>). This is a functional preference, not a tracking mechanism, and it is stored entirely on your device.</p>
+  <p>Third-party services embedded in the Website (Google Fonts, YouTube) may set their own cookies in accordance with their privacy policies. You can manage or block these through your browser's privacy settings.</p>
+</div>
+
+<div class="legal-section rv" id="p7">
+  <div class="legal-section-num">Section 07</div>
+  <h2>Children's Privacy</h2>
+  <p>IDCraft Pro and this Website are intended for use by businesses, institutions, and professionals. They are <strong>not directed at children under the age of 13</strong> (or 16 in jurisdictions where a higher age threshold applies).</p>
+  <p>We do not knowingly collect personal information from children. If you believe a child has submitted personal information through our Website, please contact us immediately at <a href="mailto:idcraftp@gmail.com">idcraftp@gmail.com</a> and we will delete that information promptly.</p>
+</div>
+
+<div class="legal-section rv" id="p8">
+  <div class="legal-section-num">Section 08</div>
+  <h2>Data Security</h2>
+  <p>We take reasonable precautions to protect information submitted through the Website. However, no method of internet transmission or electronic storage is 100% secure.</p>
+  <p>Specific measures we take include:</p>
+  <ul>
+    <li>The Website is served entirely over HTTPS via GitHub Pages.</li>
+    <li>Contact form submissions are transmitted securely to our email provider.</li>
+    <li>We do not store payment card information — all payments are processed by UPI or third-party payment processors.</li>
+    <li>The desktop application processes all data locally and has no network access, eliminating remote data-breach risk entirely for application users.</li>
+  </ul>
+  <p>Please be aware that review submissions are stored in a publicly accessible JSON store. Do not include passwords, financial information, or other sensitive personal data in your review.</p>
+</div>
+
+<div class="legal-section rv" id="p9">
+  <div class="legal-section-num">Section 09</div>
+  <h2>Your Rights</h2>
+  <p>Depending on your jurisdiction, you may have the following rights regarding your personal data:</p>
+  <ul>
+    <li><strong>Right to access</strong> — request a copy of any personal data we hold about you.</li>
+    <li><strong>Right to rectification</strong> — request correction of inaccurate personal data.</li>
+    <li><strong>Right to erasure</strong> — request deletion of your personal data, including any reviews you have submitted and contact form correspondence we retain.</li>
+    <li><strong>Right to restriction</strong> — request that we restrict processing of your data in certain circumstances.</li>
+    <li><strong>Right to object</strong> — object to processing of your data where we rely on legitimate interests as a legal basis.</li>
+  </ul>
+  <p>To exercise any of these rights, contact us at <a href="mailto:idcraftp@gmail.com">idcraftp@gmail.com</a>. We will respond within 30 days. We may need to verify your identity before fulfilling certain requests.</p>
+</div>
+
+<div class="legal-section rv" id="p10">
+  <div class="legal-section-num">Section 10</div>
+  <h2>Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time to reflect changes in our practices, the Website, or applicable law. When we do, we will update the "Last Updated" date at the top of this page.</p>
+  <p>We encourage you to review this page periodically. Continued use of the Website after any changes constitutes your acceptance of the updated policy.</p>
+  <p>For significant changes that materially affect your rights, we will make reasonable efforts to notify users through a prominent notice on the Website.</p>
+</div>
+
+<div class="legal-section rv" id="p11">
+  <div class="legal-section-num">Section 11</div>
+  <h2>Contact Us</h2>
+  <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+  <ul>
+    <li><strong>Email:</strong> <a href="mailto:idcraftp@gmail.com">idcraftp@gmail.com</a></li>
+    <li><strong>Instagram:</strong> <a href="https://instagram.com/earthlyshutter21" target="_blank" rel="noopener">@earthlyshutter21</a></li>
+    <li><strong>GitHub:</strong> <a href="https://github.com/Piyush-2103" target="_blank" rel="noopener">github.com/Piyush-2103</a></li>
+    <li><strong>Developer:</strong> Piyush Kumar Dugar, Arham Studios, Howrah, West Bengal, India</li>
+  </ul>
+  <p>We aim to respond to all privacy-related enquiries within 5 business days.</p>
+</div>
+
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-row"><img src="N5.png" alt="IDCraft Pro" width="26" height="22"><span class="footer-brand-name">IDCraft Pro</span></div>
+      <p class="footer-brand-desc">Enterprise bulk ID card generation for Windows.</p>
+    </div>
+    <div><div class="footer-col-title">Product</div><ul class="footer-links"><li><a href="index.html#features">Features</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="transmorph.html" target="_blank">Free File Converter ↗</a></li></ul></div>
+    <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="index.html#contact">Contact</a></li><li><a href="https://github.com/Piyush-2103/IDCraft-Pro" target="_blank">GitHub</a></li></ul></div>
+    <div><div class="footer-col-title">Legal</div><ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Arham Studios. All rights reserved.</p>
+    <p>Designed &amp; developed by Piyush Kumar Dugar</p>
+  </div>
+</footer>
+<script defer src="script.js"></script>
+</body>
+</html>
